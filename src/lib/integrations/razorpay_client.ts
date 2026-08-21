@@ -153,7 +153,7 @@ export class RazorpayClientWrapper {
 
     return this.executeWithRetry(() => {
       return requestContext.run({ idempotencyKey }, () => {
-        return this.client.paymentLink.create(requestData) as Promise<RazorpayPaymentLinkResponse>;
+        return this.client.paymentLink.create(requestData) as unknown as Promise<RazorpayPaymentLinkResponse>;
       });
     });
   }
