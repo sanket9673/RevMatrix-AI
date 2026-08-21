@@ -14,6 +14,7 @@ enum LoopType {
 
 enum WorkflowStatus {
   PENDING
+  IN_PROGRESS
   PROCESSING
   ACTION_SCHEDULED
   RECOVERED
@@ -23,16 +24,17 @@ enum WorkflowStatus {
 }
 
 model Transaction {
-  id            String             @id @default(uuid())
-  razorpayId    String             @unique
-  loopType      LoopType
-  amount        Float
-  currency      String             @default("INR")
-  customerEmail String
-  failureCode   String?
-  dueDate       DateTime?
-  createdAt     DateTime           @default(now())
-  workflows     RecoveryWorkflow[]
+  id              String             @id @default(uuid())
+  razorpayId      String             @unique
+  loopType        LoopType
+  amount          Float
+  currency        String             @default("INR")
+  customerEmail   String
+  failureCode     String?
+  dueDate         DateTime?
+  createdAt       DateTime           @default(now())
+  idempotencyHash String?            @unique
+  workflows       RecoveryWorkflow[]
 }
 
 model RecoveryWorkflow {
@@ -47,6 +49,8 @@ model RecoveryWorkflow {
   netRecoveredGtv  Float            @default(0.0)
   createdAt        DateTime         @default(now())
   updatedAt        DateTime         @updatedAt
+  completedAt      DateTime?
+  metrics          Json?
   reasoningTraces  ReasoningTrace[]
   auditLogs        AuditLog[]
 
@@ -67,13 +71,13 @@ model ReasoningTrace {
 }
 
 model AuditLog {
-  id             String           @id @default(uuid())
-  workflowId     String
-  workflow       RecoveryWorkflow @relation(fields: [workflowId], references: [id], onDelete: Cascade)
-  actionExecuted String
-  actor          String
-  payload        Json
-  previousHash   String
-  currentHash    String
-  timestamp      DateTime         @default(now())
+  id           String           @id @default(uuid())
+  workflowId   String
+  workflow     RecoveryWorkflow @relation(fields: [workflowId], references: [id], onDelete: Cascade)
+  action       String
+  actor        String
+  payload      Json
+  previousHash String
+  currentHash  String
+  createdAt    DateTime         @default(now())
 }
