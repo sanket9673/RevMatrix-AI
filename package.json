@@ -1,0 +1,39 @@
+{
+  "name": "revmatrix-ai",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
+    "db:push": "prisma db push",
+    "db:studio": "prisma studio",
+    "generate:batch": "ts-node --compiler-options '{\"module\":\"CommonJS\"}' scripts/generate-batch.ts",
+    "run:benchmark": "ts-node --compiler-options '{\"module\":\"CommonJS\"}' scripts/run-benchmark.ts"
+  },
+  "dependencies": {
+    "@google/genai": "^0.2.0",
+    "@prisma/client": "^5.19.0",
+    "clsx": "^2.1.1",
+    "framer-motion": "^11.5.0",
+    "lucide-react": "^0.439.0",
+    "next": "14.2.8",
+    "razorpay": "^2.9.4",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "tailwind-merge": "^2.5.2",
+    "zod": "^3.23.8"
+  },
+  "devDependencies": {
+    "@types/node": "^20.16.5",
+    "@types/react": "^18.3.5",
+    "@types/react-dom": "^18.3.0",
+    "autoprefixer": "^10.4.20",
+    "postcss": "^8.4.45",
+    "prisma": "^5.19.0",
+    "tailwindcss": "^3.4.10",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.5.4"
+  }
+}

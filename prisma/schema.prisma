@@ -1,0 +1,79 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum LoopType {
+  TRANSACT_FAILURE
+  B2B_RECEIVABLE
+}
+
+enum WorkflowStatus {
+  PENDING
+  PROCESSING
+  ACTION_SCHEDULED
+  RECOVERED
+  RECOVERED_EXTERNALLY
+  HALTED_POLICY_BLOCK
+  FAILED
+}
+
+model Transaction {
+  id            String             @id @default(uuid())
+  razorpayId    String             @unique
+  loopType      LoopType
+  amount        Float
+  currency      String             @default("INR")
+  customerEmail String
+  failureCode   String?
+  dueDate       DateTime?
+  createdAt     DateTime           @default(now())
+  workflows     RecoveryWorkflow[]
+}
+
+model RecoveryWorkflow {
+  id               String           @id @default(uuid())
+  transactionId    String
+  transaction      Transaction      @relation(fields: [transactionId], references: [id], onDelete: Cascade)
+  status           WorkflowStatus   @default(PENDING)
+  version          Int              @default(1)
+  idempotencyKey   String           @unique
+  nextCheckAt      DateTime
+  appliedDiscount  Float            @default(0.0)
+  netRecoveredGtv  Float            @default(0.0)
+  createdAt        DateTime         @default(now())
+  updatedAt        DateTime         @updatedAt
+  reasoningTraces  ReasoningTrace[]
+  auditLogs        AuditLog[]
+
+  @@index([status, nextCheckAt])
+}
+
+model ReasoningTrace {
+  id                String           @id @default(uuid())
+  workflowId        String
+  workflow          RecoveryWorkflow @relation(fields: [workflowId], references: [id], onDelete: Cascade)
+  stepNumber        Int
+  thoughtProcess    String           @db.Text
+  toolCalled        String?
+  toolInput         Json?
+  toolOutput        Json?
+  policyCheckPassed Boolean
+  createdAt         DateTime         @default(now())
+}
+
+model AuditLog {
+  id             String           @id @default(uuid())
+  workflowId     String
+  workflow       RecoveryWorkflow @relation(fields: [workflowId], references: [id], onDelete: Cascade)
+  actionExecuted String
+  actor          String
+  payload        Json
+  previousHash   String
+  currentHash    String
+  timestamp      DateTime         @default(now())
+}
