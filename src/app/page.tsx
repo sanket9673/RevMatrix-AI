@@ -1,0 +1,725 @@
+"use client";
+
+import * as React from "react";
+import {
+  TrendingUp,
+  RefreshCw,
+  AlertCircle,
+  ArrowUpRight,
+  Filter,
+  CheckCircle2,
+  Clock,
+  ExternalLink,
+  ShieldCheck,
+  Search,
+  Download,
+  AlertTriangle,
+  Play,
+  Check,
+  Zap,
+} from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
+import { cn } from "@/lib/utils";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from "@/components/ui/table";
+import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+} from "@/components/ui/dialog";
+
+// Define the Interface for active recovery instance
+interface TraceStep {
+  time: string;
+  agent: string;
+  action: string;
+  details: string;
+  status: "success" | "warning" | "info" | "error";
+}
+
+interface RecoveryInstance {
+  id: string;
+  timestamp: string;
+  entity: string;
+  loop: "Loop 1" | "Loop 2";
+  loopName: string;
+  value: string;
+  strategy: string;
+  sla: string;
+  status: "In Progress" | "Recovered" | "Escalated";
+  traceSteps: TraceStep[];
+}
+
+// Complete mock dataset representing active recovery feeds
+const mockRecoveryData: RecoveryInstance[] = [
+  {
+    id: "WF-88912",
+    timestamp: "2 mins ago",
+    entity: "Acme Corporation",
+    loop: "Loop 2",
+    loopName: "B2B Receivables",
+    value: "$14,250.00",
+    strategy: "ERP Escalation - Net-30",
+    sla: "14m remaining",
+    status: "In Progress",
+    traceSteps: [
+      {
+        time: "10:42:01 AM",
+        agent: "Policy Router",
+        action: "Ingest Account Status",
+        details: "Detected past due invoice ($14,250.00) for Acme Corp (Net-30 agreement). Risk score: 0.42",
+        status: "info",
+      },
+      {
+        time: "10:42:05 AM",
+        agent: "Strategy Assigner",
+        action: "Assign Strategy Model",
+        details: "Assigned 'B2B Escalation Path A'. Activating Autonomous Vendor Outreach Program.",
+        status: "success",
+      },
+      {
+        time: "10:43:10 AM",
+        agent: "Communication Node",
+        action: "Dispatch Email Outreach",
+        details: "Sent customized payment notice to AP department with polite-firm semantic structure.",
+        status: "success",
+      },
+      {
+        time: "10:44:00 AM",
+        agent: "ERP Sync Agent",
+        action: "Verify Ledger Updates",
+        details: "Checked ERP ledger. Payment status: PENDING. Next retry schedule in 4 hours.",
+        status: "warning",
+      },
+    ],
+  },
+  {
+    id: "WF-72310",
+    timestamp: "12 mins ago",
+    entity: "Stripe Tech Solutions",
+    loop: "Loop 1",
+    loopName: "Card Failures",
+    value: "$4,120.00",
+    strategy: "Smart Retry Matrix - Att. 2",
+    sla: "Automated",
+    status: "Recovered",
+    traceSteps: [
+      {
+        time: "10:30:15 AM",
+        agent: "Webhook Listener",
+        action: "Ingested Razorpay Webhook",
+        details: "Failed payment payload received. Error code: insufficient_funds. Original charge: $4,120.00",
+        status: "info",
+      },
+      {
+        time: "10:30:20 AM",
+        agent: "Smart Retry Matrix",
+        action: "Predict Next Recovery Time",
+        details: "Identified optimal recovery window: Fridays 10:30 AM based on Stripe Tech payroll historicals.",
+        status: "success",
+      },
+      {
+        time: "10:31:00 AM",
+        agent: "Payment Gate Agent",
+        action: "Trigger Smart Retry Attempt 2",
+        details: "Dispatched payment request payload via fallback terminal Razorpay_C2.",
+        status: "info",
+      },
+      {
+        time: "10:31:12 AM",
+        agent: "Verification Node",
+        action: "Acknowledge Success Signature",
+        details: "Payment settled. Received authorization signature: tx_9921b3. Recovered: $4,120.00",
+        status: "success",
+      },
+    ],
+  },
+  {
+    id: "WF-65492",
+    timestamp: "45 mins ago",
+    entity: "Ananya Sharma",
+    loop: "Loop 1",
+    loopName: "UPI Retries",
+    value: "$1,850.00",
+    strategy: "SMS WhatsApp Dunning",
+    sla: "4m remaining",
+    status: "In Progress",
+    traceSteps: [
+      {
+        time: "09:58:00 AM",
+        agent: "Webhook Listener",
+        action: "Ingested UPI Payment Fail",
+        details: "UPI request failed. Reason: customer_abandoned.",
+        status: "warning",
+      },
+      {
+        time: "09:58:15 AM",
+        agent: "Dunning Broker",
+        action: "Trigger WhatsApp Flow",
+        details: "Sent interactive payment link via WhatsApp API template: UPI_Failed_Retry_V1.",
+        status: "success",
+      },
+      {
+        time: "10:15:30 AM",
+        agent: "Link Tracker",
+        action: "Register User Interaction",
+        details: "User opened the link. Form rendered. Session active.",
+        status: "info",
+      },
+    ],
+  },
+  {
+    id: "WF-55410",
+    timestamp: "1 hour ago",
+    entity: "Novartis BioGroup",
+    loop: "Loop 2",
+    loopName: "B2B Receivables",
+    value: "$62,400.00",
+    strategy: "Legal Notice Prep - Net-90",
+    sla: "Breached (2h)",
+    status: "Escalated",
+    traceSteps: [
+      {
+        time: "08:43:00 AM",
+        agent: "Chronos Scheduler",
+        action: "Evaluate Account Health",
+        details: "Account past due by 90 days. Total unpaid invoice value: $62,400.00. Credit score: LOW.",
+        status: "error",
+      },
+      {
+        time: "08:44:00 AM",
+        agent: "Outreach Node",
+        action: "Final Notice Delivery",
+        details: "Sent certified dunning notice to receivables@novartis.com. Blocked API keys.",
+        status: "warning",
+      },
+      {
+        time: "09:00:00 AM",
+        agent: "Policy Router",
+        action: "Escalate to Legal",
+        details: "Exceeded recovery limit (SLA limit 30 days past Net-60). Forwarding case file to legal team.",
+        status: "error",
+      },
+    ],
+  },
+  {
+    id: "WF-49912",
+    timestamp: "3 hours ago",
+    entity: "Hyper Growth Labs",
+    loop: "Loop 1",
+    loopName: "Card Failures",
+    value: "$8,900.00",
+    strategy: "Smart Retry Matrix - Att. 1",
+    sla: "Automated",
+    status: "Recovered",
+    traceSteps: [
+      {
+        time: "07:22:15 AM",
+        agent: "Webhook Listener",
+        action: "Ingested Stripe Payment Fail",
+        details: "Failed payment payload received. Error code: transaction_not_allowed.",
+        status: "info",
+      },
+      {
+        time: "07:23:00 AM",
+        agent: "Smart Retry Matrix",
+        action: "Trigger Smart Retry Attempt 1",
+        details: "Retried on fallback terminal Stripe_B1. Payment succeeded.",
+        status: "success",
+      },
+    ],
+  },
+  {
+    id: "WF-33120",
+    timestamp: "5 hours ago",
+    entity: "Siddharth Mehta",
+    loop: "Loop 1",
+    loopName: "UPI Retries",
+    value: "$3,200.00",
+    strategy: "SMS WhatsApp Dunning",
+    sla: "Automated",
+    status: "Recovered",
+    traceSteps: [
+      {
+        time: "05:10:00 AM",
+        agent: "Webhook Listener",
+        action: "Ingested UPI Payment Fail",
+        details: "UPI payment request timed out. Value: $3,200.00",
+        status: "info",
+      },
+      {
+        time: "05:11:00 AM",
+        agent: "Dunning Broker",
+        action: "Trigger SMS Alert",
+        details: "SMS sent to customer containing high-priority payment retry link.",
+        status: "success",
+      },
+      {
+        time: "05:14:22 AM",
+        agent: "Verification Node",
+        action: "Verify Ledger Updates",
+        details: "Ledger updated. User paid via alternative Net Banking option. Recovered: $3,200.00",
+        status: "success",
+      },
+    ],
+  },
+];
+
+export default function Dashboard() {
+  const [activeTab, setActiveTab] = React.useState<string>("all");
+  const [searchQuery, setSearchQuery] = React.useState<string>("");
+  const [refreshing, setRefreshing] = React.useState<boolean>(false);
+  const [selectedWorkflow, setSelectedWorkflow] = React.useState<RecoveryInstance | null>(null);
+  const [isModalOpen, setIsModalOpen] = React.useState<boolean>(false);
+
+  // Trigger simulated refresh loader
+  const handleRefresh = () => {
+    setRefreshing(true);
+    setTimeout(() => {
+      setRefreshing(false);
+    }, 750);
+  };
+
+  // Filter items based on selected tab and search query
+  const filteredData = React.useMemo(() => {
+    return mockRecoveryData.filter((item) => {
+      // Filter by tab
+      if (activeTab === "loop1" && item.loop !== "Loop 1") return false;
+      if (activeTab === "loop2" && item.loop !== "Loop 2") return false;
+
+      // Filter by search query
+      if (searchQuery.trim() !== "") {
+        const query = searchQuery.toLowerCase();
+        const matchesId = item.id.toLowerCase().includes(query);
+        const matchesEntity = item.entity.toLowerCase().includes(query);
+        const matchesStrategy = item.strategy.toLowerCase().includes(query);
+        return matchesId || matchesEntity || matchesStrategy;
+      }
+
+      return true;
+    });
+  }, [activeTab, searchQuery]);
+
+  return (
+    <div className="space-y-8">
+      {/* Upper Title Strip */}
+      <div className="flex flex-col justify-between gap-4 sm:flex-row sm:items-center">
+        <div>
+          <h1 className="text-2xl font-bold tracking-tight text-zinc-50 md:text-3xl">
+            Autonomous Revenue Recovery Engine
+          </h1>
+          <p className="text-sm text-zinc-400">
+            Real-time agentic orchestration, ledger synchronization, and policy enforcement metrics.
+          </p>
+        </div>
+        <div className="flex items-center gap-2">
+          <Button variant="outline" size="sm" onClick={handleRefresh} className="h-9">
+            <RefreshCw className={cn("mr-2 h-3.5 w-3.5", refreshing ? "animate-spin text-emerald-500" : "")} />
+            Refresh
+          </Button>
+          <Button variant="emerald" size="sm" className="h-9">
+            <Download className="mr-2 h-3.5 w-3.5" />
+            Export Audit Log
+          </Button>
+        </div>
+      </div>
+
+      {/* SECTION 1: HERO DYNAMIC METRIC STRIP */}
+      <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+        {/* Metric Card 1 */}
+        <motion.div
+          initial={{ opacity: 0, y: 15 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.3, delay: 0.05 }}
+        >
+          <Card className="relative overflow-hidden">
+            <div className="absolute right-0 top-0 h-24 w-24 bg-amber-500/5 blur-2xl" />
+            <CardHeader className="flex flex-row items-center justify-between pb-2">
+              <CardDescription className="text-xs font-semibold uppercase tracking-wider text-zinc-500">
+                Total At-Risk Revenue
+              </CardDescription>
+              <Badge variant="warning" className="text-[10px]">
+                <AlertTriangle className="mr-1 h-3 w-3" /> Warning
+              </Badge>
+            </CardHeader>
+            <CardContent>
+              <div className="text-2xl font-bold font-mono tracking-tight text-zinc-50">
+                $1,248,500.00
+              </div>
+              <div className="mt-1 flex items-center space-x-1 text-xs text-amber-500">
+                <span className="font-semibold">+12.4%</span>
+                <span className="text-zinc-500">vs last cycle</span>
+              </div>
+            </CardContent>
+          </Card>
+        </motion.div>
+
+        {/* Metric Card 2 */}
+        <motion.div
+          initial={{ opacity: 0, y: 15 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.3, delay: 0.1 }}
+        >
+          <Card className="relative overflow-hidden">
+            <div className="absolute right-0 top-0 h-24 w-24 bg-emerald-500/5 blur-2xl" />
+            <CardHeader className="flex flex-row items-center justify-between pb-2">
+              <CardDescription className="text-xs font-semibold uppercase tracking-wider text-zinc-500">
+                Net Recovered Yield
+              </CardDescription>
+              <Badge variant="success" pulse className="text-[10px]">
+                Active Rec.
+              </Badge>
+            </CardHeader>
+            <CardContent>
+              <div className="text-2xl font-bold font-mono tracking-tight text-emerald-400">
+                $892,100.00
+              </div>
+              <div className="mt-1 flex items-center justify-between text-xs text-emerald-500">
+                <span className="font-semibold">71.4% Recovery Rate</span>
+                <span className="text-zinc-400">+$142,300 last 24h</span>
+              </div>
+            </CardContent>
+          </Card>
+        </motion.div>
+
+        {/* Metric Card 3 */}
+        <motion.div
+          initial={{ opacity: 0, y: 15 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.3, delay: 0.15 }}
+        >
+          <Card className="relative overflow-hidden">
+            <div className="absolute right-0 top-0 h-24 w-24 bg-indigo-500/5 blur-2xl" />
+            <CardHeader className="flex flex-row items-center justify-between pb-2">
+              <CardDescription className="text-xs font-semibold uppercase tracking-wider text-zinc-500">
+                Dual-Loop Conversion %
+              </CardDescription>
+              <Zap className="h-4 w-4 text-emerald-500" />
+            </CardHeader>
+            <CardContent>
+              <div className="text-2xl font-bold font-mono tracking-tight text-zinc-50">
+                84.2%
+              </div>
+              <div className="mt-1 flex items-center gap-1.5 text-xs text-zinc-400">
+                <span className="text-emerald-400 font-mono">Loop 1: 91.2%</span>
+                <span className="text-zinc-650">|</span>
+                <span className="text-indigo-400 font-mono">Loop 2: 77.2%</span>
+              </div>
+            </CardContent>
+          </Card>
+        </motion.div>
+
+        {/* Metric Card 4 */}
+        <motion.div
+          initial={{ opacity: 0, y: 15 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.3, delay: 0.2 }}
+        >
+          <Card className="relative overflow-hidden">
+            <div className="absolute right-0 top-0 h-24 w-24 bg-emerald-500/5 blur-2xl" />
+            <CardHeader className="flex flex-row items-center justify-between pb-2">
+              <CardDescription className="text-xs font-semibold uppercase tracking-wider text-zinc-500">
+                Policy Compliance Rate
+              </CardDescription>
+              <ShieldCheck className="h-4 w-4 text-emerald-500" />
+            </CardHeader>
+            <CardContent>
+              <div className="text-2xl font-bold font-mono tracking-tight text-zinc-50">
+                99.8%
+              </div>
+              <div className="mt-1 flex items-center space-x-1 text-xs text-zinc-500">
+                <span className="font-semibold text-emerald-500">0 SLA breaches</span>
+                <span>across 1,420 triggers</span>
+              </div>
+            </CardContent>
+          </Card>
+        </motion.div>
+      </div>
+
+      {/* SECTION 2: INTERACTIVE CONTROLS & LOOP SWITCHER */}
+      <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between bg-zinc-950/40 p-4 rounded-xl border border-zinc-900 shadow-lg">
+        <Tabs defaultValue="all" value={activeTab} onValueChange={setActiveTab} className="w-full md:w-auto">
+          <TabsList className="bg-zinc-950 border-zinc-850 p-1">
+            <TabsTrigger value="all" className="text-xs px-3">All Active Workflows</TabsTrigger>
+            <TabsTrigger value="loop1" className="text-xs px-3">Loop 1 (Transact - Card/UPI)</TabsTrigger>
+            <TabsTrigger value="loop2" className="text-xs px-3">Loop 2 (B2B Receivables)</TabsTrigger>
+          </TabsList>
+        </Tabs>
+
+        {/* Search filter input */}
+        <div className="relative flex-1 max-w-sm">
+          <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-zinc-500" />
+          <input
+            type="text"
+            placeholder="Filter by ID, entity, or strategy..."
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+            className="w-full rounded-lg border border-zinc-850 bg-zinc-950/80 pl-9 pr-4 py-1.5 text-xs text-zinc-100 placeholder-zinc-500 focus:outline-none focus:ring-1 focus:ring-emerald-500 focus:border-emerald-500 focus:bg-zinc-950 transition-all shadow-inner"
+          />
+        </div>
+      </div>
+
+      {/* SECTION 3: ACTIVE RECOVERY FEED (REAL-TIME INTERACTIVE DATA TABLE) */}
+      <Card className="border border-zinc-900 bg-zinc-900/20 backdrop-blur-md">
+        <CardContent className="p-0">
+          <AnimatePresence mode="wait">
+            {refreshing ? (
+              // Loading Skeleton State
+              <motion.div
+                key="skeleton"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                className="p-6 space-y-4"
+              >
+                <div className="flex items-center justify-between border-b border-zinc-800 pb-3">
+                  <div className="h-4 w-24 animate-pulse rounded bg-zinc-800" />
+                  <div className="h-4 w-32 animate-pulse rounded bg-zinc-800" />
+                  <div className="h-4 w-16 animate-pulse rounded bg-zinc-800" />
+                  <div className="h-4 w-20 animate-pulse rounded bg-zinc-800" />
+                </div>
+                {[...Array(4)].map((_, i) => (
+                  <div key={i} className="flex justify-between items-center py-4 border-b border-zinc-800/40">
+                    <div className="space-y-2">
+                      <div className="h-4 w-20 animate-pulse rounded bg-zinc-800" />
+                      <div className="h-3 w-16 animate-pulse rounded bg-zinc-900" />
+                    </div>
+                    <div className="h-4 w-40 animate-pulse rounded bg-zinc-800" />
+                    <div className="h-4 w-16 animate-pulse rounded bg-zinc-800" />
+                    <div className="h-4 w-24 animate-pulse rounded bg-zinc-800" />
+                    <div className="h-8 w-24 animate-pulse rounded bg-zinc-800" />
+                  </div>
+                ))}
+              </motion.div>
+            ) : filteredData.length === 0 ? (
+              // Empty State
+              <motion.div
+                key="empty"
+                initial={{ opacity: 0, scale: 0.95 }}
+                animate={{ opacity: 1, scale: 1 }}
+                exit={{ opacity: 0, scale: 0.95 }}
+                className="flex flex-col items-center justify-center py-16 px-4"
+              >
+                <div className="rounded-full bg-zinc-900/60 p-4 border border-zinc-800/50 mb-3 shadow-inner">
+                  <AlertCircle className="h-8 w-8 text-zinc-500" />
+                </div>
+                <h3 className="text-zinc-300 font-semibold text-sm">No Recovery Workflows Found</h3>
+                <p className="text-zinc-500 text-xs mt-1 text-center max-w-xs">
+                  Your search filters did not return any records. Try clearing the search query or changing active tabs.
+                </p>
+              </motion.div>
+            ) : (
+              // High density records table
+              <motion.div
+                key="table"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+              >
+                <Table>
+                  <TableHeader>
+                    <TableRow>
+                      <TableHead className="w-[120px] text-xs font-semibold uppercase tracking-wider">Workflow ID</TableHead>
+                      <TableHead className="text-xs font-semibold uppercase tracking-wider">Entity / Account</TableHead>
+                      <TableHead className="text-xs font-semibold uppercase tracking-wider">Loop Context</TableHead>
+                      <TableHead className="text-xs font-semibold uppercase tracking-wider text-right">Recovery Value</TableHead>
+                      <TableHead className="text-xs font-semibold uppercase tracking-wider">Agentic Strategy</TableHead>
+                      <TableHead className="text-xs font-semibold uppercase tracking-wider">SLA Status</TableHead>
+                      <TableHead className="text-xs font-semibold uppercase tracking-wider">Status</TableHead>
+                      <TableHead className="w-[140px] text-right text-xs font-semibold uppercase tracking-wider"></TableHead>
+                    </TableRow>
+                  </TableHeader>
+                  <TableBody>
+                    {filteredData.map((row) => (
+                      <TableRow key={row.id}>
+                        {/* ID & Timestamp */}
+                        <TableCell className="align-middle">
+                          <div className="font-mono text-zinc-200 font-medium">{row.id}</div>
+                          <div className="text-[10px] text-zinc-500 mt-0.5">{row.timestamp}</div>
+                        </TableCell>
+
+                        {/* Entity */}
+                        <TableCell className="align-middle font-medium text-zinc-250">
+                          {row.entity}
+                        </TableCell>
+
+                        {/* Loop Context */}
+                        <TableCell className="align-middle">
+                          <Badge
+                            variant={row.loop === "Loop 1" ? "info" : "purple"}
+                            className="text-[10px]"
+                          >
+                            {row.loopName}
+                          </Badge>
+                        </TableCell>
+
+                        {/* Risk/Recovery Value */}
+                        <TableCell className="align-middle text-right font-mono font-bold text-zinc-100">
+                          {row.value}
+                        </TableCell>
+
+                        {/* Agentic Strategy */}
+                        <TableCell className="align-middle text-zinc-400 text-xs">
+                          {row.strategy}
+                        </TableCell>
+
+                        {/* SLA */}
+                        <TableCell className="align-middle">
+                          <div className="flex items-center space-x-1.5 text-xs text-zinc-400 font-mono">
+                            <Clock className={cn("h-3.5 w-3.5", row.sla.includes("Breached") ? "text-rose-500" : "text-zinc-500")} />
+                            <span className={cn(row.sla.includes("Breached") ? "text-rose-450 font-semibold" : "")}>
+                              {row.sla}
+                            </span>
+                          </div>
+                        </TableCell>
+
+                        {/* Status */}
+                        <TableCell className="align-middle">
+                          <Badge
+                            variant={
+                              row.status === "Recovered"
+                                ? "success"
+                                : row.status === "Escalated"
+                                ? "danger"
+                                : "warning"
+                            }
+                            className="text-[10px]"
+                          >
+                            {row.status}
+                          </Badge>
+                        </TableCell>
+
+                        {/* Action */}
+                        <TableCell className="align-middle text-right">
+                          <Button
+                            variant="secondary"
+                            size="sm"
+                            className="text-[11px] h-8 bg-zinc-900 border-zinc-800 hover:bg-zinc-800 text-zinc-350 hover:text-zinc-100"
+                            onClick={() => {
+                              setSelectedWorkflow(row);
+                              setIsModalOpen(true);
+                            }}
+                          >
+                            View Trace <ExternalLink className="ml-1.5 h-3 w-3" />
+                          </Button>
+                        </TableCell>
+                      </TableRow>
+                    ))}
+                  </TableBody>
+                </Table>
+              </motion.div>
+            )}
+          </AnimatePresence>
+        </CardContent>
+      </Card>
+
+      {/* WORKFLOW REASONING TRACE DIALOG MODAL */}
+      <Dialog open={isModalOpen} onOpenChange={setIsModalOpen}>
+        {selectedWorkflow && (
+          <DialogContent onClose={() => setIsModalOpen(false)} className="max-w-2xl border-zinc-800/80 bg-zinc-900/95 shadow-2xl backdrop-blur-md">
+            <DialogHeader>
+              <div className="flex items-center justify-between pr-6">
+                <div>
+                  <DialogTitle className="text-zinc-50 flex items-center gap-2">
+                    <span>Reasoning Trace - {selectedWorkflow.id}</span>
+                    <Badge variant={selectedWorkflow.loop === "Loop 1" ? "info" : "purple"}>
+                      {selectedWorkflow.loopName}
+                    </Badge>
+                  </DialogTitle>
+                  <DialogDescription className="text-xs mt-1 text-zinc-400">
+                    Audit log of autonomous decision steps, LLM routing logic, and system payloads for <strong className="text-zinc-200">{selectedWorkflow.entity}</strong>.
+                  </DialogDescription>
+                </div>
+              </div>
+            </DialogHeader>
+
+            {/* Trace Steps Content */}
+            <div className="space-y-4 my-2 max-h-[380px] overflow-y-auto pr-2">
+              <div className="flex items-center justify-between rounded-lg bg-zinc-950/60 border border-zinc-850 p-3 text-xs font-mono">
+                <div>
+                  <span className="text-zinc-500">Value:</span>{" "}
+                  <span className="font-bold text-zinc-200">{selectedWorkflow.value}</span>
+                </div>
+                <div>
+                  <span className="text-zinc-500">SLA:</span>{" "}
+                  <span className="font-bold text-zinc-200">{selectedWorkflow.sla}</span>
+                </div>
+                <div>
+                  <span className="text-zinc-500">Workflow Status:</span>{" "}
+                  <span className={cn(
+                    "font-bold",
+                    selectedWorkflow.status === "Recovered" ? "text-emerald-450" :
+                    selectedWorkflow.status === "Escalated" ? "text-rose-450" : "text-amber-450"
+                  )}>{selectedWorkflow.status}</span>
+                </div>
+              </div>
+
+              {/* Step-by-step Timeline */}
+              <div className="relative border-l border-zinc-800 pl-4 ml-2 space-y-5 py-1">
+                {selectedWorkflow.traceSteps.map((step, idx) => (
+                  <div key={idx} className="relative">
+                    {/* Pulsing indicator bullet */}
+                    <div className={cn(
+                      "absolute -left-[22px] top-1 h-3.5 w-3.5 rounded-full border-2 border-zinc-900 flex items-center justify-center",
+                      step.status === "success" ? "bg-emerald-500" :
+                      step.status === "warning" ? "bg-amber-500" :
+                      step.status === "error" ? "bg-rose-500" : "bg-sky-500"
+                    )}>
+                      {step.status === "success" && <div className="h-1 w-1 bg-zinc-950 rounded-full" />}
+                    </div>
+
+                    <div className="space-y-1">
+                      <div className="flex items-center justify-between text-[10px]">
+                        <span className="font-semibold text-zinc-350 bg-zinc-900 border border-zinc-800 px-1.5 py-0.5 rounded font-mono">
+                          {step.agent}
+                        </span>
+                        <span className="font-mono text-zinc-500">{step.time}</span>
+                      </div>
+                      <h4 className="text-xs font-semibold text-zinc-200">
+                        {step.action}
+                      </h4>
+                      <p className="text-xs text-zinc-400 bg-zinc-950/30 p-2 rounded border border-zinc-850/40">
+                        {step.details}
+                      </p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            <DialogFooter>
+              <Button
+                variant="secondary"
+                size="sm"
+                onClick={() => setIsModalOpen(false)}
+                className="bg-zinc-800 border-zinc-700 hover:bg-zinc-700 text-zinc-200"
+              >
+                Close Trace
+              </Button>
+              <Button
+                variant="emerald"
+                size="sm"
+                onClick={() => alert(`Initiating manual override request for ${selectedWorkflow.id}`)}
+              >
+                Manual Override Action
+              </Button>
+            </DialogFooter>
+          </DialogContent>
+        )}
+      </Dialog>
+    </div>
+  );
+}
