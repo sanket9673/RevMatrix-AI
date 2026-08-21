@@ -39,7 +39,7 @@ export function Sidebar({ collapsed, setCollapsed }: SidebarProps) {
     },
     {
       name: "Live Benchmark Runner",
-      href: "/runner",
+      href: "/benchmark",
       icon: PlayCircle,
       shortcut: "⌘3",
     },
