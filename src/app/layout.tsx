@@ -3,6 +3,7 @@ import { Inter, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 import { LayoutShell } from "./layout-shell";
 
+
 const fontSans = Inter({
   subsets: ["latin"],
   variable: "--font-sans",
