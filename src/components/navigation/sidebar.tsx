@@ -33,7 +33,7 @@ export function Sidebar({ collapsed, setCollapsed }: SidebarProps) {
     },
     {
       name: "Agentic Reasoning Inspector",
-      href: "/inspector",
+      href: "/reasoning",
       icon: Brain,
       shortcut: "⌘2",
     },
