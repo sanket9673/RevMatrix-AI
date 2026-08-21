@@ -1,0 +1,902 @@
+[
+  {
+    "id": "case_l1_1",
+    "loop": 1,
+    "amount": 2418.26,
+    "currency": "INR",
+    "timestamp": "2026-08-11T22:11:40.695Z",
+    "customer": {
+      "id": "cust_l1_1",
+      "tier": "SMB",
+      "historicalScore": 67
+    },
+    "loop1Details": {
+      "failureReason": "expired_card",
+      "paymentMethod": "netbanking",
+      "gatewayErrorCode": "EXPIRED_CARD",
+      "attemptCount": 1
+    }
+  },
+  {
+    "id": "case_l1_2",
+    "loop": 1,
+    "amount": 239.61,
+    "currency": "USD",
+    "timestamp": "2026-07-24T22:11:40.695Z",
+    "customer": {
+      "id": "cust_l1_2",
+      "tier": "MidMarket",
+      "historicalScore": 54
+    },
+    "loop1Details": {
+      "failureReason": "gateway_timeout",
+      "paymentMethod": "netbanking",
+      "gatewayErrorCode": "GATEWAY_TIMEOUT",
+      "attemptCount": 1
+    }
+  },
+  {
+    "id": "case_l1_3",
+    "loop": 1,
+    "amount": 1951.12,
+    "currency": "INR",
+    "timestamp": "2026-08-04T22:11:40.695Z",
+    "customer": {
+      "id": "cust_l1_3",
+      "tier": "Enterprise",
+      "historicalScore": 50
+    },
+    "loop1Details": {
+      "failureReason": "expired_card",
+      "paymentMethod": "upi",
+      "gatewayErrorCode": "EXPIRED_CARD",
+      "attemptCount": 1
+    }
+  },
+  {
+    "id": "case_l1_4",
+    "loop": 1,
+    "amount": 1239.51,
+    "currency": "USD",
+    "timestamp": "2026-08-15T22:11:40.695Z",
+    "customer": {
+      "id": "cust_l1_4",
+      "tier": "Enterprise",
+      "historicalScore": 60
+    },
+    "loop1Details": {
+      "failureReason": "gateway_timeout",
+      "paymentMethod": "credit_card",
+      "gatewayErrorCode": "GATEWAY_TIMEOUT",
+      "attemptCount": 1
+    }
+  },
+  {
+    "id": "case_l1_5",
+    "loop": 1,
+    "amount": 1221.86,
+    "currency": "INR",
+    "timestamp": "2026-08-17T22:11:40.695Z",
+    "customer": {
+      "id": "cust_l1_5",
+      "tier": "SMB",
+      "historicalScore": 47
+    },
+    "loop1Details": {
+      "failureReason": "suspected_fraud",
+      "paymentMethod": "credit_card",
+      "gatewayErrorCode": "BAD_REQUEST_PAYMENT_POSSIBLE_FRAUD",
+      "attemptCount": 1
+    }
+  },
+  {
+    "id": "case_l1_6",
+    "loop": 1,
+    "amount": 1508.75,
+    "currency": "INR",
+    "timestamp": "2026-08-12T22:11:40.695Z",
+    "customer": {
+      "id": "cust_l1_6",
+      "tier": "MidMarket",
+      "historicalScore": 55
+    },
+    "loop1Details": {
+      "failureReason": "suspected_fraud",
+      "paymentMethod": "netbanking",
+      "gatewayErrorCode": "BAD_REQUEST_PAYMENT_POSSIBLE_FRAUD",
+      "attemptCount": 1
+    }
+  },
+  {
+    "id": "case_l1_7",
+    "loop": 1,
+    "amount": 2097.89,
+    "currency": "INR",
+    "timestamp": "2026-08-13T22:11:40.695Z",
+    "customer": {
+      "id": "cust_l1_7",
+      "tier": "Enterprise",
+      "historicalScore": 78
+    },
+    "loop1Details": {
+      "failureReason": "insufficient_balance",
+      "paymentMethod": "debit_card",
+      "gatewayErrorCode": "INSUFFICIENT_BALANCE",
+      "attemptCount": 1
+    }
+  },
+  {
+    "id": "case_l1_8",
+    "loop": 1,
+    "amount": 2013.22,
+    "currency": "USD",
+    "timestamp": "2026-07-31T22:11:40.695Z",
+    "customer": {
+      "id": "cust_l1_8",
+      "tier": "SMB",
+      "historicalScore": 71
+    },
+    "loop1Details": {
+      "failureReason": "expired_card",
+      "paymentMethod": "debit_card",
+      "gatewayErrorCode": "EXPIRED_CARD",
+      "attemptCount": 1
+    }
+  },
+  {
+    "id": "case_l1_9",
+    "loop": 1,
+    "amount": 1744.74,
+    "currency": "USD",
+    "timestamp": "2026-08-01T22:11:40.695Z",
+    "customer": {
+      "id": "cust_l1_9",
+      "tier": "MidMarket",
+      "historicalScore": 53
+    },
+    "loop1Details": {
+      "failureReason": "expired_card",
+      "paymentMethod": "credit_card",
+      "gatewayErrorCode": "EXPIRED_CARD",
+      "attemptCount": 1
+    }
+  },
+  {
+    "id": "case_l1_10",
+    "loop": 1,
+    "amount": 64.23,
+    "currency": "INR",
+    "timestamp": "2026-07-26T22:11:40.696Z",
+    "customer": {
+      "id": "cust_l1_10",
+      "tier": "SMB",
+      "historicalScore": 69
+    },
+    "loop1Details": {
+      "failureReason": "suspected_fraud",
+      "paymentMethod": "credit_card",
+      "gatewayErrorCode": "BAD_REQUEST_PAYMENT_POSSIBLE_FRAUD",
+      "attemptCount": 1
+    }
+  },
+  {
+    "id": "case_l1_11",
+    "loop": 1,
+    "amount": 668.83,
+    "currency": "INR",
+    "timestamp": "2026-08-06T22:11:40.696Z",
+    "customer": {
+      "id": "cust_l1_11",
+      "tier": "Enterprise",
+      "historicalScore": 59
+    },
+    "loop1Details": {
+      "failureReason": "expired_card",
+      "paymentMethod": "netbanking",
+      "gatewayErrorCode": "EXPIRED_CARD",
+      "attemptCount": 1
+    }
+  },
+  {
+    "id": "case_l1_12",
+    "loop": 1,
+    "amount": 1270.42,
+    "currency": "USD",
+    "timestamp": "2026-08-20T22:11:40.696Z",
+    "customer": {
+      "id": "cust_l1_12",
+      "tier": "MidMarket",
+      "historicalScore": 92
+    },
+    "loop1Details": {
+      "failureReason": "gateway_timeout",
+      "paymentMethod": "netbanking",
+      "gatewayErrorCode": "GATEWAY_TIMEOUT",
+      "attemptCount": 1
+    }
+  },
+  {
+    "id": "case_l1_13",
+    "loop": 1,
+    "amount": 981.63,
+    "currency": "INR",
+    "timestamp": "2026-08-05T22:11:40.696Z",
+    "customer": {
+      "id": "cust_l1_13",
+      "tier": "Enterprise",
+      "historicalScore": 83
+    },
+    "loop1Details": {
+      "failureReason": "gateway_timeout",
+      "paymentMethod": "credit_card",
+      "gatewayErrorCode": "GATEWAY_TIMEOUT",
+      "attemptCount": 2
+    }
+  },
+  {
+    "id": "case_l1_14",
+    "loop": 1,
+    "amount": 1210.42,
+    "currency": "USD",
+    "timestamp": "2026-08-15T22:11:40.696Z",
+    "customer": {
+      "id": "cust_l1_14",
+      "tier": "Enterprise",
+      "historicalScore": 88
+    },
+    "loop1Details": {
+      "failureReason": "gateway_timeout",
+      "paymentMethod": "netbanking",
+      "gatewayErrorCode": "GATEWAY_TIMEOUT",
+      "attemptCount": 1
+    }
+  },
+  {
+    "id": "case_l1_15",
+    "loop": 1,
+    "amount": 759.93,
+    "currency": "INR",
+    "timestamp": "2026-08-15T22:11:40.696Z",
+    "customer": {
+      "id": "cust_l1_15",
+      "tier": "Enterprise",
+      "historicalScore": 44
+    },
+    "loop1Details": {
+      "failureReason": "insufficient_balance",
+      "paymentMethod": "debit_card",
+      "gatewayErrorCode": "INSUFFICIENT_BALANCE",
+      "attemptCount": 1
+    }
+  },
+  {
+    "id": "case_l1_16",
+    "loop": 1,
+    "amount": 384.93,
+    "currency": "INR",
+    "timestamp": "2026-08-12T22:11:40.696Z",
+    "customer": {
+      "id": "cust_l1_16",
+      "tier": "SMB",
+      "historicalScore": 52
+    },
+    "loop1Details": {
+      "failureReason": "insufficient_balance",
+      "paymentMethod": "credit_card",
+      "gatewayErrorCode": "INSUFFICIENT_BALANCE",
+      "attemptCount": 1
+    }
+  },
+  {
+    "id": "case_l1_17",
+    "loop": 1,
+    "amount": 288.86,
+    "currency": "USD",
+    "timestamp": "2026-08-18T22:11:40.696Z",
+    "customer": {
+      "id": "cust_l1_17",
+      "tier": "SMB",
+      "historicalScore": 41
+    },
+    "loop1Details": {
+      "failureReason": "gateway_timeout",
+      "paymentMethod": "upi",
+      "gatewayErrorCode": "GATEWAY_TIMEOUT",
+      "attemptCount": 2
+    }
+  },
+  {
+    "id": "case_l1_18",
+    "loop": 1,
+    "amount": 2376.83,
+    "currency": "INR",
+    "timestamp": "2026-08-01T22:11:40.696Z",
+    "customer": {
+      "id": "cust_l1_18",
+      "tier": "SMB",
+      "historicalScore": 70
+    },
+    "loop1Details": {
+      "failureReason": "insufficient_balance",
+      "paymentMethod": "debit_card",
+      "gatewayErrorCode": "INSUFFICIENT_BALANCE",
+      "attemptCount": 1
+    }
+  },
+  {
+    "id": "case_l1_19",
+    "loop": 1,
+    "amount": 2486.56,
+    "currency": "USD",
+    "timestamp": "2026-08-04T22:11:40.696Z",
+    "customer": {
+      "id": "cust_l1_19",
+      "tier": "SMB",
+      "historicalScore": 83
+    },
+    "loop1Details": {
+      "failureReason": "expired_card",
+      "paymentMethod": "netbanking",
+      "gatewayErrorCode": "EXPIRED_CARD",
+      "attemptCount": 1
+    }
+  },
+  {
+    "id": "case_l1_20",
+    "loop": 1,
+    "amount": 1000.55,
+    "currency": "INR",
+    "timestamp": "2026-08-05T22:11:40.696Z",
+    "customer": {
+      "id": "cust_l1_20",
+      "tier": "Enterprise",
+      "historicalScore": 42
+    },
+    "loop1Details": {
+      "failureReason": "insufficient_balance",
+      "paymentMethod": "upi",
+      "gatewayErrorCode": "INSUFFICIENT_BALANCE",
+      "attemptCount": 1
+    }
+  },
+  {
+    "id": "case_l1_21",
+    "loop": 1,
+    "amount": 615.03,
+    "currency": "INR",
+    "timestamp": "2026-08-10T22:11:40.696Z",
+    "customer": {
+      "id": "cust_l1_21",
+      "tier": "SMB",
+      "historicalScore": 53
+    },
+    "loop1Details": {
+      "failureReason": "insufficient_balance",
+      "paymentMethod": "credit_card",
+      "gatewayErrorCode": "INSUFFICIENT_BALANCE",
+      "attemptCount": 1
+    }
+  },
+  {
+    "id": "case_l1_22",
+    "loop": 1,
+    "amount": 2172.7,
+    "currency": "INR",
+    "timestamp": "2026-08-08T22:11:40.696Z",
+    "customer": {
+      "id": "cust_l1_22",
+      "tier": "SMB",
+      "historicalScore": 92
+    },
+    "loop1Details": {
+      "failureReason": "suspected_fraud",
+      "paymentMethod": "upi",
+      "gatewayErrorCode": "BAD_REQUEST_PAYMENT_POSSIBLE_FRAUD",
+      "attemptCount": 1
+    }
+  },
+  {
+    "id": "case_l1_23",
+    "loop": 1,
+    "amount": 2208.27,
+    "currency": "INR",
+    "timestamp": "2026-08-02T22:11:40.696Z",
+    "customer": {
+      "id": "cust_l1_23",
+      "tier": "Enterprise",
+      "historicalScore": 74
+    },
+    "loop1Details": {
+      "failureReason": "gateway_timeout",
+      "paymentMethod": "upi",
+      "gatewayErrorCode": "GATEWAY_TIMEOUT",
+      "attemptCount": 1
+    }
+  },
+  {
+    "id": "case_l1_24",
+    "loop": 1,
+    "amount": 951.76,
+    "currency": "INR",
+    "timestamp": "2026-08-19T22:11:40.696Z",
+    "customer": {
+      "id": "cust_l1_24",
+      "tier": "SMB",
+      "historicalScore": 53
+    },
+    "loop1Details": {
+      "failureReason": "gateway_timeout",
+      "paymentMethod": "credit_card",
+      "gatewayErrorCode": "GATEWAY_TIMEOUT",
+      "attemptCount": 1
+    }
+  },
+  {
+    "id": "case_l1_25",
+    "loop": 1,
+    "amount": 2303.16,
+    "currency": "USD",
+    "timestamp": "2026-08-10T22:11:40.696Z",
+    "customer": {
+      "id": "cust_l1_25",
+      "tier": "Enterprise",
+      "historicalScore": 63
+    },
+    "loop1Details": {
+      "failureReason": "insufficient_balance",
+      "paymentMethod": "credit_card",
+      "gatewayErrorCode": "INSUFFICIENT_BALANCE",
+      "attemptCount": 1
+    }
+  },
+  {
+    "id": "case_l2_1",
+    "loop": 2,
+    "amount": 8158.1,
+    "currency": "USD",
+    "timestamp": "2026-07-30T22:11:40.696Z",
+    "customer": {
+      "id": "cust_l2_1",
+      "tier": "MidMarket",
+      "historicalScore": 74
+    },
+    "loop2Details": {
+      "overdueReason": "forgotten_invoice",
+      "daysOverdue": 81,
+      "disputeFlag": false,
+      "lastContactDaysAgo": 24
+    }
+  },
+  {
+    "id": "case_l2_2",
+    "loop": 2,
+    "amount": 8337.76,
+    "currency": "USD",
+    "timestamp": "2026-06-25T22:11:40.696Z",
+    "customer": {
+      "id": "cust_l2_2",
+      "tier": "SMB",
+      "historicalScore": 87
+    },
+    "loop2Details": {
+      "overdueReason": "forgotten_invoice",
+      "daysOverdue": 26,
+      "disputeFlag": false,
+      "lastContactDaysAgo": 7
+    }
+  },
+  {
+    "id": "case_l2_3",
+    "loop": 2,
+    "amount": 1125.48,
+    "currency": "USD",
+    "timestamp": "2026-06-05T22:11:40.696Z",
+    "customer": {
+      "id": "cust_l2_3",
+      "tier": "Enterprise",
+      "historicalScore": 61
+    },
+    "loop2Details": {
+      "overdueReason": "billing_dispute",
+      "daysOverdue": 65,
+      "disputeFlag": true,
+      "lastContactDaysAgo": 24
+    }
+  },
+  {
+    "id": "case_l2_4",
+    "loop": 2,
+    "amount": 9775.38,
+    "currency": "INR",
+    "timestamp": "2026-06-04T22:11:40.696Z",
+    "customer": {
+      "id": "cust_l2_4",
+      "tier": "MidMarket",
+      "historicalScore": 92
+    },
+    "loop2Details": {
+      "overdueReason": "uncontactable_debtor",
+      "daysOverdue": 96,
+      "disputeFlag": false,
+      "lastContactDaysAgo": 21
+    }
+  },
+  {
+    "id": "case_l2_5",
+    "loop": 2,
+    "amount": 2562.7,
+    "currency": "USD",
+    "timestamp": "2026-05-24T22:11:40.696Z",
+    "customer": {
+      "id": "cust_l2_5",
+      "tier": "Enterprise",
+      "historicalScore": 41
+    },
+    "loop2Details": {
+      "overdueReason": "cashflow_gap",
+      "daysOverdue": 77,
+      "disputeFlag": false,
+      "lastContactDaysAgo": 31
+    }
+  },
+  {
+    "id": "case_l2_6",
+    "loop": 2,
+    "amount": 5956.23,
+    "currency": "USD",
+    "timestamp": "2026-07-04T22:11:40.696Z",
+    "customer": {
+      "id": "cust_l2_6",
+      "tier": "MidMarket",
+      "historicalScore": 64
+    },
+    "loop2Details": {
+      "overdueReason": "uncontactable_debtor",
+      "daysOverdue": 45,
+      "disputeFlag": false,
+      "lastContactDaysAgo": 3
+    }
+  },
+  {
+    "id": "case_l2_7",
+    "loop": 2,
+    "amount": 14428.43,
+    "currency": "USD",
+    "timestamp": "2026-06-19T22:11:40.696Z",
+    "customer": {
+      "id": "cust_l2_7",
+      "tier": "SMB",
+      "historicalScore": 30
+    },
+    "loop2Details": {
+      "overdueReason": "forgotten_invoice",
+      "daysOverdue": 106,
+      "disputeFlag": false,
+      "lastContactDaysAgo": 32
+    }
+  },
+  {
+    "id": "case_l2_8",
+    "loop": 2,
+    "amount": 1736.01,
+    "currency": "INR",
+    "timestamp": "2026-08-01T22:11:40.696Z",
+    "customer": {
+      "id": "cust_l2_8",
+      "tier": "SMB",
+      "historicalScore": 86
+    },
+    "loop2Details": {
+      "overdueReason": "billing_dispute",
+      "daysOverdue": 53,
+      "disputeFlag": true,
+      "lastContactDaysAgo": 18
+    }
+  },
+  {
+    "id": "case_l2_9",
+    "loop": 2,
+    "amount": 4125.64,
+    "currency": "USD",
+    "timestamp": "2026-07-31T22:11:40.696Z",
+    "customer": {
+      "id": "cust_l2_9",
+      "tier": "SMB",
+      "historicalScore": 30
+    },
+    "loop2Details": {
+      "overdueReason": "cashflow_gap",
+      "daysOverdue": 48,
+      "disputeFlag": false,
+      "lastContactDaysAgo": 29
+    }
+  },
+  {
+    "id": "case_l2_10",
+    "loop": 2,
+    "amount": 13356.54,
+    "currency": "USD",
+    "timestamp": "2026-06-04T22:11:40.696Z",
+    "customer": {
+      "id": "cust_l2_10",
+      "tier": "MidMarket",
+      "historicalScore": 41
+    },
+    "loop2Details": {
+      "overdueReason": "cashflow_gap",
+      "daysOverdue": 19,
+      "disputeFlag": false,
+      "lastContactDaysAgo": 43
+    }
+  },
+  {
+    "id": "case_l2_11",
+    "loop": 2,
+    "amount": 11930.91,
+    "currency": "INR",
+    "timestamp": "2026-07-13T22:11:40.696Z",
+    "customer": {
+      "id": "cust_l2_11",
+      "tier": "MidMarket",
+      "historicalScore": 90
+    },
+    "loop2Details": {
+      "overdueReason": "cashflow_gap",
+      "daysOverdue": 21,
+      "disputeFlag": false,
+      "lastContactDaysAgo": 12
+    }
+  },
+  {
+    "id": "case_l2_12",
+    "loop": 2,
+    "amount": 2057.32,
+    "currency": "USD",
+    "timestamp": "2026-07-08T22:11:40.696Z",
+    "customer": {
+      "id": "cust_l2_12",
+      "tier": "SMB",
+      "historicalScore": 36
+    },
+    "loop2Details": {
+      "overdueReason": "uncontactable_debtor",
+      "daysOverdue": 14,
+      "disputeFlag": false,
+      "lastContactDaysAgo": 21
+    }
+  },
+  {
+    "id": "case_l2_13",
+    "loop": 2,
+    "amount": 9581.67,
+    "currency": "INR",
+    "timestamp": "2026-06-26T22:11:40.696Z",
+    "customer": {
+      "id": "cust_l2_13",
+      "tier": "Enterprise",
+      "historicalScore": 41
+    },
+    "loop2Details": {
+      "overdueReason": "uncontactable_debtor",
+      "daysOverdue": 64,
+      "disputeFlag": false,
+      "lastContactDaysAgo": 5
+    }
+  },
+  {
+    "id": "case_l2_14",
+    "loop": 2,
+    "amount": 8431.12,
+    "currency": "INR",
+    "timestamp": "2026-07-28T22:11:40.696Z",
+    "customer": {
+      "id": "cust_l2_14",
+      "tier": "SMB",
+      "historicalScore": 36
+    },
+    "loop2Details": {
+      "overdueReason": "billing_dispute",
+      "daysOverdue": 34,
+      "disputeFlag": true,
+      "lastContactDaysAgo": 7
+    }
+  },
+  {
+    "id": "case_l2_15",
+    "loop": 2,
+    "amount": 13050.38,
+    "currency": "INR",
+    "timestamp": "2026-07-03T22:11:40.696Z",
+    "customer": {
+      "id": "cust_l2_15",
+      "tier": "SMB",
+      "historicalScore": 60
+    },
+    "loop2Details": {
+      "overdueReason": "forgotten_invoice",
+      "daysOverdue": 109,
+      "disputeFlag": false,
+      "lastContactDaysAgo": 21
+    }
+  },
+  {
+    "id": "case_l2_16",
+    "loop": 2,
+    "amount": 1313.3,
+    "currency": "INR",
+    "timestamp": "2026-07-11T22:11:40.696Z",
+    "customer": {
+      "id": "cust_l2_16",
+      "tier": "SMB",
+      "historicalScore": 33
+    },
+    "loop2Details": {
+      "overdueReason": "forgotten_invoice",
+      "daysOverdue": 84,
+      "disputeFlag": false,
+      "lastContactDaysAgo": 41
+    }
+  },
+  {
+    "id": "case_l2_17",
+    "loop": 2,
+    "amount": 6655.01,
+    "currency": "INR",
+    "timestamp": "2026-06-06T22:11:40.696Z",
+    "customer": {
+      "id": "cust_l2_17",
+      "tier": "MidMarket",
+      "historicalScore": 72
+    },
+    "loop2Details": {
+      "overdueReason": "cashflow_gap",
+      "daysOverdue": 34,
+      "disputeFlag": false,
+      "lastContactDaysAgo": 10
+    }
+  },
+  {
+    "id": "case_l2_18",
+    "loop": 2,
+    "amount": 5267.36,
+    "currency": "USD",
+    "timestamp": "2026-06-25T22:11:40.696Z",
+    "customer": {
+      "id": "cust_l2_18",
+      "tier": "SMB",
+      "historicalScore": 36
+    },
+    "loop2Details": {
+      "overdueReason": "forgotten_invoice",
+      "daysOverdue": 62,
+      "disputeFlag": false,
+      "lastContactDaysAgo": 39
+    }
+  },
+  {
+    "id": "case_l2_19",
+    "loop": 2,
+    "amount": 6719.59,
+    "currency": "USD",
+    "timestamp": "2026-06-05T22:11:40.696Z",
+    "customer": {
+      "id": "cust_l2_19",
+      "tier": "SMB",
+      "historicalScore": 31
+    },
+    "loop2Details": {
+      "overdueReason": "forgotten_invoice",
+      "daysOverdue": 116,
+      "disputeFlag": false,
+      "lastContactDaysAgo": 4
+    }
+  },
+  {
+    "id": "case_l2_20",
+    "loop": 2,
+    "amount": 8102.56,
+    "currency": "USD",
+    "timestamp": "2026-06-24T22:11:40.696Z",
+    "customer": {
+      "id": "cust_l2_20",
+      "tier": "Enterprise",
+      "historicalScore": 82
+    },
+    "loop2Details": {
+      "overdueReason": "cashflow_gap",
+      "daysOverdue": 37,
+      "disputeFlag": false,
+      "lastContactDaysAgo": 25
+    }
+  },
+  {
+    "id": "case_l2_21",
+    "loop": 2,
+    "amount": 11223.87,
+    "currency": "USD",
+    "timestamp": "2026-07-03T22:11:40.696Z",
+    "customer": {
+      "id": "cust_l2_21",
+      "tier": "MidMarket",
+      "historicalScore": 80
+    },
+    "loop2Details": {
+      "overdueReason": "uncontactable_debtor",
+      "daysOverdue": 12,
+      "disputeFlag": false,
+      "lastContactDaysAgo": 7
+    }
+  },
+  {
+    "id": "case_l2_22",
+    "loop": 2,
+    "amount": 8403.36,
+    "currency": "USD",
+    "timestamp": "2026-07-31T22:11:40.696Z",
+    "customer": {
+      "id": "cust_l2_22",
+      "tier": "SMB",
+      "historicalScore": 85
+    },
+    "loop2Details": {
+      "overdueReason": "forgotten_invoice",
+      "daysOverdue": 53,
+      "disputeFlag": false,
+      "lastContactDaysAgo": 12
+    }
+  },
+  {
+    "id": "case_l2_23",
+    "loop": 2,
+    "amount": 9257.11,
+    "currency": "USD",
+    "timestamp": "2026-06-21T22:11:40.696Z",
+    "customer": {
+      "id": "cust_l2_23",
+      "tier": "Enterprise",
+      "historicalScore": 82
+    },
+    "loop2Details": {
+      "overdueReason": "billing_dispute",
+      "daysOverdue": 49,
+      "disputeFlag": true,
+      "lastContactDaysAgo": 7
+    }
+  },
+  {
+    "id": "case_l2_24",
+    "loop": 2,
+    "amount": 8455.95,
+    "currency": "INR",
+    "timestamp": "2026-06-27T22:11:40.696Z",
+    "customer": {
+      "id": "cust_l2_24",
+      "tier": "SMB",
+      "historicalScore": 91
+    },
+    "loop2Details": {
+      "overdueReason": "billing_dispute",
+      "daysOverdue": 55,
+      "disputeFlag": true,
+      "lastContactDaysAgo": 24
+    }
+  },
+  {
+    "id": "case_l2_25",
+    "loop": 2,
+    "amount": 10289.59,
+    "currency": "INR",
+    "timestamp": "2026-07-02T22:11:40.696Z",
+    "customer": {
+      "id": "cust_l2_25",
+      "tier": "MidMarket",
+      "historicalScore": 89
+    },
+    "loop2Details": {
+      "overdueReason": "cashflow_gap",
+      "daysOverdue": 81,
+      "disputeFlag": false,
+      "lastContactDaysAgo": 19
+    }
+  }
+]

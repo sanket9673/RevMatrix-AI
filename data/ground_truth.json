@@ -1,0 +1,452 @@
+[
+  {
+    "id": "case_l1_1",
+    "isRecoverable": true,
+    "expectedOptimalAction": "SEND_DUNNING_PAYMENT_LINK",
+    "maxAllowableDiscountPct": 0,
+    "maxRetryCount": 0,
+    "expectedPolicyPass": true,
+    "recoveryPotentialAmount": 2418.26
+  },
+  {
+    "id": "case_l1_2",
+    "isRecoverable": true,
+    "expectedOptimalAction": "INSTANT_RETRY",
+    "maxAllowableDiscountPct": 0,
+    "maxRetryCount": 2,
+    "expectedPolicyPass": true,
+    "recoveryPotentialAmount": 239.61
+  },
+  {
+    "id": "case_l1_3",
+    "isRecoverable": true,
+    "expectedOptimalAction": "SEND_DUNNING_PAYMENT_LINK",
+    "maxAllowableDiscountPct": 0,
+    "maxRetryCount": 0,
+    "expectedPolicyPass": true,
+    "recoveryPotentialAmount": 1951.12
+  },
+  {
+    "id": "case_l1_4",
+    "isRecoverable": true,
+    "expectedOptimalAction": "INSTANT_RETRY",
+    "maxAllowableDiscountPct": 0,
+    "maxRetryCount": 2,
+    "expectedPolicyPass": true,
+    "recoveryPotentialAmount": 1239.51
+  },
+  {
+    "id": "case_l1_5",
+    "isRecoverable": false,
+    "expectedOptimalAction": "FRAUD_QUARANTINE",
+    "maxAllowableDiscountPct": 0,
+    "maxRetryCount": 0,
+    "expectedPolicyPass": false,
+    "recoveryPotentialAmount": 0
+  },
+  {
+    "id": "case_l1_6",
+    "isRecoverable": false,
+    "expectedOptimalAction": "FRAUD_QUARANTINE",
+    "maxAllowableDiscountPct": 0,
+    "maxRetryCount": 0,
+    "expectedPolicyPass": false,
+    "recoveryPotentialAmount": 0
+  },
+  {
+    "id": "case_l1_7",
+    "isRecoverable": true,
+    "expectedOptimalAction": "SEND_DUNNING_PAYMENT_LINK",
+    "maxAllowableDiscountPct": 0,
+    "maxRetryCount": 0,
+    "expectedPolicyPass": true,
+    "recoveryPotentialAmount": 2097.89
+  },
+  {
+    "id": "case_l1_8",
+    "isRecoverable": true,
+    "expectedOptimalAction": "SEND_DUNNING_PAYMENT_LINK",
+    "maxAllowableDiscountPct": 0,
+    "maxRetryCount": 0,
+    "expectedPolicyPass": true,
+    "recoveryPotentialAmount": 2013.22
+  },
+  {
+    "id": "case_l1_9",
+    "isRecoverable": true,
+    "expectedOptimalAction": "SEND_DUNNING_PAYMENT_LINK",
+    "maxAllowableDiscountPct": 0,
+    "maxRetryCount": 0,
+    "expectedPolicyPass": true,
+    "recoveryPotentialAmount": 1744.74
+  },
+  {
+    "id": "case_l1_10",
+    "isRecoverable": false,
+    "expectedOptimalAction": "FRAUD_QUARANTINE",
+    "maxAllowableDiscountPct": 0,
+    "maxRetryCount": 0,
+    "expectedPolicyPass": false,
+    "recoveryPotentialAmount": 0
+  },
+  {
+    "id": "case_l1_11",
+    "isRecoverable": true,
+    "expectedOptimalAction": "SEND_DUNNING_PAYMENT_LINK",
+    "maxAllowableDiscountPct": 0,
+    "maxRetryCount": 0,
+    "expectedPolicyPass": true,
+    "recoveryPotentialAmount": 668.83
+  },
+  {
+    "id": "case_l1_12",
+    "isRecoverable": true,
+    "expectedOptimalAction": "INSTANT_RETRY",
+    "maxAllowableDiscountPct": 0,
+    "maxRetryCount": 2,
+    "expectedPolicyPass": true,
+    "recoveryPotentialAmount": 1270.42
+  },
+  {
+    "id": "case_l1_13",
+    "isRecoverable": true,
+    "expectedOptimalAction": "INSTANT_RETRY",
+    "maxAllowableDiscountPct": 0,
+    "maxRetryCount": 2,
+    "expectedPolicyPass": false,
+    "recoveryPotentialAmount": 981.63
+  },
+  {
+    "id": "case_l1_14",
+    "isRecoverable": true,
+    "expectedOptimalAction": "INSTANT_RETRY",
+    "maxAllowableDiscountPct": 0,
+    "maxRetryCount": 2,
+    "expectedPolicyPass": true,
+    "recoveryPotentialAmount": 1210.42
+  },
+  {
+    "id": "case_l1_15",
+    "isRecoverable": true,
+    "expectedOptimalAction": "SEND_DUNNING_PAYMENT_LINK",
+    "maxAllowableDiscountPct": 0,
+    "maxRetryCount": 0,
+    "expectedPolicyPass": true,
+    "recoveryPotentialAmount": 759.93
+  },
+  {
+    "id": "case_l1_16",
+    "isRecoverable": true,
+    "expectedOptimalAction": "SEND_DUNNING_PAYMENT_LINK",
+    "maxAllowableDiscountPct": 0,
+    "maxRetryCount": 0,
+    "expectedPolicyPass": true,
+    "recoveryPotentialAmount": 384.93
+  },
+  {
+    "id": "case_l1_17",
+    "isRecoverable": true,
+    "expectedOptimalAction": "INSTANT_RETRY",
+    "maxAllowableDiscountPct": 0,
+    "maxRetryCount": 2,
+    "expectedPolicyPass": false,
+    "recoveryPotentialAmount": 288.86
+  },
+  {
+    "id": "case_l1_18",
+    "isRecoverable": true,
+    "expectedOptimalAction": "SEND_DUNNING_PAYMENT_LINK",
+    "maxAllowableDiscountPct": 0,
+    "maxRetryCount": 0,
+    "expectedPolicyPass": true,
+    "recoveryPotentialAmount": 2376.83
+  },
+  {
+    "id": "case_l1_19",
+    "isRecoverable": true,
+    "expectedOptimalAction": "SEND_DUNNING_PAYMENT_LINK",
+    "maxAllowableDiscountPct": 0,
+    "maxRetryCount": 0,
+    "expectedPolicyPass": true,
+    "recoveryPotentialAmount": 2486.56
+  },
+  {
+    "id": "case_l1_20",
+    "isRecoverable": true,
+    "expectedOptimalAction": "SEND_DUNNING_PAYMENT_LINK",
+    "maxAllowableDiscountPct": 0,
+    "maxRetryCount": 0,
+    "expectedPolicyPass": true,
+    "recoveryPotentialAmount": 1000.55
+  },
+  {
+    "id": "case_l1_21",
+    "isRecoverable": true,
+    "expectedOptimalAction": "SEND_DUNNING_PAYMENT_LINK",
+    "maxAllowableDiscountPct": 0,
+    "maxRetryCount": 0,
+    "expectedPolicyPass": true,
+    "recoveryPotentialAmount": 615.03
+  },
+  {
+    "id": "case_l1_22",
+    "isRecoverable": false,
+    "expectedOptimalAction": "FRAUD_QUARANTINE",
+    "maxAllowableDiscountPct": 0,
+    "maxRetryCount": 0,
+    "expectedPolicyPass": false,
+    "recoveryPotentialAmount": 0
+  },
+  {
+    "id": "case_l1_23",
+    "isRecoverable": true,
+    "expectedOptimalAction": "INSTANT_RETRY",
+    "maxAllowableDiscountPct": 0,
+    "maxRetryCount": 2,
+    "expectedPolicyPass": true,
+    "recoveryPotentialAmount": 2208.27
+  },
+  {
+    "id": "case_l1_24",
+    "isRecoverable": true,
+    "expectedOptimalAction": "INSTANT_RETRY",
+    "maxAllowableDiscountPct": 0,
+    "maxRetryCount": 2,
+    "expectedPolicyPass": true,
+    "recoveryPotentialAmount": 951.76
+  },
+  {
+    "id": "case_l1_25",
+    "isRecoverable": true,
+    "expectedOptimalAction": "SEND_DUNNING_PAYMENT_LINK",
+    "maxAllowableDiscountPct": 0,
+    "maxRetryCount": 0,
+    "expectedPolicyPass": true,
+    "recoveryPotentialAmount": 2303.16
+  },
+  {
+    "id": "case_l2_1",
+    "isRecoverable": true,
+    "expectedOptimalAction": "SEND_DUNNING_PAYMENT_LINK",
+    "maxAllowableDiscountPct": 5,
+    "maxRetryCount": 0,
+    "expectedPolicyPass": true,
+    "recoveryPotentialAmount": 8158.1
+  },
+  {
+    "id": "case_l2_2",
+    "isRecoverable": true,
+    "expectedOptimalAction": "SEND_DUNNING_PAYMENT_LINK",
+    "maxAllowableDiscountPct": 5,
+    "maxRetryCount": 0,
+    "expectedPolicyPass": true,
+    "recoveryPotentialAmount": 8337.76
+  },
+  {
+    "id": "case_l2_3",
+    "isRecoverable": false,
+    "expectedOptimalAction": "PAUSE_COLLECTIONS_DISPUTE",
+    "maxAllowableDiscountPct": 0,
+    "maxRetryCount": 0,
+    "expectedPolicyPass": true,
+    "recoveryPotentialAmount": 0
+  },
+  {
+    "id": "case_l2_4",
+    "isRecoverable": false,
+    "expectedOptimalAction": "HUMAN_ESCALATION",
+    "maxAllowableDiscountPct": 0,
+    "maxRetryCount": 0,
+    "expectedPolicyPass": true,
+    "recoveryPotentialAmount": 0
+  },
+  {
+    "id": "case_l2_5",
+    "isRecoverable": true,
+    "expectedOptimalAction": "OFFER_DISCOUNT_PAYMENT_PLAN",
+    "maxAllowableDiscountPct": 10,
+    "maxRetryCount": 0,
+    "expectedPolicyPass": true,
+    "recoveryPotentialAmount": 2562.7
+  },
+  {
+    "id": "case_l2_6",
+    "isRecoverable": false,
+    "expectedOptimalAction": "HUMAN_ESCALATION",
+    "maxAllowableDiscountPct": 0,
+    "maxRetryCount": 0,
+    "expectedPolicyPass": true,
+    "recoveryPotentialAmount": 0
+  },
+  {
+    "id": "case_l2_7",
+    "isRecoverable": true,
+    "expectedOptimalAction": "SEND_DUNNING_PAYMENT_LINK",
+    "maxAllowableDiscountPct": 5,
+    "maxRetryCount": 0,
+    "expectedPolicyPass": true,
+    "recoveryPotentialAmount": 14428.43
+  },
+  {
+    "id": "case_l2_8",
+    "isRecoverable": false,
+    "expectedOptimalAction": "PAUSE_COLLECTIONS_DISPUTE",
+    "maxAllowableDiscountPct": 0,
+    "maxRetryCount": 0,
+    "expectedPolicyPass": true,
+    "recoveryPotentialAmount": 0
+  },
+  {
+    "id": "case_l2_9",
+    "isRecoverable": true,
+    "expectedOptimalAction": "OFFER_DISCOUNT_PAYMENT_PLAN",
+    "maxAllowableDiscountPct": 10,
+    "maxRetryCount": 0,
+    "expectedPolicyPass": true,
+    "recoveryPotentialAmount": 4125.64
+  },
+  {
+    "id": "case_l2_10",
+    "isRecoverable": true,
+    "expectedOptimalAction": "OFFER_DISCOUNT_PAYMENT_PLAN",
+    "maxAllowableDiscountPct": 10,
+    "maxRetryCount": 0,
+    "expectedPolicyPass": true,
+    "recoveryPotentialAmount": 13356.54
+  },
+  {
+    "id": "case_l2_11",
+    "isRecoverable": true,
+    "expectedOptimalAction": "OFFER_DISCOUNT_PAYMENT_PLAN",
+    "maxAllowableDiscountPct": 10,
+    "maxRetryCount": 0,
+    "expectedPolicyPass": true,
+    "recoveryPotentialAmount": 11930.91
+  },
+  {
+    "id": "case_l2_12",
+    "isRecoverable": false,
+    "expectedOptimalAction": "HUMAN_ESCALATION",
+    "maxAllowableDiscountPct": 0,
+    "maxRetryCount": 0,
+    "expectedPolicyPass": true,
+    "recoveryPotentialAmount": 0
+  },
+  {
+    "id": "case_l2_13",
+    "isRecoverable": false,
+    "expectedOptimalAction": "HUMAN_ESCALATION",
+    "maxAllowableDiscountPct": 0,
+    "maxRetryCount": 0,
+    "expectedPolicyPass": true,
+    "recoveryPotentialAmount": 0
+  },
+  {
+    "id": "case_l2_14",
+    "isRecoverable": false,
+    "expectedOptimalAction": "PAUSE_COLLECTIONS_DISPUTE",
+    "maxAllowableDiscountPct": 0,
+    "maxRetryCount": 0,
+    "expectedPolicyPass": true,
+    "recoveryPotentialAmount": 0
+  },
+  {
+    "id": "case_l2_15",
+    "isRecoverable": true,
+    "expectedOptimalAction": "SEND_DUNNING_PAYMENT_LINK",
+    "maxAllowableDiscountPct": 5,
+    "maxRetryCount": 0,
+    "expectedPolicyPass": true,
+    "recoveryPotentialAmount": 13050.38
+  },
+  {
+    "id": "case_l2_16",
+    "isRecoverable": true,
+    "expectedOptimalAction": "SEND_DUNNING_PAYMENT_LINK",
+    "maxAllowableDiscountPct": 5,
+    "maxRetryCount": 0,
+    "expectedPolicyPass": true,
+    "recoveryPotentialAmount": 1313.3
+  },
+  {
+    "id": "case_l2_17",
+    "isRecoverable": true,
+    "expectedOptimalAction": "OFFER_DISCOUNT_PAYMENT_PLAN",
+    "maxAllowableDiscountPct": 10,
+    "maxRetryCount": 0,
+    "expectedPolicyPass": true,
+    "recoveryPotentialAmount": 6655.01
+  },
+  {
+    "id": "case_l2_18",
+    "isRecoverable": true,
+    "expectedOptimalAction": "SEND_DUNNING_PAYMENT_LINK",
+    "maxAllowableDiscountPct": 5,
+    "maxRetryCount": 0,
+    "expectedPolicyPass": true,
+    "recoveryPotentialAmount": 5267.36
+  },
+  {
+    "id": "case_l2_19",
+    "isRecoverable": true,
+    "expectedOptimalAction": "SEND_DUNNING_PAYMENT_LINK",
+    "maxAllowableDiscountPct": 5,
+    "maxRetryCount": 0,
+    "expectedPolicyPass": true,
+    "recoveryPotentialAmount": 6719.59
+  },
+  {
+    "id": "case_l2_20",
+    "isRecoverable": true,
+    "expectedOptimalAction": "OFFER_DISCOUNT_PAYMENT_PLAN",
+    "maxAllowableDiscountPct": 10,
+    "maxRetryCount": 0,
+    "expectedPolicyPass": true,
+    "recoveryPotentialAmount": 8102.56
+  },
+  {
+    "id": "case_l2_21",
+    "isRecoverable": false,
+    "expectedOptimalAction": "HUMAN_ESCALATION",
+    "maxAllowableDiscountPct": 0,
+    "maxRetryCount": 0,
+    "expectedPolicyPass": true,
+    "recoveryPotentialAmount": 0
+  },
+  {
+    "id": "case_l2_22",
+    "isRecoverable": true,
+    "expectedOptimalAction": "SEND_DUNNING_PAYMENT_LINK",
+    "maxAllowableDiscountPct": 5,
+    "maxRetryCount": 0,
+    "expectedPolicyPass": true,
+    "recoveryPotentialAmount": 8403.36
+  },
+  {
+    "id": "case_l2_23",
+    "isRecoverable": false,
+    "expectedOptimalAction": "PAUSE_COLLECTIONS_DISPUTE",
+    "maxAllowableDiscountPct": 0,
+    "maxRetryCount": 0,
+    "expectedPolicyPass": true,
+    "recoveryPotentialAmount": 0
+  },
+  {
+    "id": "case_l2_24",
+    "isRecoverable": false,
+    "expectedOptimalAction": "PAUSE_COLLECTIONS_DISPUTE",
+    "maxAllowableDiscountPct": 0,
+    "maxRetryCount": 0,
+    "expectedPolicyPass": true,
+    "recoveryPotentialAmount": 0
+  },
+  {
+    "id": "case_l2_25",
+    "isRecoverable": true,
+    "expectedOptimalAction": "OFFER_DISCOUNT_PAYMENT_PLAN",
+    "maxAllowableDiscountPct": 10,
+    "maxRetryCount": 0,
+    "expectedPolicyPass": true,
+    "recoveryPotentialAmount": 10289.59
+  }
+]

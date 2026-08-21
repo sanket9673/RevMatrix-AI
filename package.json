@@ -11,6 +11,9 @@
     "db:studio": "prisma studio",
     "generate:batch": "ts-node --compiler-options '{\"module\":\"CommonJS\"}' scripts/generate-batch.ts",
     "run:benchmark": "ts-node --compiler-options '{\"module\":\"CommonJS\"}' scripts/run-benchmark.ts",
+    "generate:data": "tsx scripts/generate_synthetic_batch.ts",
+    "benchmark": "tsx scripts/generate_synthetic_batch.ts && tsx scripts/run_benchmark.ts",
+    "test:benchmark": "vitest run tests/benchmark/scorer.test.ts",
     "test": "jest"
   },
   "dependencies": {
@@ -38,6 +41,8 @@
     "tailwindcss": "^3.4.10",
     "ts-jest": "^29.4.12",
     "ts-node": "^10.9.2",
-    "typescript": "^5.5.4"
+    "tsx": "^4.23.12",
+    "typescript": "^5.5.4",
+    "vitest": "^4.1.11"
   }
 }

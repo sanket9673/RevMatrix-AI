@@ -1,0 +1,642 @@
+{
+  "timestamp": "2026-08-21T22:11:40.823Z",
+  "totalEvaluated": 50,
+  "loop1Cases": 25,
+  "loop2Cases": 25,
+  "recoverableCount": 36,
+  "actualRecoveredCount": 34,
+  "metrics": {
+    "CR_dual": 0.9444444444444444,
+    "NRY": 0.9512512872519724,
+    "PCR": 0.74,
+    "avgLatencyMs": 2.06
+  },
+  "traces": [
+    {
+      "caseId": "case_l1_1",
+      "loop": 1,
+      "recommendedAction": "SEND_DUNNING_PAYMENT_LINK",
+      "appliedDiscountPct": 0,
+      "policyCheckPassed": true,
+      "policyViolations": [],
+      "executionStatus": "SUCCESS",
+      "recoveredAmount": 2418.26,
+      "groundTruthMatch": true,
+      "processingTimeMs": 4
+    },
+    {
+      "caseId": "case_l1_2",
+      "loop": 1,
+      "recommendedAction": "INSTANT_RETRY",
+      "appliedDiscountPct": 0,
+      "policyCheckPassed": true,
+      "policyViolations": [],
+      "executionStatus": "SUCCESS",
+      "recoveredAmount": 239.61,
+      "groundTruthMatch": true,
+      "processingTimeMs": 3
+    },
+    {
+      "caseId": "case_l1_3",
+      "loop": 1,
+      "recommendedAction": "SEND_DUNNING_PAYMENT_LINK",
+      "appliedDiscountPct": 0,
+      "policyCheckPassed": true,
+      "policyViolations": [],
+      "executionStatus": "SUCCESS",
+      "recoveredAmount": 1951.12,
+      "groundTruthMatch": true,
+      "processingTimeMs": 3
+    },
+    {
+      "caseId": "case_l1_4",
+      "loop": 1,
+      "recommendedAction": "INSTANT_RETRY",
+      "appliedDiscountPct": 0,
+      "policyCheckPassed": true,
+      "policyViolations": [],
+      "executionStatus": "SUCCESS",
+      "recoveredAmount": 1239.51,
+      "groundTruthMatch": true,
+      "processingTimeMs": 2
+    },
+    {
+      "caseId": "case_l1_5",
+      "loop": 1,
+      "recommendedAction": "FRAUD_QUARANTINE",
+      "appliedDiscountPct": 0,
+      "policyCheckPassed": false,
+      "policyViolations": [
+        "FRAUD_BLOCK_LIST: Transaction flagged for potential fraud. Failure code 'BAD_REQUEST_PAYMENT_POSSIBLE_FRAUD' matches fraud blacklist."
+      ],
+      "executionStatus": "BLOCKED_BY_POLICY",
+      "recoveredAmount": 0,
+      "groundTruthMatch": true,
+      "processingTimeMs": 3
+    },
+    {
+      "caseId": "case_l1_6",
+      "loop": 1,
+      "recommendedAction": "FRAUD_QUARANTINE",
+      "appliedDiscountPct": 0,
+      "policyCheckPassed": false,
+      "policyViolations": [
+        "FRAUD_BLOCK_LIST: Transaction flagged for potential fraud. Failure code 'BAD_REQUEST_PAYMENT_POSSIBLE_FRAUD' matches fraud blacklist."
+      ],
+      "executionStatus": "BLOCKED_BY_POLICY",
+      "recoveredAmount": 0,
+      "groundTruthMatch": true,
+      "processingTimeMs": 2
+    },
+    {
+      "caseId": "case_l1_7",
+      "loop": 1,
+      "recommendedAction": "SEND_DUNNING_PAYMENT_LINK",
+      "appliedDiscountPct": 0,
+      "policyCheckPassed": true,
+      "policyViolations": [],
+      "executionStatus": "SUCCESS",
+      "recoveredAmount": 2097.89,
+      "groundTruthMatch": true,
+      "processingTimeMs": 3
+    },
+    {
+      "caseId": "case_l1_8",
+      "loop": 1,
+      "recommendedAction": "SEND_DUNNING_PAYMENT_LINK",
+      "appliedDiscountPct": 0,
+      "policyCheckPassed": true,
+      "policyViolations": [],
+      "executionStatus": "SUCCESS",
+      "recoveredAmount": 2013.22,
+      "groundTruthMatch": true,
+      "processingTimeMs": 3
+    },
+    {
+      "caseId": "case_l1_9",
+      "loop": 1,
+      "recommendedAction": "SEND_DUNNING_PAYMENT_LINK",
+      "appliedDiscountPct": 0,
+      "policyCheckPassed": true,
+      "policyViolations": [],
+      "executionStatus": "SUCCESS",
+      "recoveredAmount": 1744.74,
+      "groundTruthMatch": true,
+      "processingTimeMs": 1
+    },
+    {
+      "caseId": "case_l1_10",
+      "loop": 1,
+      "recommendedAction": "FRAUD_QUARANTINE",
+      "appliedDiscountPct": 0,
+      "policyCheckPassed": false,
+      "policyViolations": [
+        "FRAUD_BLOCK_LIST: Transaction flagged for potential fraud. Failure code 'BAD_REQUEST_PAYMENT_POSSIBLE_FRAUD' matches fraud blacklist."
+      ],
+      "executionStatus": "BLOCKED_BY_POLICY",
+      "recoveredAmount": 0,
+      "groundTruthMatch": true,
+      "processingTimeMs": 1
+    },
+    {
+      "caseId": "case_l1_11",
+      "loop": 1,
+      "recommendedAction": "SEND_DUNNING_PAYMENT_LINK",
+      "appliedDiscountPct": 0,
+      "policyCheckPassed": true,
+      "policyViolations": [],
+      "executionStatus": "SUCCESS",
+      "recoveredAmount": 668.83,
+      "groundTruthMatch": true,
+      "processingTimeMs": 2
+    },
+    {
+      "caseId": "case_l1_12",
+      "loop": 1,
+      "recommendedAction": "INSTANT_RETRY",
+      "appliedDiscountPct": 0,
+      "policyCheckPassed": true,
+      "policyViolations": [],
+      "executionStatus": "SUCCESS",
+      "recoveredAmount": 1270.42,
+      "groundTruthMatch": true,
+      "processingTimeMs": 0
+    },
+    {
+      "caseId": "case_l1_13",
+      "loop": 1,
+      "recommendedAction": "INSTANT_RETRY",
+      "appliedDiscountPct": 0,
+      "policyCheckPassed": false,
+      "policyViolations": [
+        "MAX_RETRIES_PER_24H: Retry limit exceeded. Attempt 2 equals or exceeds the maximum of 2 attempts."
+      ],
+      "executionStatus": "BLOCKED_BY_POLICY",
+      "recoveredAmount": 0,
+      "groundTruthMatch": true,
+      "processingTimeMs": 0
+    },
+    {
+      "caseId": "case_l1_14",
+      "loop": 1,
+      "recommendedAction": "INSTANT_RETRY",
+      "appliedDiscountPct": 0,
+      "policyCheckPassed": true,
+      "policyViolations": [],
+      "executionStatus": "SUCCESS",
+      "recoveredAmount": 1210.42,
+      "groundTruthMatch": true,
+      "processingTimeMs": 4
+    },
+    {
+      "caseId": "case_l1_15",
+      "loop": 1,
+      "recommendedAction": "SEND_DUNNING_PAYMENT_LINK",
+      "appliedDiscountPct": 0,
+      "policyCheckPassed": true,
+      "policyViolations": [],
+      "executionStatus": "SUCCESS",
+      "recoveredAmount": 759.93,
+      "groundTruthMatch": true,
+      "processingTimeMs": 2
+    },
+    {
+      "caseId": "case_l1_16",
+      "loop": 1,
+      "recommendedAction": "SEND_DUNNING_PAYMENT_LINK",
+      "appliedDiscountPct": 0,
+      "policyCheckPassed": true,
+      "policyViolations": [],
+      "executionStatus": "SUCCESS",
+      "recoveredAmount": 384.93,
+      "groundTruthMatch": true,
+      "processingTimeMs": 4
+    },
+    {
+      "caseId": "case_l1_17",
+      "loop": 1,
+      "recommendedAction": "INSTANT_RETRY",
+      "appliedDiscountPct": 0,
+      "policyCheckPassed": false,
+      "policyViolations": [
+        "MAX_RETRIES_PER_24H: Retry limit exceeded. Attempt 2 equals or exceeds the maximum of 2 attempts."
+      ],
+      "executionStatus": "BLOCKED_BY_POLICY",
+      "recoveredAmount": 0,
+      "groundTruthMatch": true,
+      "processingTimeMs": 3
+    },
+    {
+      "caseId": "case_l1_18",
+      "loop": 1,
+      "recommendedAction": "SEND_DUNNING_PAYMENT_LINK",
+      "appliedDiscountPct": 0,
+      "policyCheckPassed": true,
+      "policyViolations": [],
+      "executionStatus": "SUCCESS",
+      "recoveredAmount": 2376.83,
+      "groundTruthMatch": true,
+      "processingTimeMs": 4
+    },
+    {
+      "caseId": "case_l1_19",
+      "loop": 1,
+      "recommendedAction": "SEND_DUNNING_PAYMENT_LINK",
+      "appliedDiscountPct": 0,
+      "policyCheckPassed": true,
+      "policyViolations": [],
+      "executionStatus": "SUCCESS",
+      "recoveredAmount": 2486.56,
+      "groundTruthMatch": true,
+      "processingTimeMs": 3
+    },
+    {
+      "caseId": "case_l1_20",
+      "loop": 1,
+      "recommendedAction": "SEND_DUNNING_PAYMENT_LINK",
+      "appliedDiscountPct": 0,
+      "policyCheckPassed": true,
+      "policyViolations": [],
+      "executionStatus": "SUCCESS",
+      "recoveredAmount": 1000.55,
+      "groundTruthMatch": true,
+      "processingTimeMs": 2
+    },
+    {
+      "caseId": "case_l1_21",
+      "loop": 1,
+      "recommendedAction": "SEND_DUNNING_PAYMENT_LINK",
+      "appliedDiscountPct": 0,
+      "policyCheckPassed": true,
+      "policyViolations": [],
+      "executionStatus": "SUCCESS",
+      "recoveredAmount": 615.03,
+      "groundTruthMatch": true,
+      "processingTimeMs": 0
+    },
+    {
+      "caseId": "case_l1_22",
+      "loop": 1,
+      "recommendedAction": "FRAUD_QUARANTINE",
+      "appliedDiscountPct": 0,
+      "policyCheckPassed": false,
+      "policyViolations": [
+        "FRAUD_BLOCK_LIST: Transaction flagged for potential fraud. Failure code 'BAD_REQUEST_PAYMENT_POSSIBLE_FRAUD' matches fraud blacklist."
+      ],
+      "executionStatus": "BLOCKED_BY_POLICY",
+      "recoveredAmount": 0,
+      "groundTruthMatch": true,
+      "processingTimeMs": 2
+    },
+    {
+      "caseId": "case_l1_23",
+      "loop": 1,
+      "recommendedAction": "INSTANT_RETRY",
+      "appliedDiscountPct": 0,
+      "policyCheckPassed": true,
+      "policyViolations": [],
+      "executionStatus": "SUCCESS",
+      "recoveredAmount": 2208.27,
+      "groundTruthMatch": true,
+      "processingTimeMs": 4
+    },
+    {
+      "caseId": "case_l1_24",
+      "loop": 1,
+      "recommendedAction": "INSTANT_RETRY",
+      "appliedDiscountPct": 0,
+      "policyCheckPassed": true,
+      "policyViolations": [],
+      "executionStatus": "SUCCESS",
+      "recoveredAmount": 951.76,
+      "groundTruthMatch": true,
+      "processingTimeMs": 4
+    },
+    {
+      "caseId": "case_l1_25",
+      "loop": 1,
+      "recommendedAction": "SEND_DUNNING_PAYMENT_LINK",
+      "appliedDiscountPct": 0,
+      "policyCheckPassed": true,
+      "policyViolations": [],
+      "executionStatus": "SUCCESS",
+      "recoveredAmount": 2303.16,
+      "groundTruthMatch": true,
+      "processingTimeMs": 1
+    },
+    {
+      "caseId": "case_l2_1",
+      "loop": 2,
+      "recommendedAction": "SEND_DUNNING_PAYMENT_LINK",
+      "appliedDiscountPct": 5,
+      "policyCheckPassed": true,
+      "policyViolations": [],
+      "executionStatus": "SUCCESS",
+      "recoveredAmount": 8158.1,
+      "groundTruthMatch": true,
+      "processingTimeMs": 1
+    },
+    {
+      "caseId": "case_l2_2",
+      "loop": 2,
+      "recommendedAction": "SEND_DUNNING_PAYMENT_LINK",
+      "appliedDiscountPct": 5,
+      "policyCheckPassed": true,
+      "policyViolations": [],
+      "executionStatus": "SUCCESS",
+      "recoveredAmount": 8337.76,
+      "groundTruthMatch": true,
+      "processingTimeMs": 1
+    },
+    {
+      "caseId": "case_l2_3",
+      "loop": 2,
+      "recommendedAction": "PAUSE_COLLECTIONS_DISPUTE",
+      "appliedDiscountPct": 0,
+      "policyCheckPassed": true,
+      "policyViolations": [],
+      "executionStatus": "FAILED",
+      "recoveredAmount": 0,
+      "groundTruthMatch": true,
+      "processingTimeMs": 3
+    },
+    {
+      "caseId": "case_l2_4",
+      "loop": 2,
+      "recommendedAction": "HUMAN_ESCALATION",
+      "appliedDiscountPct": 0,
+      "policyCheckPassed": true,
+      "policyViolations": [],
+      "executionStatus": "FAILED",
+      "recoveredAmount": 0,
+      "groundTruthMatch": true,
+      "processingTimeMs": 0
+    },
+    {
+      "caseId": "case_l2_5",
+      "loop": 2,
+      "recommendedAction": "OFFER_DISCOUNT_PAYMENT_PLAN",
+      "appliedDiscountPct": 5,
+      "policyCheckPassed": false,
+      "policyViolations": [
+        "MAX_DISCOUNT_PERCENT: Proposed discount of 10% exceeds the maximum limit of 5%. Capped to 5%."
+      ],
+      "executionStatus": "SUCCESS",
+      "recoveredAmount": 2562.7,
+      "groundTruthMatch": true,
+      "processingTimeMs": 0
+    },
+    {
+      "caseId": "case_l2_6",
+      "loop": 2,
+      "recommendedAction": "HUMAN_ESCALATION",
+      "appliedDiscountPct": 0,
+      "policyCheckPassed": true,
+      "policyViolations": [],
+      "executionStatus": "FAILED",
+      "recoveredAmount": 0,
+      "groundTruthMatch": true,
+      "processingTimeMs": 1
+    },
+    {
+      "caseId": "case_l2_7",
+      "loop": 2,
+      "recommendedAction": "SEND_DUNNING_PAYMENT_LINK",
+      "appliedDiscountPct": 5,
+      "policyCheckPassed": true,
+      "policyViolations": [],
+      "executionStatus": "SUCCESS",
+      "recoveredAmount": 14428.43,
+      "groundTruthMatch": true,
+      "processingTimeMs": 3
+    },
+    {
+      "caseId": "case_l2_8",
+      "loop": 2,
+      "recommendedAction": "PAUSE_COLLECTIONS_DISPUTE",
+      "appliedDiscountPct": 0,
+      "policyCheckPassed": true,
+      "policyViolations": [],
+      "executionStatus": "FAILED",
+      "recoveredAmount": 0,
+      "groundTruthMatch": true,
+      "processingTimeMs": 2
+    },
+    {
+      "caseId": "case_l2_9",
+      "loop": 2,
+      "recommendedAction": "OFFER_DISCOUNT_PAYMENT_PLAN",
+      "appliedDiscountPct": 5,
+      "policyCheckPassed": false,
+      "policyViolations": [
+        "MAX_DISCOUNT_PERCENT: Proposed discount of 10% exceeds the maximum limit of 5%. Capped to 5%."
+      ],
+      "executionStatus": "SUCCESS",
+      "recoveredAmount": 4125.64,
+      "groundTruthMatch": true,
+      "processingTimeMs": 1
+    },
+    {
+      "caseId": "case_l2_10",
+      "loop": 2,
+      "recommendedAction": "OFFER_DISCOUNT_PAYMENT_PLAN",
+      "appliedDiscountPct": 5,
+      "policyCheckPassed": false,
+      "policyViolations": [
+        "MAX_DISCOUNT_PERCENT: Proposed discount of 10% exceeds the maximum limit of 5%. Capped to 5%."
+      ],
+      "executionStatus": "SUCCESS",
+      "recoveredAmount": 13356.54,
+      "groundTruthMatch": true,
+      "processingTimeMs": 0
+    },
+    {
+      "caseId": "case_l2_11",
+      "loop": 2,
+      "recommendedAction": "OFFER_DISCOUNT_PAYMENT_PLAN",
+      "appliedDiscountPct": 5,
+      "policyCheckPassed": false,
+      "policyViolations": [
+        "MAX_DISCOUNT_PERCENT: Proposed discount of 10% exceeds the maximum limit of 5%. Capped to 5%."
+      ],
+      "executionStatus": "SUCCESS",
+      "recoveredAmount": 11930.91,
+      "groundTruthMatch": true,
+      "processingTimeMs": 3
+    },
+    {
+      "caseId": "case_l2_12",
+      "loop": 2,
+      "recommendedAction": "HUMAN_ESCALATION",
+      "appliedDiscountPct": 0,
+      "policyCheckPassed": true,
+      "policyViolations": [],
+      "executionStatus": "FAILED",
+      "recoveredAmount": 0,
+      "groundTruthMatch": true,
+      "processingTimeMs": 2
+    },
+    {
+      "caseId": "case_l2_13",
+      "loop": 2,
+      "recommendedAction": "HUMAN_ESCALATION",
+      "appliedDiscountPct": 0,
+      "policyCheckPassed": true,
+      "policyViolations": [],
+      "executionStatus": "FAILED",
+      "recoveredAmount": 0,
+      "groundTruthMatch": true,
+      "processingTimeMs": 0
+    },
+    {
+      "caseId": "case_l2_14",
+      "loop": 2,
+      "recommendedAction": "PAUSE_COLLECTIONS_DISPUTE",
+      "appliedDiscountPct": 0,
+      "policyCheckPassed": true,
+      "policyViolations": [],
+      "executionStatus": "FAILED",
+      "recoveredAmount": 0,
+      "groundTruthMatch": true,
+      "processingTimeMs": 2
+    },
+    {
+      "caseId": "case_l2_15",
+      "loop": 2,
+      "recommendedAction": "SEND_DUNNING_PAYMENT_LINK",
+      "appliedDiscountPct": 5,
+      "policyCheckPassed": true,
+      "policyViolations": [],
+      "executionStatus": "SUCCESS",
+      "recoveredAmount": 13050.38,
+      "groundTruthMatch": true,
+      "processingTimeMs": 3
+    },
+    {
+      "caseId": "case_l2_16",
+      "loop": 2,
+      "recommendedAction": "SEND_DUNNING_PAYMENT_LINK",
+      "appliedDiscountPct": 5,
+      "policyCheckPassed": true,
+      "policyViolations": [],
+      "executionStatus": "SUCCESS",
+      "recoveredAmount": 1313.3,
+      "groundTruthMatch": true,
+      "processingTimeMs": 4
+    },
+    {
+      "caseId": "case_l2_17",
+      "loop": 2,
+      "recommendedAction": "OFFER_DISCOUNT_PAYMENT_PLAN",
+      "appliedDiscountPct": 5,
+      "policyCheckPassed": false,
+      "policyViolations": [
+        "MAX_DISCOUNT_PERCENT: Proposed discount of 10% exceeds the maximum limit of 5%. Capped to 5%."
+      ],
+      "executionStatus": "SUCCESS",
+      "recoveredAmount": 6655.01,
+      "groundTruthMatch": true,
+      "processingTimeMs": 3
+    },
+    {
+      "caseId": "case_l2_18",
+      "loop": 2,
+      "recommendedAction": "SEND_DUNNING_PAYMENT_LINK",
+      "appliedDiscountPct": 5,
+      "policyCheckPassed": true,
+      "policyViolations": [],
+      "executionStatus": "SUCCESS",
+      "recoveredAmount": 5267.36,
+      "groundTruthMatch": true,
+      "processingTimeMs": 2
+    },
+    {
+      "caseId": "case_l2_19",
+      "loop": 2,
+      "recommendedAction": "SEND_DUNNING_PAYMENT_LINK",
+      "appliedDiscountPct": 5,
+      "policyCheckPassed": true,
+      "policyViolations": [],
+      "executionStatus": "SUCCESS",
+      "recoveredAmount": 6719.59,
+      "groundTruthMatch": true,
+      "processingTimeMs": 0
+    },
+    {
+      "caseId": "case_l2_20",
+      "loop": 2,
+      "recommendedAction": "OFFER_DISCOUNT_PAYMENT_PLAN",
+      "appliedDiscountPct": 5,
+      "policyCheckPassed": false,
+      "policyViolations": [
+        "MAX_DISCOUNT_PERCENT: Proposed discount of 10% exceeds the maximum limit of 5%. Capped to 5%."
+      ],
+      "executionStatus": "SUCCESS",
+      "recoveredAmount": 8102.56,
+      "groundTruthMatch": true,
+      "processingTimeMs": 4
+    },
+    {
+      "caseId": "case_l2_21",
+      "loop": 2,
+      "recommendedAction": "HUMAN_ESCALATION",
+      "appliedDiscountPct": 0,
+      "policyCheckPassed": true,
+      "policyViolations": [],
+      "executionStatus": "FAILED",
+      "recoveredAmount": 0,
+      "groundTruthMatch": true,
+      "processingTimeMs": 0
+    },
+    {
+      "caseId": "case_l2_22",
+      "loop": 2,
+      "recommendedAction": "SEND_DUNNING_PAYMENT_LINK",
+      "appliedDiscountPct": 5,
+      "policyCheckPassed": true,
+      "policyViolations": [],
+      "executionStatus": "SUCCESS",
+      "recoveredAmount": 8403.36,
+      "groundTruthMatch": true,
+      "processingTimeMs": 4
+    },
+    {
+      "caseId": "case_l2_23",
+      "loop": 2,
+      "recommendedAction": "PAUSE_COLLECTIONS_DISPUTE",
+      "appliedDiscountPct": 0,
+      "policyCheckPassed": true,
+      "policyViolations": [],
+      "executionStatus": "FAILED",
+      "recoveredAmount": 0,
+      "groundTruthMatch": true,
+      "processingTimeMs": 3
+    },
+    {
+      "caseId": "case_l2_24",
+      "loop": 2,
+      "recommendedAction": "PAUSE_COLLECTIONS_DISPUTE",
+      "appliedDiscountPct": 0,
+      "policyCheckPassed": true,
+      "policyViolations": [],
+      "executionStatus": "FAILED",
+      "recoveredAmount": 0,
+      "groundTruthMatch": true,
+      "processingTimeMs": 1
+    },
+    {
+      "caseId": "case_l2_25",
+      "loop": 2,
+      "recommendedAction": "OFFER_DISCOUNT_PAYMENT_PLAN",
+      "appliedDiscountPct": 5,
+      "policyCheckPassed": false,
+      "policyViolations": [
+        "MAX_DISCOUNT_PERCENT: Proposed discount of 10% exceeds the maximum limit of 5%. Capped to 5%."
+      ],
+      "executionStatus": "SUCCESS",
+      "recoveredAmount": 10289.59,
+      "groundTruthMatch": true,
+      "processingTimeMs": 0
+    }
+  ]
+}
