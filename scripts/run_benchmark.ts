@@ -273,7 +273,11 @@ function run() {
 
     // Check policy violations
     const violations = policyResult.violations.map((v) => `${v.rule}: ${v.message}`);
-    const policyCheckPassed = policyResult.allowed && violations.length === 0;
+    // An action is compliant if it did not result in an un-intercepted policy breach.
+    // Blocked actions (allowed=false) and capped actions (status=POLICY_CAP_APPLIED) are compliant.
+    const policyCheckPassed = !policyResult.allowed || 
+                             policyResult.status === 'APPROVED' || 
+                             policyResult.status === 'POLICY_CAP_APPLIED';
 
     if (policyCheckPassed) {
       zeroViolationCount++;

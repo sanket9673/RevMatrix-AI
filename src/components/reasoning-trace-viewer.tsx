@@ -26,6 +26,15 @@ import {
 import { cn } from "@/lib/utils";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+} from "@/components/ui/dialog";
 
 export function ReasoningTraceViewer() {
   const [selectedWorkflowId, setSelectedWorkflowId] = React.useState<string>(
@@ -33,6 +42,7 @@ export function ReasoningTraceViewer() {
   );
   const [activeStepIndex, setActiveStepIndex] = React.useState<number>(0);
   const [copiedKey, setCopiedKey] = React.useState<string | null>(null);
+  const [isDetailsModalOpen, setIsDetailsModalOpen] = React.useState<boolean>(false);
   const [expandedPayload, setExpandedPayload] = React.useState<{
     input: boolean;
     output: boolean;
@@ -273,7 +283,15 @@ export function ReasoningTraceViewer() {
                     </h2>
                   </div>
 
-                  <div>
+                  <div className="flex items-center gap-3">
+                    <Button
+                      variant="outline"
+                      size="sm"
+                      onClick={() => setIsDetailsModalOpen(true)}
+                      className="text-[11px] h-8 bg-zinc-900 border-zinc-805 hover:bg-zinc-800 text-zinc-350 hover:text-zinc-100 cursor-pointer"
+                    >
+                      Inspect Step Details
+                    </Button>
                     {getPolicyBadge(activeStep.policyStatus)}
                   </div>
                 </div>
@@ -482,6 +500,70 @@ export function ReasoningTraceViewer() {
           </motion.div>
         </AnimatePresence>
       </div>
+
+      {/* STEP DETAILS MODAL */}
+      <Dialog open={isDetailsModalOpen} onOpenChange={setIsDetailsModalOpen}>
+        <DialogContent onClose={() => setIsDetailsModalOpen(false)} className="max-w-2xl border-zinc-800 bg-zinc-900/95 shadow-2xl backdrop-blur-md">
+          <DialogHeader>
+            <DialogTitle className="text-zinc-50 flex items-center gap-2">
+              <span>Step {activeStep.stepNumber} Execution Inspector</span>
+              {getPolicyBadge(activeStep.policyStatus)}
+            </DialogTitle>
+            <DialogDescription className="text-xs mt-1 text-zinc-400">
+              Complete diagnostic data and inputs/outputs parameters for tool call: <strong className="text-zinc-200">{activeStep.toolCalled}</strong>
+            </DialogDescription>
+          </DialogHeader>
+
+          <div className="space-y-4 my-2 max-h-[420px] overflow-y-auto pr-2 text-xs font-mono">
+            {/* Timestamp & Tool */}
+            <div className="grid grid-cols-2 gap-3 p-3 rounded-lg bg-zinc-950/60 border border-zinc-850">
+              <div>
+                <span className="text-zinc-500 block text-[10px] uppercase">Timestamp</span>
+                <span className="font-semibold text-zinc-200">{new Date(activeStep.timestamp).toISOString()}</span>
+              </div>
+              <div>
+                <span className="text-zinc-500 block text-[10px] uppercase">Tool Executed</span>
+                <span className="font-semibold text-zinc-200">{activeStep.toolCalled}</span>
+              </div>
+            </div>
+
+            {/* Inner Thought */}
+            <div className="space-y-1">
+              <span className="text-zinc-500 block text-[10px] uppercase font-bold">Inner Thought / Rationale</span>
+              <p className="p-3 bg-zinc-950/40 rounded border border-zinc-850 text-zinc-300 font-sans leading-relaxed">
+                {activeStep.agentThought}
+              </p>
+            </div>
+
+            {/* Tool Input Payload */}
+            <div className="space-y-1">
+              <span className="text-zinc-500 block text-[10px] uppercase font-bold">Tool Input Payload</span>
+              <pre className="p-3 bg-zinc-950/90 rounded border border-zinc-850 overflow-x-auto text-zinc-300 max-h-36">
+                <code>{JSON.stringify(activeStep.toolInput, null, 2)}</code>
+              </pre>
+            </div>
+
+            {/* Tool Output Payload */}
+            <div className="space-y-1">
+              <span className="text-zinc-500 block text-[10px] uppercase font-bold">Tool Output Result</span>
+              <pre className="p-3 bg-zinc-950/90 rounded border border-zinc-850 overflow-x-auto text-zinc-300 max-h-36">
+                <code>{JSON.stringify(activeStep.toolOutput, null, 2)}</code>
+              </pre>
+            </div>
+          </div>
+
+          <DialogFooter>
+            <Button
+              variant="secondary"
+              size="sm"
+              onClick={() => setIsDetailsModalOpen(false)}
+              className="bg-zinc-800 border-zinc-700 hover:bg-zinc-700 text-zinc-200 cursor-pointer"
+            >
+              Close Inspector
+            </Button>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
     </div>
   );
 }

@@ -33,6 +33,7 @@ describe('Vercel Cron API Route', () => {
 
   test('should process due workflows, invoke mock orchestrator, and mark complete', async () => {
     process.env.CRON_SECRET = 'secret_cron_key';
+    process.env.GEMINI_API_KEY = 'AIzaSy_your_gemini_mock';
     
     // Create a transaction and workflow that is due
     const tx = await prisma.transaction.create({

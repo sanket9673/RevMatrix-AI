@@ -9,12 +9,12 @@
     "lint": "next lint",
     "db:push": "prisma db push",
     "db:studio": "prisma studio",
-    "generate:batch": "ts-node --compiler-options '{\"module\":\"CommonJS\"}' scripts/generate-batch.ts",
-    "run:benchmark": "ts-node --compiler-options '{\"module\":\"CommonJS\"}' scripts/run-benchmark.ts",
+    "generate:batch": "ts-node --compiler-options '{\"module\":\"CommonJS\"}' scripts/generate_synthetic_batch.ts",
+    "run:benchmark": "ts-node --compiler-options '{\"module\":\"CommonJS\"}' scripts/run_benchmark.ts",
     "generate:data": "tsx scripts/generate_synthetic_batch.ts",
     "benchmark": "tsx scripts/generate_synthetic_batch.ts && tsx scripts/run_benchmark.ts",
     "test:benchmark": "vitest run tests/benchmark/scorer.test.ts",
-    "test": "jest"
+    "test": "jest --runInBand"
   },
   "dependencies": {
     "@google/genai": "^0.2.0",

@@ -40,6 +40,7 @@ import {
   DialogHeader,
   DialogTitle,
 } from "@/components/ui/dialog";
+import { MOCK_AUDIT_BLOCKS } from "@/types/reasoning-audit";
 
 // Define the Interface for active recovery instance
 interface TraceStep {
@@ -280,10 +281,26 @@ const mockRecoveryData: RecoveryInstance[] = [
 
 export default function Dashboard() {
   const [activeTab, setActiveTab] = React.useState<string>("all");
+  const [statusFilter, setStatusFilter] = React.useState<string>("ALL");
   const [searchQuery, setSearchQuery] = React.useState<string>("");
   const [refreshing, setRefreshing] = React.useState<boolean>(false);
   const [selectedWorkflow, setSelectedWorkflow] = React.useState<RecoveryInstance | null>(null);
   const [isModalOpen, setIsModalOpen] = React.useState<boolean>(false);
+
+  // Watch URL params to auto-open specific workflow modal from search clicks
+  React.useEffect(() => {
+    if (typeof window !== "undefined") {
+      const params = new URLSearchParams(window.location.search);
+      const wId = params.get("w");
+      if (wId) {
+        const found = mockRecoveryData.find((w) => w.id === wId);
+        if (found) {
+          setSelectedWorkflow(found);
+          setIsModalOpen(true);
+        }
+      }
+    }
+  }, []);
 
   // Trigger simulated refresh loader
   const handleRefresh = () => {
@@ -293,12 +310,48 @@ export default function Dashboard() {
     }, 750);
   };
 
-  // Filter items based on selected tab and search query
+  // Generate and download a security audit log CSV file
+  const handleExportAuditLog = () => {
+    const headers = ["Block Height", "Timestamp", "Workflow ID", "Actor", "Action Executed", "SHA-256 Hash"];
+    const rows = MOCK_AUDIT_BLOCKS.map((b) => [
+      `Block #${b.blockHeight}`,
+      b.timestamp,
+      b.workflowId,
+      b.actor,
+      b.actionExecuted,
+      b.currentHash,
+    ]);
+
+    const csvContent = [
+      headers,
+      ...rows,
+    ]
+      .map((e) => e.map((val) => `"${String(val).replace(/"/g, '""')}"`).join(","))
+      .join("\n");
+
+    const blob = new Blob([csvContent], { type: "text/csv;charset=utf-8;" });
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement("a");
+    link.setAttribute("href", url);
+    link.setAttribute("download", `revmatrix_security_audit_log_${new Date().toISOString().slice(0, 10)}.csv`);
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  };
+
+  // Filter items based on selected tab, status, and search query
   const filteredData = React.useMemo(() => {
     return mockRecoveryData.filter((item) => {
       // Filter by tab
       if (activeTab === "loop1" && item.loop !== "Loop 1") return false;
       if (activeTab === "loop2" && item.loop !== "Loop 2") return false;
+
+      // Filter by status
+      if (statusFilter !== "ALL") {
+        if (statusFilter === "PENDING" && item.status !== "In Progress") return false;
+        if (statusFilter === "RECOVERED" && item.status !== "Recovered") return false;
+        if (statusFilter === "HALTED_POLICY_BLOCK" && item.status !== "Escalated") return false;
+      }
 
       // Filter by search query
       if (searchQuery.trim() !== "") {
@@ -311,7 +364,7 @@ export default function Dashboard() {
 
       return true;
     });
-  }, [activeTab, searchQuery]);
+  }, [activeTab, statusFilter, searchQuery]);
 
   return (
     <div className="space-y-8">
@@ -330,7 +383,7 @@ export default function Dashboard() {
             <RefreshCw className={cn("mr-2 h-3.5 w-3.5", refreshing ? "animate-spin text-emerald-500" : "")} />
             Refresh
           </Button>
-          <Button variant="emerald" size="sm" className="h-9">
+          <Button variant="emerald" size="sm" onClick={handleExportAuditLog} className="h-9 cursor-pointer">
             <Download className="mr-2 h-3.5 w-3.5" />
             Export Audit Log
           </Button>
@@ -459,16 +512,33 @@ export default function Dashboard() {
           </TabsList>
         </Tabs>
 
-        {/* Search filter input */}
-        <div className="relative flex-1 max-w-sm">
-          <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-zinc-500" />
-          <input
-            type="text"
-            placeholder="Filter by ID, entity, or strategy..."
-            value={searchQuery}
-            onChange={(e) => setSearchQuery(e.target.value)}
-            className="w-full rounded-lg border border-zinc-850 bg-zinc-950/80 pl-9 pr-4 py-1.5 text-xs text-zinc-100 placeholder-zinc-500 focus:outline-none focus:ring-1 focus:ring-emerald-500 focus:border-emerald-500 focus:bg-zinc-950 transition-all shadow-inner"
-          />
+        <div className="flex flex-col sm:flex-row items-center gap-3 w-full md:w-auto">
+          {/* Status Dropdown Filter */}
+          <div className="relative w-full sm:w-48">
+            <select
+              value={statusFilter}
+              onChange={(e) => setStatusFilter(e.target.value)}
+              className="w-full h-8 bg-zinc-950 border border-zinc-850 rounded-lg px-3 py-1 text-zinc-300 text-xs font-semibold focus:outline-none focus:ring-1 focus:ring-emerald-500 focus:border-emerald-500 transition-all appearance-none cursor-pointer"
+            >
+              <option value="ALL">All Statuses</option>
+              <option value="PENDING">PENDING (In Progress)</option>
+              <option value="RECOVERED">RECOVERED</option>
+              <option value="HALTED_POLICY_BLOCK">HALTED_POLICY_BLOCK (Escalated)</option>
+            </select>
+            <div className="pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 border-l-4 border-r-4 border-t-4 border-transparent border-t-zinc-400 w-0 h-0" />
+          </div>
+
+          {/* Search filter input */}
+          <div className="relative w-full sm:w-64">
+            <Search className="absolute left-3 top-1/2 h-3.5 w-3.5 -translate-y-1/2 text-zinc-500" />
+            <input
+              type="text"
+              placeholder="Filter by ID, entity, or strategy..."
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              className="w-full rounded-lg border border-zinc-850 bg-zinc-950/80 pl-8 pr-4 py-1 h-8 text-xs text-zinc-150 placeholder-zinc-500 focus:outline-none focus:ring-1 focus:ring-emerald-500 focus:border-emerald-500 focus:bg-zinc-950 transition-all shadow-inner"
+            />
+          </div>
         </div>
       </div>
 
