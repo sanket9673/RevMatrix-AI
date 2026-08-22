@@ -129,7 +129,7 @@ export default function LiveBenchmarkStream() {
           setLogs([{
             timestamp: new Date().toISOString(),
             level: 'INFO',
-            message: `[System] SSE stream started. Preparing to ingest ${payload.total} failed transactions...`
+            message: `[System] SSE trace replay started. Preparing to stream ${payload.total} pre-recorded transaction logs...`
           }]);
         } else if (payload.event === 'RECORD_PROCESSED') {
           // Add processed record
@@ -149,7 +149,7 @@ export default function LiveBenchmarkStream() {
             {
               timestamp: new Date().toISOString(),
               level: 'SUCCESS',
-              message: `[System] SSE stream successfully processed all ${payload.finalSummary.totalRecords} records! Benchmark complete.`
+              message: `[System] SSE trace replay completed. All ${payload.finalSummary.totalRecords} pre-recorded records streamed successfully.`
             }
           ]);
           setStatus('completed');
@@ -233,8 +233,8 @@ export default function LiveBenchmarkStream() {
               <Sliders className="w-6 h-6 animate-pulse" />
             </div>
             <div>
-              <h2 className="text-lg font-semibold text-white tracking-wide">Benchmark Settings & Execution</h2>
-              <p className="text-sm text-slate-400">Manage real-time execution flow and data ingestion backup modes.</p>
+              <h2 className="text-lg font-semibold text-white tracking-wide">Demo Telemetry Replay Control Panel</h2>
+              <p className="text-sm text-slate-400">Replaying structured execution trace for presentation safety. For live evaluation, run the CLI benchmark.</p>
             </div>
           </div>
 
@@ -265,12 +265,12 @@ export default function LiveBenchmarkStream() {
               {status === 'streaming' ? (
                 <>
                   <RefreshCw className="w-4 h-4 animate-spin text-white" />
-                  Streaming {progressPct}%...
+                  Replaying {progressPct}%...
                 </>
               ) : (
                 <>
                   <Play className="w-4 h-4 text-white fill-current" />
-                  Run 50-Record Benchmark
+                  Replay 50-Record Trace
                 </>
               )}
             </button>
@@ -439,8 +439,8 @@ export default function LiveBenchmarkStream() {
             {records.length === 0 ? (
               <div className="absolute inset-0 flex flex-col items-center justify-center text-slate-500 p-8 text-center">
                 <Database className="w-8 h-8 mb-2 animate-bounce" />
-                <p className="text-sm font-medium">No record ingestion logs parsed yet.</p>
-                <p className="text-xs text-slate-600 mt-1">Run a benchmark to stream transaction logs.</p>
+                <p className="text-sm font-medium">No record trace logs parsed yet.</p>
+                <p className="text-xs text-slate-600 mt-1">Click Replay to stream pre-recorded transaction trace.</p>
               </div>
             ) : (
               <table className="w-full text-left border-collapse">
@@ -544,7 +544,7 @@ export default function LiveBenchmarkStream() {
               <div className="h-full flex flex-col items-center justify-center text-slate-600 text-center">
                 <TerminalIcon className="w-8 h-8 mb-2 opacity-50" />
                 <p>Terminal output buffer empty.</p>
-                <p className="text-[10px] text-slate-700 mt-0.5">Stream logs by executing the benchmark run.</p>
+                <p className="text-[10px] text-slate-700 mt-0.5">Stream logs by starting the trace replay.</p>
               </div>
             ) : (
               <div className="space-y-4">

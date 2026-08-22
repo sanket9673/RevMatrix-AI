@@ -67,14 +67,40 @@ describe('CryptographicAuditLogger', () => {
     // Wait a brief moment to ensure separate timestamps
     await new Promise((resolve) => setTimeout(resolve, 50));
 
-    // 2. Second block
-    const log2 = await auditLogger.appendLog(workflowId, 'TEST', 'ACTION_2', { step: 2 });
+    // 2. Second block (rich realistic financial payload)
+    const richPayload = {
+      diagnosis: 'CASHFLOW_DELAY',
+      recommendedIntervention: 'EMIT_DISCOUNT_INCENTIVE',
+      proposedDiscountPercent: 10,
+      policyResult: {
+        allowed: true,
+        status: 'POLICY_CAP_APPLIED',
+        violations: [
+          {
+            rule: 'POL_DISC_LIMIT',
+            message: 'Discount exceeds standard segment allowance'
+          }
+        ],
+        modifiedProposal: {
+          proposedDiscountPercent: 5,
+          paymentLinkTTLMinutes: 15
+        }
+      },
+      payment_link_id: 'plink_K1xX98231a'
+    };
+
+    const log2 = await auditLogger.appendLog(
+      workflowId,
+      'AGENT_GEMINI_POLICY_BOUNDED',
+      'EXECUTED_RECOVERY_LOOP',
+      richPayload
+    );
 
     expect(log2.previousHash).toBe(log1.currentHash);
     expect(log2.currentHash).not.toBe(log1.currentHash);
 
     // Verify chain link logic
-    const expectedHashInput = `${log1.currentHash}:${workflowId}:TEST:ACTION_2:{"step":2}:${log2.createdAt.toISOString()}`;
+    const expectedHashInput = `${log1.currentHash}:${workflowId}:AGENT_GEMINI_POLICY_BOUNDED:EXECUTED_RECOVERY_LOOP:${JSON.stringify(richPayload)}:${log2.createdAt.toISOString()}`;
     const expectedHash = crypto.createHash('sha256').update(expectedHashInput).digest('hex');
     expect(log2.currentHash).toBe(expectedHash);
   });

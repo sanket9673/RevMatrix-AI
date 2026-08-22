@@ -30,7 +30,7 @@ describe('AgentOrchestrator Multi-Step Pipeline', () => {
 
   beforeEach(() => {
     jest.clearAllMocks();
-    orchestrator = new AgentOrchestrator('test-key', 'gemini-2.5-flash');
+    orchestrator = new AgentOrchestrator('test-key', 'gemini-3.6-flash');
     mockGenAIInstance = new GoogleGenAI({ apiKey: 'test-key' });
   });
 

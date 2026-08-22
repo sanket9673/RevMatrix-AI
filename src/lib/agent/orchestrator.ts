@@ -51,7 +51,7 @@ export class AgentOrchestrator {
   private ai: GoogleGenAI;
   private modelName: string;
 
-  constructor(apiKey?: string, modelName = 'gemini-2.5-flash') {
+  constructor(apiKey?: string, modelName = 'gemini-3.6-flash') {
     this.ai = new GoogleGenAI({ apiKey: apiKey || process.env.GEMINI_API_KEY });
     this.modelName = modelName;
   }

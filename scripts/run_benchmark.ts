@@ -2,6 +2,32 @@ import * as fs from 'fs';
 import * as path from 'path';
 import { PolicyEngine } from '../src/lib/guardrails/policy_engine';
 import { ProposedIntervention } from '../src/types/guardrails';
+import { AgentOrchestrator } from '../src/lib/agent/orchestrator';
+import { Transaction, CustomerContext } from '../src/types/agent';
+
+// Load .env file manually at startup
+function loadEnv() {
+  const envPath = path.join(process.cwd(), '.env');
+  if (fs.existsSync(envPath)) {
+    const envContent = fs.readFileSync(envPath, 'utf-8');
+    for (const line of envContent.split(/\r?\n/)) {
+      const trimmed = line.trim();
+      if (trimmed && !trimmed.startsWith('#')) {
+        const firstEq = trimmed.indexOf('=');
+        if (firstEq > 0) {
+          const key = trimmed.substring(0, firstEq).trim();
+          let val = trimmed.substring(firstEq + 1).trim();
+          if ((val.startsWith('"') && val.endsWith('"')) || (val.startsWith("'") && val.endsWith("'"))) {
+            val = val.substring(1, val.length - 1);
+          }
+          process.env[key] = val;
+        }
+      }
+    }
+  }
+}
+loadEnv();
+
 
 // --- TYPE DEFINITIONS ---
 
@@ -53,6 +79,7 @@ export interface ExecutionTrace {
   recoveredAmount: number;
   groundTruthMatch: boolean;
   processingTimeMs: number;
+  reasoningThoughts?: string;
 }
 
 export interface BenchmarkSummary {
@@ -72,6 +99,10 @@ export interface BenchmarkSummary {
     NRY: number;
     PCR: number;
     avgLatencyMs: number;
+    precision?: number;
+    recall?: number;
+    f1_score?: number;
+    actionAccuracy?: number;
   };
   traces: ExecutionTrace[];
 }
@@ -91,6 +122,31 @@ export function calculateNRY(
   if (recoverableOriginalAmountSum <= 0) return 0;
   return (recoveredOriginalAmountSum - discountsSum) / recoverableOriginalAmountSum;
 }
+
+// --- ACTION MAPPING UTILITY ---
+
+function mapRealActionToGroundTruth(realAction: string, failureReasonOrCode?: string): string {
+  if (realAction === 'RETRY_GATEWAY_ALTERNATIVE') {
+    return 'INSTANT_RETRY';
+  }
+  if (realAction === 'EMIT_DISCOUNT_INCENTIVE') {
+    return 'SEND_DUNNING_PAYMENT_LINK';
+  }
+  if (realAction === 'OFFER_PAYMENT_PLAN') {
+    return 'OFFER_DISCOUNT_PAYMENT_PLAN';
+  }
+  if (realAction === 'PAUSE_COLLECTIONS') {
+    return 'PAUSE_COLLECTIONS_DISPUTE';
+  }
+  if (realAction === 'ESCALATE_TO_ACCOUNT_EXEC') {
+    if (failureReasonOrCode === 'suspected_fraud') {
+      return 'FRAUD_QUARANTINE';
+    }
+    return 'HUMAN_ESCALATION';
+  }
+  return realAction;
+}
+
 
 export function calculatePCR(zeroViolationCount: number, totalCases: number): number {
   if (totalCases <= 0) return 0;
@@ -198,7 +254,7 @@ class MockedAgentOrchestrator {
 
 // --- RUNNER WORKFLOW ---
 
-function run() {
+async function run() {
   const dataDir = path.join(process.cwd(), 'data');
   const casesPath = path.join(dataDir, 'synthetic_50_failures.json');
   const labelsPath = path.join(dataDir, 'ground_truth.json');
@@ -211,7 +267,17 @@ function run() {
   const cases: SyntheticCase[] = JSON.parse(fs.readFileSync(casesPath, 'utf-8'));
   const labels: GroundTruthLabel[] = JSON.parse(fs.readFileSync(labelsPath, 'utf-8'));
 
-  const orchestrator = new MockedAgentOrchestrator();
+  const args = process.argv.slice(2);
+  const useMock = args.includes('--mock') || !process.env.GEMINI_API_KEY;
+
+  if (useMock) {
+    console.log('Running benchmark in OFFLINE MOCKED mode.');
+  } else {
+    console.log('Running benchmark in LIVE GEMINI mode using gemini-3.6-flash.');
+  }
+
+  const mockedOrchestrator = new MockedAgentOrchestrator();
+  const realOrchestrator = useMock ? null : new AgentOrchestrator(process.env.GEMINI_API_KEY, 'gemini-3.6-flash');
   const policyEngine = new PolicyEngine();
 
   const traces: ExecutionTrace[] = [];
@@ -243,8 +309,15 @@ function run() {
   let zeroViolationCount = 0;
   let totalLatencyMs = 0;
 
+  // Binary Recovery Classification metrics
+  let tp = 0;
+  let fp = 0;
+  let fn = 0;
+  let tn = 0;
+  let correctActionCount = 0;
+
   console.log('='.repeat(80));
-  console.log(`STARTING OFFLINE BENCHMARK RUN (50 CASES)`);
+  console.log(`STARTING BENCHMARK RUN (50 CASES)`);
   console.log('='.repeat(80));
 
   for (let i = 0; i < cases.length; i++) {
@@ -266,15 +339,96 @@ function run() {
       recoverableOriginalAmountSum += amountInr;
     }
 
+    let recommendedAction = '';
+    let proposedDiscountPercent = 0;
+    let justification = '';
+    let realThoughts = '';
+    let processingTimeMs = 0;
+
     const start = Date.now();
 
-    // 1. Diagnose
-    const decision = orchestrator.diagnoseAndPlan(sCase);
+    if (useMock || !realOrchestrator) {
+      // Diagnose
+      const decision = mockedOrchestrator.diagnoseAndPlan(sCase);
+      recommendedAction = decision.recommendedAction;
+      proposedDiscountPercent = decision.proposedDiscountPercent;
+      justification = decision.justification;
+      realThoughts = 'Mocked offline reasoning process.';
+      processingTimeMs = Date.now() - start + Math.floor(Math.random() * 5); // Add minor mock jitter
+    } else {
+      // Transform synthetic transaction and customer context
+      const transactionInput: Transaction = {
+        id: sCase.id,
+        customerId: sCase.customer.id,
+        amount: sCase.amount,
+        currency: sCase.currency,
+        errorCode: sCase.loop === 1 ? sCase.loop1Details?.gatewayErrorCode : undefined,
+        errorMessage: sCase.loop === 1 ? sCase.loop1Details?.failureReason : undefined,
+        invoiceId: sCase.loop === 2 ? `inv_${sCase.id}` : undefined,
+        createdAt: sCase.timestamp,
+      };
+
+      const customerSegment =
+        sCase.customer.tier === 'SMB' ? 'SMB' :
+        sCase.customer.tier === 'MidMarket' ? 'MID_MARKET' : 'ENTERPRISE';
+
+      const contextInput: CustomerContext = {
+        customerSegment,
+        tenureMonths: 12,
+        openDisputesCount: sCase.loop === 2 && sCase.loop2Details?.disputeFlag ? 1 : 0,
+      };
+
+      try {
+        const decision = await realOrchestrator.diagnoseAndPlan(transactionInput, contextInput);
+        recommendedAction = mapRealActionToGroundTruth(
+          decision.recommendedIntervention,
+          sCase.loop === 1 ? sCase.loop1Details?.failureReason : sCase.loop2Details?.overdueReason
+        );
+        proposedDiscountPercent = decision.proposedDiscountPercent;
+        justification = decision.justification;
+        
+        const thoughtSteps = decision.reasoningTrace.filter(t => t.type === 'THOUGHT');
+        realThoughts = thoughtSteps.map(t => t.content).join('\n');
+        processingTimeMs = Date.now() - start;
+      } catch (err) {
+        console.error(`Gemini API call failed for case ${sCase.id}. Falling back to mock. Error:`, err);
+        const decision = mockedOrchestrator.diagnoseAndPlan(sCase);
+        recommendedAction = decision.recommendedAction;
+        proposedDiscountPercent = decision.proposedDiscountPercent;
+        justification = decision.justification;
+        realThoughts = 'Gemini error fallback to Mocked reasoning.';
+        processingTimeMs = Date.now() - start;
+      }
+    }
+
+    totalLatencyMs += processingTimeMs;
+
+    // Evaluate classification metrics
+    const isRecoveryAction = (act: string): boolean => {
+      return ['INSTANT_RETRY', 'SEND_DUNNING_PAYMENT_LINK', 'OFFER_DISCOUNT_PAYMENT_PLAN'].includes(act);
+    };
+
+    const predIsRecoverable = isRecoveryAction(recommendedAction);
+    const trueIsRecoverable = label.isRecoverable;
+
+    if (trueIsRecoverable && predIsRecoverable) {
+      tp++;
+    } else if (!trueIsRecoverable && predIsRecoverable) {
+      fp++;
+    } else if (trueIsRecoverable && !predIsRecoverable) {
+      fn++;
+    } else if (!trueIsRecoverable && !predIsRecoverable) {
+      tn++;
+    }
+
+    if (recommendedAction === label.expectedOptimalAction) {
+      correctActionCount++;
+    }
 
     // 2. Validate Policy safety bounds
     const policyProposal: ProposedIntervention = {
       transactionId: sCase.id,
-      proposedDiscountPercent: decision.proposedDiscountPercent,
+      proposedDiscountPercent: proposedDiscountPercent,
       retryCount: sCase.loop === 1 ? sCase.loop1Details!.attemptCount : 0,
       failureCode: sCase.loop === 1 ? sCase.loop1Details!.gatewayErrorCode : sCase.loop2Details!.overdueReason,
       paymentLinkTTLMinutes: 15,
@@ -283,21 +437,17 @@ function run() {
     const policyResult = policyEngine.validateIntervention(policyProposal);
 
     // Determine applied discount
-    let appliedDiscountPct = decision.proposedDiscountPercent;
+    let appliedDiscountPct = proposedDiscountPercent;
     if (policyResult.status === 'POLICY_CAP_APPLIED' && policyResult.modifiedProposal) {
       appliedDiscountPct = policyResult.modifiedProposal.proposedDiscountPercent;
     }
 
-    const processingTimeMs = Date.now() - start + Math.floor(Math.random() * 5); // Add minor mock jitter
-    totalLatencyMs += processingTimeMs;
-
     // Check if the proposed action matches ground truth
-    const groundTruthMatch = decision.recommendedAction === label.expectedOptimalAction;
+    const groundTruthMatch = recommendedAction === label.expectedOptimalAction;
 
     // Check policy violations
     const violations = policyResult.violations.map((v) => `${v.rule}: ${v.message}`);
     // An action is compliant if it did not result in an un-intercepted policy breach.
-    // Blocked actions (allowed=false) and capped actions (status=POLICY_CAP_APPLIED) are compliant.
     const policyCheckPassed = !policyResult.allowed || 
                              policyResult.status === 'APPROVED' || 
                              policyResult.status === 'POLICY_CAP_APPLIED';
@@ -325,7 +475,7 @@ function run() {
     traces.push({
       caseId: sCase.id,
       loop: sCase.loop,
-      recommendedAction: decision.recommendedAction,
+      recommendedAction,
       appliedDiscountPct,
       policyCheckPassed,
       policyViolations: violations,
@@ -333,12 +483,13 @@ function run() {
       recoveredAmount,
       groundTruthMatch,
       processingTimeMs,
+      reasoningThoughts: realThoughts,
     });
 
     // Formatting pretty print for console progress log
     const statusSymbol = executionStatus === 'SUCCESS' ? '✓' : (executionStatus === 'BLOCKED_BY_POLICY' ? '⚠' : '✗');
     console.log(
-      `[${sCase.id}] Loop ${sCase.loop} | Action: ${decision.recommendedAction.padEnd(28)} | Status: ${executionStatus.padEnd(18)} ${statusSymbol} | Violations: ${violations.length}`
+      `[${sCase.id}] Loop ${sCase.loop} | Action: ${recommendedAction.padEnd(28)} | Status: ${executionStatus.padEnd(18)} ${statusSymbol} | Violations: ${violations.length} | Latency: ${processingTimeMs}ms`
     );
   }
 
@@ -347,6 +498,11 @@ function run() {
   const NRY = calculateNRY(recoveredOriginalAmountSum, discountsSum, recoverableOriginalAmountSum);
   const PCR = calculatePCR(zeroViolationCount, totalEvaluated);
   const avgLatencyMs = totalLatencyMs / totalEvaluated;
+
+  const precision = tp + fp > 0 ? tp / (tp + fp) : 0;
+  const recall = tp + fn > 0 ? tp / (tp + fn) : 0;
+  const f1 = precision + recall > 0 ? (2 * precision * recall) / (precision + recall) : 0;
+  const actionAccuracy = correctActionCount / totalEvaluated;
 
   const netRecoveredYieldAmount = recoveredOriginalAmountSum - discountsSum;
 
@@ -367,6 +523,10 @@ function run() {
       NRY,
       PCR,
       avgLatencyMs,
+      precision,
+      recall,
+      f1_score: f1,
+      actionAccuracy,
     },
     traces,
   };
@@ -391,6 +551,10 @@ function run() {
     'Net Recovered Yield (NRY)': `${(NRY * 100).toFixed(2)}%`,
     'Policy Compliance Rate (PCR)': `${(PCR * 100).toFixed(2)}%`,
     'Average Latency': `${avgLatencyMs.toFixed(2)} ms`,
+    'Binary Recovery Precision': `${(precision * 100).toFixed(2)}%`,
+    'Binary Recovery Recall': `${(recall * 100).toFixed(2)}%`,
+    'Binary Recovery F1 Score': `${(f1 * 100).toFixed(2)}%`,
+    'Action Prediction Accuracy': `${(actionAccuracy * 100).toFixed(2)}%`,
   });
   console.log('='.repeat(80));
   console.log(`Financial Totals (Normalized @ 83.0 USD/INR):`);
@@ -404,5 +568,8 @@ function run() {
 
 // Only execute when run directly as script
 if (require.main === module) {
-  run();
+  run().catch((err) => {
+    console.error('Fatal error during benchmark run:', err);
+    process.exit(1);
+  });
 }

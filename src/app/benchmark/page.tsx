@@ -29,19 +29,22 @@ export default function BenchmarkPage() {
           <p className="text-sm text-zinc-400">
             Intelligent recovery performance evaluation, fallback routing throughput, and active guardrail telemetry.
           </p>
+          <p className="text-xs text-amber-500/90 font-medium mt-1.5">
+            Replaying structured execution trace for presentation safety. To run live Gemini LLM evaluations against real APIs, execute <code className="bg-zinc-800/80 px-1 py-0.5 rounded font-mono text-[11px] text-zinc-200">npm run run:benchmark</code> in terminal.
+          </p>
         </div>
 
         {/* Live Engine Status Badge */}
-        <div className="flex items-center gap-3 bg-zinc-900/60 border border-zinc-800/80 rounded-xl px-4 py-2.5 backdrop-blur-sm self-start sm:self-center">
+        <div className="flex items-center gap-3 bg-zinc-800/40 border border-amber-500/30 rounded-xl px-4 py-2.5 backdrop-blur-sm self-start sm:self-center">
           <div className="relative flex h-2.5 w-2.5">
-            <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-indigo-400 opacity-75"></span>
-            <span className="relative inline-flex h-2.5 w-2.5 rounded-full bg-indigo-500"></span>
+            <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-amber-400 opacity-75"></span>
+            <span className="relative inline-flex h-2.5 w-2.5 rounded-full bg-amber-500"></span>
           </div>
           <div className="flex flex-col">
-            <span className="text-[10px] text-zinc-500 font-mono font-medium">TELEMETRY AGENT</span>
-            <span className="text-xs font-bold text-zinc-200 flex items-center gap-1">
-              <ShieldCheck className="h-3.5 w-3.5 text-indigo-400" />
-              Ingestion Stream Active
+            <span className="text-[10px] text-zinc-400 font-mono font-medium">TELEMETRY AGENT</span>
+            <span className="text-xs font-bold text-amber-500 flex items-center gap-1">
+              <ShieldCheck className="h-3.5 w-3.5 text-amber-500" />
+              DEMO TELEMETRY REPLAY
             </span>
           </div>
         </div>

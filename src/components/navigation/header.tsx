@@ -519,7 +519,7 @@ export function Header() {
                   </div>
                 </div>
                 <Badge variant="purple" className="font-mono text-[9px]">
-                  gemini-2.5-flash
+                  gemini-3.6-flash
                 </Badge>
               </div>
 
