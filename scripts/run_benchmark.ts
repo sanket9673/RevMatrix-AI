@@ -378,6 +378,10 @@ async function run() {
         openDisputesCount: sCase.loop === 2 && sCase.loop2Details?.disputeFlag ? 1 : 0,
       };
 
+      if (i > 0) {
+        await new Promise(resolve => setTimeout(resolve, 4000));
+      }
+
       try {
         const decision = await realOrchestrator.diagnoseAndPlan(transactionInput, contextInput);
         recommendedAction = mapRealActionToGroundTruth(

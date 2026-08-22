@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-08-22T12:03:43.440Z",
+  "timestamp": "2026-08-22T20:10:06.057Z",
   "totalEvaluated": 50,
   "loop1Cases": 25,
   "loop2Cases": 25,
@@ -14,11 +14,12 @@
     "CR_dual": 0.9444444444444444,
     "NRY": 0.9537538929843122,
     "PCR": 1,
-    "avgLatencyMs": 1116.34,
+    "avgLatencyMs": 14622.54,
     "precision": 1,
     "recall": 1,
     "f1_score": 1,
-    "actionAccuracy": 1
+    "actionAccuracy": 1,
+    "totalTokenCount": 187450
   },
   "traces": [
     {
@@ -31,7 +32,7 @@
       "executionStatus": "SUCCESS",
       "recoveredAmount": 2418.26,
       "groundTruthMatch": true,
-      "processingTimeMs": 34666,
+      "processingTimeMs": 11339,
       "reasoningThoughts": "Gemini error fallback to Mocked reasoning."
     },
     {
@@ -44,7 +45,7 @@
       "executionStatus": "SUCCESS",
       "recoveredAmount": 19887.63,
       "groundTruthMatch": true,
-      "processingTimeMs": 6343,
+      "processingTimeMs": 15026,
       "reasoningThoughts": "Gemini error fallback to Mocked reasoning."
     },
     {
@@ -57,7 +58,7 @@
       "executionStatus": "SUCCESS",
       "recoveredAmount": 1951.12,
       "groundTruthMatch": true,
-      "processingTimeMs": 5670,
+      "processingTimeMs": 15252,
       "reasoningThoughts": "Gemini error fallback to Mocked reasoning."
     },
     {
@@ -70,7 +71,7 @@
       "executionStatus": "SUCCESS",
       "recoveredAmount": 102879.33,
       "groundTruthMatch": true,
-      "processingTimeMs": 163,
+      "processingTimeMs": 15307,
       "reasoningThoughts": "Gemini error fallback to Mocked reasoning."
     },
     {
@@ -85,7 +86,7 @@
       "executionStatus": "BLOCKED_BY_POLICY",
       "recoveredAmount": 0,
       "groundTruthMatch": true,
-      "processingTimeMs": 165,
+      "processingTimeMs": 14848,
       "reasoningThoughts": "Gemini error fallback to Mocked reasoning."
     },
     {
@@ -100,7 +101,7 @@
       "executionStatus": "BLOCKED_BY_POLICY",
       "recoveredAmount": 0,
       "groundTruthMatch": true,
-      "processingTimeMs": 272,
+      "processingTimeMs": 14181,
       "reasoningThoughts": "Gemini error fallback to Mocked reasoning."
     },
     {
@@ -113,7 +114,7 @@
       "executionStatus": "SUCCESS",
       "recoveredAmount": 2097.89,
       "groundTruthMatch": true,
-      "processingTimeMs": 163,
+      "processingTimeMs": 14128,
       "reasoningThoughts": "Gemini error fallback to Mocked reasoning."
     },
     {
@@ -126,7 +127,7 @@
       "executionStatus": "SUCCESS",
       "recoveredAmount": 167097.26,
       "groundTruthMatch": true,
-      "processingTimeMs": 688,
+      "processingTimeMs": 14585,
       "reasoningThoughts": "Gemini error fallback to Mocked reasoning."
     },
     {
@@ -139,7 +140,7 @@
       "executionStatus": "SUCCESS",
       "recoveredAmount": 144813.42,
       "groundTruthMatch": true,
-      "processingTimeMs": 194,
+      "processingTimeMs": 14391,
       "reasoningThoughts": "Gemini error fallback to Mocked reasoning."
     },
     {
@@ -154,7 +155,7 @@
       "executionStatus": "BLOCKED_BY_POLICY",
       "recoveredAmount": 0,
       "groundTruthMatch": true,
-      "processingTimeMs": 509,
+      "processingTimeMs": 14420,
       "reasoningThoughts": "Gemini error fallback to Mocked reasoning."
     },
     {
@@ -167,7 +168,7 @@
       "executionStatus": "SUCCESS",
       "recoveredAmount": 668.83,
       "groundTruthMatch": true,
-      "processingTimeMs": 196,
+      "processingTimeMs": 14784,
       "reasoningThoughts": "Gemini error fallback to Mocked reasoning."
     },
     {
@@ -180,7 +181,7 @@
       "executionStatus": "SUCCESS",
       "recoveredAmount": 105444.86,
       "groundTruthMatch": true,
-      "processingTimeMs": 142,
+      "processingTimeMs": 15127,
       "reasoningThoughts": "Gemini error fallback to Mocked reasoning."
     },
     {
@@ -195,7 +196,7 @@
       "executionStatus": "BLOCKED_BY_POLICY",
       "recoveredAmount": 0,
       "groundTruthMatch": true,
-      "processingTimeMs": 453,
+      "processingTimeMs": 14939,
       "reasoningThoughts": "Gemini error fallback to Mocked reasoning."
     },
     {
@@ -208,7 +209,7 @@
       "executionStatus": "SUCCESS",
       "recoveredAmount": 100464.86,
       "groundTruthMatch": true,
-      "processingTimeMs": 169,
+      "processingTimeMs": 15015,
       "reasoningThoughts": "Gemini error fallback to Mocked reasoning."
     },
     {
@@ -221,7 +222,7 @@
       "executionStatus": "SUCCESS",
       "recoveredAmount": 759.93,
       "groundTruthMatch": true,
-      "processingTimeMs": 163,
+      "processingTimeMs": 14309,
       "reasoningThoughts": "Gemini error fallback to Mocked reasoning."
     },
     {
@@ -234,7 +235,7 @@
       "executionStatus": "SUCCESS",
       "recoveredAmount": 384.93,
       "groundTruthMatch": true,
-      "processingTimeMs": 174,
+      "processingTimeMs": 15492,
       "reasoningThoughts": "Gemini error fallback to Mocked reasoning."
     },
     {
@@ -249,7 +250,7 @@
       "executionStatus": "BLOCKED_BY_POLICY",
       "recoveredAmount": 0,
       "groundTruthMatch": true,
-      "processingTimeMs": 175,
+      "processingTimeMs": 14951,
       "reasoningThoughts": "Gemini error fallback to Mocked reasoning."
     },
     {
@@ -262,7 +263,7 @@
       "executionStatus": "SUCCESS",
       "recoveredAmount": 2376.83,
       "groundTruthMatch": true,
-      "processingTimeMs": 161,
+      "processingTimeMs": 14541,
       "reasoningThoughts": "Gemini error fallback to Mocked reasoning."
     },
     {
@@ -275,7 +276,7 @@
       "executionStatus": "SUCCESS",
       "recoveredAmount": 206384.47999999998,
       "groundTruthMatch": true,
-      "processingTimeMs": 183,
+      "processingTimeMs": 14755,
       "reasoningThoughts": "Gemini error fallback to Mocked reasoning."
     },
     {
@@ -288,7 +289,7 @@
       "executionStatus": "SUCCESS",
       "recoveredAmount": 1000.55,
       "groundTruthMatch": true,
-      "processingTimeMs": 139,
+      "processingTimeMs": 14148,
       "reasoningThoughts": "Gemini error fallback to Mocked reasoning."
     },
     {
@@ -301,7 +302,7 @@
       "executionStatus": "SUCCESS",
       "recoveredAmount": 615.03,
       "groundTruthMatch": true,
-      "processingTimeMs": 172,
+      "processingTimeMs": 14543,
       "reasoningThoughts": "Gemini error fallback to Mocked reasoning."
     },
     {
@@ -316,7 +317,7 @@
       "executionStatus": "BLOCKED_BY_POLICY",
       "recoveredAmount": 0,
       "groundTruthMatch": true,
-      "processingTimeMs": 163,
+      "processingTimeMs": 14892,
       "reasoningThoughts": "Gemini error fallback to Mocked reasoning."
     },
     {
@@ -329,7 +330,7 @@
       "executionStatus": "SUCCESS",
       "recoveredAmount": 2208.27,
       "groundTruthMatch": true,
-      "processingTimeMs": 170,
+      "processingTimeMs": 14557,
       "reasoningThoughts": "Gemini error fallback to Mocked reasoning."
     },
     {
@@ -342,7 +343,7 @@
       "executionStatus": "SUCCESS",
       "recoveredAmount": 951.76,
       "groundTruthMatch": true,
-      "processingTimeMs": 192,
+      "processingTimeMs": 14973,
       "reasoningThoughts": "Gemini error fallback to Mocked reasoning."
     },
     {
@@ -355,7 +356,7 @@
       "executionStatus": "SUCCESS",
       "recoveredAmount": 191162.28,
       "groundTruthMatch": true,
-      "processingTimeMs": 141,
+      "processingTimeMs": 14384,
       "reasoningThoughts": "Gemini error fallback to Mocked reasoning."
     },
     {
@@ -368,7 +369,7 @@
       "executionStatus": "SUCCESS",
       "recoveredAmount": 677122.3,
       "groundTruthMatch": true,
-      "processingTimeMs": 176,
+      "processingTimeMs": 14412,
       "reasoningThoughts": "Gemini error fallback to Mocked reasoning."
     },
     {
@@ -381,7 +382,7 @@
       "executionStatus": "SUCCESS",
       "recoveredAmount": 692034.0800000001,
       "groundTruthMatch": true,
-      "processingTimeMs": 156,
+      "processingTimeMs": 15072,
       "reasoningThoughts": "Gemini error fallback to Mocked reasoning."
     },
     {
@@ -394,7 +395,7 @@
       "executionStatus": "FAILED",
       "recoveredAmount": 0,
       "groundTruthMatch": true,
-      "processingTimeMs": 169,
+      "processingTimeMs": 14320,
       "reasoningThoughts": "Gemini error fallback to Mocked reasoning."
     },
     {
@@ -407,7 +408,7 @@
       "executionStatus": "FAILED",
       "recoveredAmount": 0,
       "groundTruthMatch": true,
-      "processingTimeMs": 156,
+      "processingTimeMs": 14978,
       "reasoningThoughts": "Gemini error fallback to Mocked reasoning."
     },
     {
@@ -422,7 +423,7 @@
       "executionStatus": "SUCCESS",
       "recoveredAmount": 212704.09999999998,
       "groundTruthMatch": true,
-      "processingTimeMs": 138,
+      "processingTimeMs": 14650,
       "reasoningThoughts": "Gemini error fallback to Mocked reasoning."
     },
     {
@@ -435,7 +436,7 @@
       "executionStatus": "FAILED",
       "recoveredAmount": 0,
       "groundTruthMatch": true,
-      "processingTimeMs": 172,
+      "processingTimeMs": 14467,
       "reasoningThoughts": "Gemini error fallback to Mocked reasoning."
     },
     {
@@ -448,7 +449,7 @@
       "executionStatus": "SUCCESS",
       "recoveredAmount": 1197559.69,
       "groundTruthMatch": true,
-      "processingTimeMs": 150,
+      "processingTimeMs": 15400,
       "reasoningThoughts": "Gemini error fallback to Mocked reasoning."
     },
     {
@@ -461,7 +462,7 @@
       "executionStatus": "FAILED",
       "recoveredAmount": 0,
       "groundTruthMatch": true,
-      "processingTimeMs": 184,
+      "processingTimeMs": 14964,
       "reasoningThoughts": "Gemini error fallback to Mocked reasoning."
     },
     {
@@ -476,7 +477,7 @@
       "executionStatus": "SUCCESS",
       "recoveredAmount": 342428.12000000005,
       "groundTruthMatch": true,
-      "processingTimeMs": 163,
+      "processingTimeMs": 15226,
       "reasoningThoughts": "Gemini error fallback to Mocked reasoning."
     },
     {
@@ -491,7 +492,7 @@
       "executionStatus": "SUCCESS",
       "recoveredAmount": 1108592.82,
       "groundTruthMatch": true,
-      "processingTimeMs": 174,
+      "processingTimeMs": 14846,
       "reasoningThoughts": "Gemini error fallback to Mocked reasoning."
     },
     {
@@ -506,7 +507,7 @@
       "executionStatus": "SUCCESS",
       "recoveredAmount": 11930.91,
       "groundTruthMatch": true,
-      "processingTimeMs": 162,
+      "processingTimeMs": 14293,
       "reasoningThoughts": "Gemini error fallback to Mocked reasoning."
     },
     {
@@ -519,7 +520,7 @@
       "executionStatus": "FAILED",
       "recoveredAmount": 0,
       "groundTruthMatch": true,
-      "processingTimeMs": 167,
+      "processingTimeMs": 14294,
       "reasoningThoughts": "Gemini error fallback to Mocked reasoning."
     },
     {
@@ -532,7 +533,7 @@
       "executionStatus": "FAILED",
       "recoveredAmount": 0,
       "groundTruthMatch": true,
-      "processingTimeMs": 167,
+      "processingTimeMs": 14507,
       "reasoningThoughts": "Gemini error fallback to Mocked reasoning."
     },
     {
@@ -545,7 +546,7 @@
       "executionStatus": "FAILED",
       "recoveredAmount": 0,
       "groundTruthMatch": true,
-      "processingTimeMs": 193,
+      "processingTimeMs": 14376,
       "reasoningThoughts": "Gemini error fallback to Mocked reasoning."
     },
     {
@@ -558,7 +559,7 @@
       "executionStatus": "SUCCESS",
       "recoveredAmount": 13050.38,
       "groundTruthMatch": true,
-      "processingTimeMs": 160,
+      "processingTimeMs": 15298,
       "reasoningThoughts": "Gemini error fallback to Mocked reasoning."
     },
     {
@@ -571,7 +572,7 @@
       "executionStatus": "SUCCESS",
       "recoveredAmount": 1313.3,
       "groundTruthMatch": true,
-      "processingTimeMs": 208,
+      "processingTimeMs": 14803,
       "reasoningThoughts": "Gemini error fallback to Mocked reasoning."
     },
     {
@@ -586,7 +587,7 @@
       "executionStatus": "SUCCESS",
       "recoveredAmount": 6655.01,
       "groundTruthMatch": true,
-      "processingTimeMs": 162,
+      "processingTimeMs": 14740,
       "reasoningThoughts": "Gemini error fallback to Mocked reasoning."
     },
     {
@@ -599,7 +600,7 @@
       "executionStatus": "SUCCESS",
       "recoveredAmount": 437190.87999999995,
       "groundTruthMatch": true,
-      "processingTimeMs": 189,
+      "processingTimeMs": 14035,
       "reasoningThoughts": "Gemini error fallback to Mocked reasoning."
     },
     {
@@ -612,7 +613,7 @@
       "executionStatus": "SUCCESS",
       "recoveredAmount": 557725.97,
       "groundTruthMatch": true,
-      "processingTimeMs": 164,
+      "processingTimeMs": 14416,
       "reasoningThoughts": "Gemini error fallback to Mocked reasoning."
     },
     {
@@ -627,7 +628,7 @@
       "executionStatus": "SUCCESS",
       "recoveredAmount": 672512.48,
       "groundTruthMatch": true,
-      "processingTimeMs": 164,
+      "processingTimeMs": 14859,
       "reasoningThoughts": "Gemini error fallback to Mocked reasoning."
     },
     {
@@ -640,7 +641,7 @@
       "executionStatus": "FAILED",
       "recoveredAmount": 0,
       "groundTruthMatch": true,
-      "processingTimeMs": 179,
+      "processingTimeMs": 14298,
       "reasoningThoughts": "Gemini error fallback to Mocked reasoning."
     },
     {
@@ -653,7 +654,7 @@
       "executionStatus": "SUCCESS",
       "recoveredAmount": 697478.88,
       "groundTruthMatch": true,
-      "processingTimeMs": 161,
+      "processingTimeMs": 14225,
       "reasoningThoughts": "Gemini error fallback to Mocked reasoning."
     },
     {
@@ -666,7 +667,7 @@
       "executionStatus": "FAILED",
       "recoveredAmount": 0,
       "groundTruthMatch": true,
-      "processingTimeMs": 154,
+      "processingTimeMs": 14556,
       "reasoningThoughts": "Gemini error fallback to Mocked reasoning."
     },
     {
@@ -679,7 +680,7 @@
       "executionStatus": "FAILED",
       "recoveredAmount": 0,
       "groundTruthMatch": true,
-      "processingTimeMs": 168,
+      "processingTimeMs": 14927,
       "reasoningThoughts": "Gemini error fallback to Mocked reasoning."
     },
     {
@@ -694,7 +695,7 @@
       "executionStatus": "SUCCESS",
       "recoveredAmount": 10289.59,
       "groundTruthMatch": true,
-      "processingTimeMs": 155,
+      "processingTimeMs": 14278,
       "reasoningThoughts": "Gemini error fallback to Mocked reasoning."
     }
   ]

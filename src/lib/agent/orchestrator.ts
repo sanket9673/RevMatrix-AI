@@ -47,6 +47,23 @@ const decisionSchema: Schema = {
   ],
 };
 
+async function callGeminiWithBackoff<T>(fn: () => Promise<T>, maxRetries = 3): Promise<T> {
+  for (let attempt = 0; attempt < maxRetries; attempt++) {
+    try {
+      return await fn();
+    } catch (error: any) {
+      if ((error?.status === 429 || error?.message?.includes('429')) && attempt < maxRetries - 1) {
+        const delayMs = Math.pow(2, attempt) * 3000 + Math.random() * 1000;
+        console.log(`[HTTP 429] Rate limited. Retrying in ${(delayMs / 1000).toFixed(1)}s...`);
+        await new Promise(res => setTimeout(res, delayMs));
+      } else {
+        throw error;
+      }
+    }
+  }
+  throw new Error('Max retries exceeded for Gemini API call');
+}
+
 export class AgentOrchestrator {
   private ai: GoogleGenAI;
   private modelName: string;
@@ -92,21 +109,24 @@ export class AgentOrchestrator {
     while (hopCount < maxToolHops) {
       hopCount++;
 
-      const response = await this.ai.models.generateContent({
-        model: this.modelName,
-        contents,
-        config: {
-          systemInstruction: SYSTEM_INSTRUCTIONS,
-          tools: agentTools,
-        },
-      });
+      const response = await callGeminiWithBackoff(() =>
+        this.ai.models.generateContent({
+          model: this.modelName,
+          contents,
+          config: {
+            systemInstruction: SYSTEM_INSTRUCTIONS,
+            tools: agentTools,
+          },
+        })
+      );
 
       const candidate = response.candidates?.[0];
       if (!candidate) throw new Error('No candidate returned from Gemini model.');
 
-      const modelPart = candidate.content?.parts?.[0];
+      // Push the assistant turn containing model function calls
       contents.push(candidate.content);
 
+      const modelPart = candidate.content?.parts?.[0];
       // Check for Thought text output
       if (modelPart?.text) {
         recordStep('THOUGHT', modelPart.text);
@@ -115,6 +135,7 @@ export class AgentOrchestrator {
       // Check if model emitted Function Calls
       const functionCalls = response.functionCalls;
       if (functionCalls && functionCalls.length > 0) {
+        const toolResults: any[] = [];
         for (const call of functionCalls) {
           recordStep('TOOL_CALL', `Executing tool: ${call.name}`, {
             args: call.args,
@@ -132,20 +153,23 @@ export class AgentOrchestrator {
           recordStep('TOOL_RESPONSE', `Tool ${call.name} execution completed.`, {
             result: toolResult,
           });
-
-          // Append tool response into conversation context
-          contents.push({
-            role: 'user',
-            parts: [
-              {
-                functionResponse: {
-                  name: call.name,
-                  response: toolResult,
-                },
-              },
-            ],
-          });
+          toolResults.push(toolResult);
         }
+
+        // User turn containing tool execution outputs
+        contents.push({
+          role: 'user',
+          parts: functionCalls.map((call, idx) => {
+            const functionResponse: any = {
+              name: call.name,
+              response: toolResults[idx],
+            };
+            if (call.id !== undefined) {
+              functionResponse.id = call.id;
+            }
+            return { functionResponse };
+          })
+        });
       } else {
         // No function calls emitted, ready to generate final structured outcome
         break;
@@ -155,15 +179,17 @@ export class AgentOrchestrator {
     // Request structured output for final decision step
     recordStep('THOUGHT', 'Synthesizing final structured decision based on tool outputs.');
 
-    const finalResponse = await this.ai.models.generateContent({
-      model: this.modelName,
-      contents,
-      config: {
-        systemInstruction: SYSTEM_INSTRUCTIONS,
-        responseMimeType: 'application/json',
-        responseSchema: decisionSchema,
-      },
-    });
+    const finalResponse = await callGeminiWithBackoff(() =>
+      this.ai.models.generateContent({
+        model: this.modelName,
+        contents,
+        config: {
+          systemInstruction: SYSTEM_INSTRUCTIONS,
+          responseMimeType: 'application/json',
+          responseSchema: decisionSchema,
+        },
+      })
+    );
 
     const finalResultText = finalResponse.text || '{}';
     const parsedDecision = JSON.parse(finalResultText);

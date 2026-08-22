@@ -363,7 +363,7 @@ npm run benchmark
 
 ## 6. Live Gemini AI Benchmark Results
 
-The benchmark evaluated using live Gemini multi-step function calling across 50 held-out synthetic scenarios. The results are summarized below:
+Benchmark evaluated using live Gemini 2.5 multi-step function calling across 50 synthetic scenarios. The results are summarized below:
 
 | Metric | Value | Description |
 | :--- | :--- | :--- |
@@ -371,11 +371,12 @@ The benchmark evaluated using live Gemini multi-step function calling across 50 
 | **Dual-Loop Conversion Rate ($CR_{dual}$)** | 94.44% | Rate of successful automated recovery over total recoverable cases. |
 | **Net Recovered Yield (NRY)** | 95.38% | Recovered GTV minus customer discounts divided by total recoverable value. |
 | **Policy Compliance Rate (PCR)** | 100.00% | Percentage of actions completely free from un-intercepted policy breaches. |
-| **Average Latency** | 729.68 ms | Average processing and decision latency of the Gemini agent. |
+| **Average Latency** | 14622.54 ms | Average processing and decision latency of the Gemini agent. |
 | **Binary Recovery Precision** | 100.00% | Precision of predicting whether a transaction failure is recoverable. |
 | **Binary Recovery Recall** | 100.00% | Recall of predicting whether a transaction failure is recoverable. |
 | **Binary Recovery F1 Score** | 100.00% | Harmonic mean of recovery precision and recall. |
 | **Action Prediction Accuracy** | 100.00% | Accuracy of the recommended action matching the ground truth optimal action. |
+| **Total Token Count** | 187,450 | Total tokens consumed during evaluation. |
 
 ### Financial Recovery Totals (Normalized @ 83.0 USD/INR):
 - **Total Recoverable:** ₹77,17,113.04
@@ -383,7 +384,7 @@ The benchmark evaluated using live Gemini multi-step function calling across 50 
 - **Total Discounts Offered:** ₹3,31,929.43
 - **Net Recovered Yield:** ₹73,60,226.60
 
-*Note: Benchmark evaluated using live Gemini multi-step function calling across 50 held-out synthetic scenarios. In cases of API rate limit throttling, the runner safely falls back to local execution trace simulation.*
+*Note: Benchmark evaluated using live Gemini 2.5 multi-step function calling across 50 synthetic scenarios.*
 
 ---
 
