@@ -229,7 +229,7 @@ export function AuditTrailExplorer() {
               <span className="text-[10px] text-zinc-500 font-mono font-medium tracking-wide uppercase">
                 Last Block Timestamp
               </span>
-              <div className="text-sm font-bold text-zinc-300 font-mono truncate max-w-[180px]">
+              <div className="text-sm font-bold text-zinc-300 font-mono truncate max-w-[180px]" suppressHydrationWarning>
                 {new Date(blocks[blocks.length - 1].timestamp).toLocaleTimeString()} (Today)
               </div>
             </div>
@@ -308,7 +308,7 @@ export function AuditTrailExplorer() {
       {/* Ledger Table */}
       <Card className="border-zinc-800 bg-zinc-900/10 backdrop-blur-md overflow-hidden">
         <div className="w-full overflow-x-auto">
-          <table className="w-full border-collapse text-left text-sm">
+          <table className="w-full border-collapse text-left text-sm min-w-[1000px]">
             <thead className="border-b border-zinc-800 bg-zinc-900/40 text-xs font-bold font-mono tracking-wider text-zinc-400 uppercase">
               <tr>
                 <th className="px-5 py-4"># Height</th>
@@ -337,7 +337,7 @@ export function AuditTrailExplorer() {
                     <td className="px-5 py-4 font-mono font-bold text-zinc-300">
                       Block #{block.blockHeight}
                     </td>
-                    <td className="px-5 py-4 text-zinc-400 text-xs font-mono">
+                    <td className="px-5 py-4 text-zinc-400 text-xs font-mono" suppressHydrationWarning>
                       {new Date(block.timestamp).toLocaleTimeString()}
                     </td>
                     <td className="px-5 py-4 font-mono font-semibold text-zinc-300">
@@ -398,9 +398,8 @@ export function AuditTrailExplorer() {
         </div>
       </Card>
 
-      {/* Interactive Detail Modal (Cryptographic Verifier) */}
       <Dialog open={!!selectedBlock} onOpenChange={(open) => !open && setSelectedBlock(null)}>
-        <DialogContent onClose={() => setSelectedBlock(null)} className="max-w-xl border-zinc-800 bg-zinc-900/95 text-zinc-100 shadow-2xl backdrop-blur-lg">
+        <DialogContent onClose={() => setSelectedBlock(null)} className="w-[95vw] max-w-lg sm:max-w-2xl max-h-[90vh] overflow-y-auto p-4 sm:p-6 rounded-xl border border-zinc-800 bg-zinc-950 shadow-2xl">
           {selectedBlock && (
             <>
               <DialogHeader>
@@ -452,9 +451,9 @@ export function AuditTrailExplorer() {
                       )}
                     </button>
                   </div>
-                  <div className="rounded-lg bg-zinc-950/60 border border-zinc-850 font-mono text-xs p-3 text-zinc-400 select-all overflow-x-auto">
-                    {selectedBlock.prevHash}
-                  </div>
+                  <pre className="max-w-full overflow-x-auto font-mono text-xs p-3 rounded bg-zinc-900 border border-zinc-800 whitespace-pre-wrap break-all select-all text-zinc-400">
+                    <code>{selectedBlock.prevHash}</code>
+                  </pre>
                 </div>
 
                 {/* Payload data */}
@@ -474,7 +473,7 @@ export function AuditTrailExplorer() {
                       )}
                     </button>
                   </div>
-                  <pre className="rounded-lg bg-zinc-950/60 border border-zinc-850 font-mono text-[11px] p-3 text-zinc-300 overflow-y-auto max-h-40 shadow-inner">
+                  <pre className="max-w-full overflow-x-auto font-mono text-xs p-3 rounded bg-zinc-900 border border-zinc-800 whitespace-pre-wrap break-all max-h-40 overflow-y-auto shadow-inner text-zinc-300">
                     <code>{JSON.stringify(selectedBlock.payload, null, 2)}</code>
                   </pre>
                 </div>
@@ -487,9 +486,9 @@ export function AuditTrailExplorer() {
                     </span>
                     <span className="font-mono text-[10px] text-zinc-500">SHA-256 Ledger Target</span>
                   </div>
-                  <div className="rounded-lg bg-zinc-950/80 border border-zinc-800/80 font-mono text-xs p-3 text-emerald-400 border-l-2 border-l-emerald-500 overflow-x-auto shadow-[0_0_10px_rgba(16,185,129,0.02)]">
-                    {selectedBlock.currentHash}
-                  </div>
+                  <pre className="max-w-full overflow-x-auto font-mono text-xs p-3 rounded bg-zinc-900 border border-emerald-500/30 border-l-2 border-l-emerald-500 text-emerald-400 whitespace-pre-wrap break-all">
+                    <code>{selectedBlock.currentHash}</code>
+                  </pre>
 
                   {blockVerificationResult === "SUCCESS" && (
                     <div className="space-y-2 mt-2">
@@ -499,9 +498,9 @@ export function AuditTrailExplorer() {
                         </span>
                         <span className="font-mono text-[10px] text-emerald-400">Match Verified</span>
                       </div>
-                      <div className="rounded-lg bg-zinc-950/80 border border-emerald-500/20 font-mono text-xs p-3 text-emerald-400 border-l-2 border-l-emerald-400 overflow-x-auto">
-                        {computedBlockHash}
-                      </div>
+                      <pre className="max-w-full overflow-x-auto font-mono text-xs p-3 rounded bg-zinc-900 border border-emerald-500/20 border-l-2 border-l-emerald-450 text-emerald-400 whitespace-pre-wrap break-all">
+                        <code>{computedBlockHash}</code>
+                      </pre>
                     </div>
                   )}
                 </div>

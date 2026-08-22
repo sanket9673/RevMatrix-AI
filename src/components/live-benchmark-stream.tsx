@@ -227,7 +227,7 @@ export default function LiveBenchmarkStream() {
       <div className="relative group overflow-hidden rounded-2xl bg-slate-900 border border-slate-800 p-6 shadow-2xl transition-all duration-300">
         <div className="absolute inset-0 bg-gradient-to-r from-blue-500/5 to-purple-500/5 pointer-events-none" />
         
-        <div className="flex flex-col md:flex-row md:items-center justify-between gap-6 relative z-10">
+        <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-6 relative z-10">
           <div className="flex items-center gap-4">
             <div className="p-3 bg-indigo-500/10 border border-indigo-500/20 rounded-xl text-indigo-400">
               <Sliders className="w-6 h-6 animate-pulse" />
@@ -238,9 +238,9 @@ export default function LiveBenchmarkStream() {
             </div>
           </div>
 
-          <div className="flex flex-wrap items-center gap-4">
+          <div className="flex flex-col sm:flex-row sm:items-center gap-4 w-full lg:w-auto">
             {/* Toggle Static Backup Mode */}
-            <label className="flex items-center gap-3 cursor-pointer bg-slate-950 px-4 py-2.5 rounded-xl border border-slate-800 hover:border-slate-700 transition-colors">
+            <label className="flex items-center justify-between sm:justify-start gap-3 cursor-pointer bg-slate-950 px-4 py-2.5 rounded-xl border border-slate-800 hover:border-slate-700 transition-colors w-full sm:w-auto">
               <span className="text-xs font-semibold text-slate-300">Static Backup Mode</span>
               <input
                 type="checkbox"
@@ -256,7 +256,7 @@ export default function LiveBenchmarkStream() {
             <button
               onClick={startStream}
               disabled={status === 'streaming' || useStatic}
-              className={`flex items-center gap-2 px-5 py-2.5 rounded-xl text-sm font-semibold tracking-wide shadow-lg transition-all duration-200 ${
+              className={`flex items-center justify-center gap-2 px-5 py-2.5 rounded-xl text-sm font-semibold tracking-wide shadow-lg transition-all duration-200 w-full sm:w-auto ${
                 status === 'streaming' || useStatic
                   ? 'bg-indigo-900/40 text-indigo-300 cursor-not-allowed border border-indigo-900/30'
                   : 'bg-indigo-600 hover:bg-indigo-500 text-white border border-indigo-500 hover:scale-[1.02] active:scale-[0.98]'
@@ -279,7 +279,7 @@ export default function LiveBenchmarkStream() {
             <button
               onClick={clearState}
               disabled={status === 'streaming'}
-              className={`flex items-center gap-2 px-5 py-2.5 rounded-xl text-sm font-semibold border transition-all duration-200 ${
+              className={`flex items-center justify-center gap-2 px-5 py-2.5 rounded-xl text-sm font-semibold border transition-all duration-200 w-full sm:w-auto ${
                 status === 'streaming'
                   ? 'border-slate-800 text-slate-600 cursor-not-allowed'
                   : 'border-slate-700 hover:border-slate-600 text-slate-300 bg-slate-800/30 hover:bg-slate-800/60'
@@ -345,7 +345,7 @@ export default function LiveBenchmarkStream() {
       )}
 
       {/* Main Metrics Card Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
         
         {/* Recovery Rate Card */}
         <div className={`rounded-2xl border p-6 transition-all duration-300 shadow-xl ${getRecoveryRateColor(summary.recoveryRatePct)}`}>
@@ -424,7 +424,7 @@ export default function LiveBenchmarkStream() {
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
         
         {/* Ingested Records Ledger Table */}
-        <div className="lg:col-span-7 bg-slate-900 border border-slate-800 rounded-2xl p-6 shadow-2xl flex flex-col h-[550px]">
+        <div className="lg:col-span-7 bg-slate-900 border border-slate-800 rounded-2xl p-6 shadow-2xl flex flex-col h-auto lg:h-[550px]">
           <div className="flex items-center justify-between pb-4 border-b border-slate-800 mb-4">
             <div>
               <h3 className="text-md font-semibold text-white tracking-wide">Processed Transaction Log Ledger</h3>
@@ -484,7 +484,7 @@ export default function LiveBenchmarkStream() {
         </div>
 
         {/* Dark Streaming Log Terminal */}
-        <div className="lg:col-span-5 bg-slate-900 border border-slate-800 rounded-2xl p-6 shadow-2xl flex flex-col h-[550px]">
+        <div className="lg:col-span-5 bg-slate-900 border border-slate-800 rounded-2xl p-6 shadow-2xl flex flex-col h-auto lg:h-[550px]">
           
           {/* Terminal Title */}
           <div className="pb-4 border-b border-slate-800 mb-4 flex flex-col md:flex-row md:items-center justify-between gap-4">
@@ -539,7 +539,7 @@ export default function LiveBenchmarkStream() {
           </div>
 
           {/* Actual Log Stream Window */}
-          <div className="flex-1 bg-slate-950 border border-slate-850 rounded-xl p-4 overflow-y-auto text-xs font-mono scrollbar-thin scrollbar-thumb-slate-800 scrollbar-track-transparent">
+          <div className="w-full max-h-[400px] sm:max-h-[500px] overflow-y-auto overflow-x-auto font-mono text-xs p-4 bg-black rounded-lg border border-zinc-800">
             {filteredLogs.length === 0 ? (
               <div className="h-full flex flex-col items-center justify-center text-slate-600 text-center">
                 <TerminalIcon className="w-8 h-8 mb-2 opacity-50" />
@@ -551,7 +551,7 @@ export default function LiveBenchmarkStream() {
                 {filteredLogs.map((log, index) => (
                   <div key={index} className="border-l-2 border-slate-850 pl-3 py-0.5 space-y-1 hover:bg-slate-900/10 transition-colors">
                     <div className="flex items-start justify-between gap-4">
-                      <span className="text-[10px] text-slate-500 shrink-0">
+                      <span className="text-[10px] text-slate-500 shrink-0" suppressHydrationWarning>
                         {new Date(log.timestamp).toLocaleTimeString()}
                       </span>
                       <span className={`uppercase text-[9px] px-1.5 py-0.5 rounded border border-current/10 bg-white/5 shrink-0 ${getLevelStyles(log.level)}`}>
@@ -569,7 +569,7 @@ export default function LiveBenchmarkStream() {
                           <Eye className="w-3 h-3 group-open:rotate-180 transition-transform" />
                           <span>Metadata Trace</span>
                         </summary>
-                        <pre className="mt-1 p-2 bg-slate-900/80 border border-slate-850 rounded text-[10px] text-slate-400 overflow-x-auto select-text font-mono max-w-full leading-normal">
+                        <pre className="max-w-full overflow-x-auto font-mono text-[10px] p-3 rounded bg-zinc-900 border border-zinc-800 whitespace-pre-wrap break-all leading-normal select-text">
                           {JSON.stringify(log.payload, null, 2)}
                         </pre>
                       </details>

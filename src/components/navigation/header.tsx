@@ -18,10 +18,13 @@ import {
   X,
   ShieldAlert,
   Clock,
+  Menu,
 } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
+import { Tooltip, TooltipTrigger, TooltipContent, TooltipProvider } from "@/components/ui/tooltip";
+import { Dialog, DialogContent } from "@/components/ui/dialog";
 
 interface SearchResultItem {
   id: string;
@@ -40,7 +43,11 @@ interface NotificationItem {
   type: "policy" | "webhook" | "cron" | "security";
 }
 
-export function Header() {
+interface HeaderProps {
+  onMenuClick?: () => void;
+}
+
+export function Header({ onMenuClick }: HeaderProps) {
   const [liveMode, setLiveMode] = React.useState(false);
   const [showPaymentMenu, setShowPaymentMenu] = React.useState(false);
   const [isProfileOpen, setIsProfileOpen] = React.useState(false);
@@ -51,6 +58,8 @@ export function Header() {
   const [searchResults, setSearchResults] = React.useState<SearchResultItem[]>([]);
   const [isSearching, setIsSearching] = React.useState(false);
   const searchInputRef = React.useRef<HTMLInputElement>(null);
+  const [isSearchDialogOpen, setIsSearchDialogOpen] = React.useState(false);
+  const mobileSearchInputRef = React.useRef<HTMLInputElement>(null);
 
   // Notification States
   const [isNotificationsOpen, setIsNotificationsOpen] = React.useState(false);
@@ -162,11 +171,17 @@ export function Header() {
     const handleKeyDown = (e: KeyboardEvent) => {
       if ((e.metaKey || e.ctrlKey) && e.key === "k") {
         e.preventDefault();
-        searchInputRef.current?.focus();
-        setShowSearchResults(true);
+        if (window.innerWidth < 768) {
+          setIsSearchDialogOpen(true);
+          setTimeout(() => mobileSearchInputRef.current?.focus(), 100);
+        } else {
+          searchInputRef.current?.focus();
+          setShowSearchResults(true);
+        }
       }
       if (e.key === "Escape") {
         setShowSearchResults(false);
+        setIsSearchDialogOpen(false);
         setIsNotificationsOpen(false);
       }
     };
@@ -188,34 +203,65 @@ export function Header() {
   };
 
   return (
-    <>
-      <header className="sticky top-0 z-30 flex h-16 w-full items-center justify-between border-b border-zinc-800/80 bg-zinc-950/80 px-6 backdrop-blur-md">
-      {/* Left: Breadcrumbs */}
-      <div className="flex items-center space-x-1.5 text-sm font-medium">
-        <span className="text-zinc-500">Workspace</span>
-        <span className="text-zinc-700">/</span>
-        <span className="text-zinc-200">Executive Overview</span>
+    <TooltipProvider>
+      <header className="sticky top-0 z-30 flex h-16 w-full items-center justify-between border-b border-zinc-800/80 bg-zinc-950/80 px-4 sm:px-6 py-3 backdrop-blur-md">
+      {/* Left: Hamburger menu + Breadcrumbs */}
+      <div className="flex items-center space-x-3">
+        {onMenuClick && (
+          <button
+            onClick={onMenuClick}
+            className="flex md:hidden h-9 w-9 items-center justify-center rounded-lg border border-zinc-800 bg-zinc-900/40 text-zinc-400 hover:bg-zinc-900 hover:text-zinc-200 transition-all focus:outline-none focus:ring-1 focus:ring-emerald-500 cursor-pointer"
+            aria-label="Toggle navigation menu"
+          >
+            <Menu className="h-4 w-4" />
+          </button>
+        )}
+        <div className="hidden sm:flex items-center space-x-1.5 text-sm font-medium">
+          <span className="text-zinc-500">Workspace</span>
+          <span className="text-zinc-700">/</span>
+          <span className="text-zinc-200">Executive Overview</span>
+        </div>
       </div>
 
       {/* Center: Live Indicators */}
-      <div className="hidden items-center space-x-4 md:flex">
+      <div className="flex items-center space-x-2.5 sm:space-x-4">
         {/* System Health */}
-        <div className="flex items-center space-x-2 bg-zinc-900/60 border border-zinc-850 px-3 py-1 rounded-full text-xs text-zinc-300">
-          <span className="relative flex h-2 w-2">
-            <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-75"></span>
-            <span className="relative inline-flex h-2 w-2 rounded-full bg-emerald-500"></span>
-          </span>
-          <span className="font-medium text-zinc-400">System Operational</span>
-          <span className="text-zinc-700">|</span>
-          <span className="text-[10px] font-mono text-zinc-500">Netlify Cron Active</span>
+        <div className="flex items-center">
+          {/* Desktop/Tablet view */}
+          <div className="hidden sm:flex items-center space-x-2 bg-zinc-900/60 border border-zinc-850 px-3 py-1 rounded-full text-xs text-zinc-300">
+            <span className="relative flex h-2 w-2">
+              <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-75"></span>
+              <span className="relative inline-flex h-2 w-2 rounded-full bg-emerald-500"></span>
+            </span>
+            <span className="font-medium text-zinc-400">System Operational</span>
+            <span className="text-zinc-700">|</span>
+            <span className="text-[10px] font-mono text-zinc-500">Netlify Cron Active</span>
+          </div>
+          {/* Mobile view */}
+          <div className="flex sm:hidden">
+            <Tooltip>
+              <TooltipTrigger>
+                <div className="flex h-8 w-8 items-center justify-center rounded-full border border-zinc-850 bg-zinc-900/60 hover:bg-zinc-900">
+                  <span className="relative flex h-2 w-2">
+                    <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-75"></span>
+                    <span className="relative inline-flex h-2 w-2 rounded-full bg-emerald-500"></span>
+                  </span>
+                </div>
+              </TooltipTrigger>
+              <TooltipContent side="bottom" className="border-zinc-800 bg-zinc-950 font-mono text-[10px]">
+                System Operational | Netlify Cron Active
+              </TooltipContent>
+            </Tooltip>
+          </div>
         </div>
 
         {/* Razorpay Mode Switcher */}
         <div className="relative">
+          {/* Desktop/Tablet View */}
           <button
             onClick={() => setShowPaymentMenu(!showPaymentMenu)}
             className={cn(
-              "flex items-center space-x-1.5 rounded-full px-3 py-1 text-xs font-semibold font-mono border transition-all duration-200",
+              "hidden sm:flex items-center space-x-1.5 rounded-full px-3 py-1 text-xs font-semibold font-mono border transition-all duration-200",
               liveMode
                 ? "bg-emerald-500/10 text-emerald-400 border-emerald-500/30 hover:bg-emerald-500/15"
                 : "bg-amber-500/10 text-amber-400 border-amber-500/30 hover:bg-amber-500/15"
@@ -225,6 +271,28 @@ export function Header() {
             <span>{liveMode ? "Razorpay Live Mode" : "Razorpay Test Mode"}</span>
             <ChevronDown className="h-3 w-3 opacity-60" />
           </button>
+
+          {/* Mobile View */}
+          <div className="flex sm:hidden">
+            <Tooltip>
+              <TooltipTrigger>
+                <button
+                  onClick={() => setShowPaymentMenu(!showPaymentMenu)}
+                  className={cn(
+                    "flex h-8 w-8 items-center justify-center rounded-full border transition-all duration-200",
+                    liveMode
+                      ? "bg-emerald-500/10 text-emerald-400 border-emerald-500/30 hover:bg-emerald-500/15"
+                      : "bg-amber-500/10 text-amber-400 border-amber-500/30 hover:bg-amber-500/15"
+                  )}
+                >
+                  <CreditCard className="h-3.5 w-3.5" />
+                </button>
+              </TooltipTrigger>
+              <TooltipContent side="bottom" className="border-zinc-800 bg-zinc-950 font-mono text-[10px]">
+                {liveMode ? "Razorpay Live Mode" : "Razorpay Test Mode"}
+              </TooltipContent>
+            </Tooltip>
+          </div>
 
           {showPaymentMenu && (
             <>
@@ -267,10 +335,11 @@ export function Header() {
       </div>
 
       {/* Right: Actions & User */}
-      <div className="flex items-center space-x-3.5">
+      <div className="flex items-center space-x-2 sm:space-x-3.5">
         {/* Search CTA Trigger */}
         <div className="relative">
-          <div className="flex h-9 items-center space-x-2.5 rounded-lg border border-zinc-800 bg-zinc-900/40 px-3 text-xs text-zinc-400 hover:bg-zinc-900/80 hover:text-zinc-200 transition-all select-none">
+          {/* Desktop View */}
+          <div className="hidden md:flex h-9 items-center space-x-2.5 rounded-lg border border-zinc-800 bg-zinc-900/40 px-3 text-xs text-zinc-400 hover:bg-zinc-900/80 hover:text-zinc-200 transition-all select-none">
             <SearchIcon className="h-3.5 w-3.5 text-zinc-500" />
             <input
               ref={searchInputRef}
@@ -282,6 +351,20 @@ export function Header() {
               className="bg-transparent border-none outline-none text-zinc-250 w-32 sm:w-44 text-xs placeholder-zinc-500 focus:w-48 sm:focus:w-64 transition-all"
             />
           </div>
+
+          {/* Mobile view search trigger */}
+          <button
+            onClick={() => {
+              setIsSearchDialogOpen(true);
+              setTimeout(() => mobileSearchInputRef.current?.focus(), 100);
+            }}
+            className="flex md:hidden h-9 items-center gap-1.5 rounded-lg border border-zinc-800 bg-zinc-900/40 px-2.5 text-xs text-zinc-400 hover:bg-zinc-900/80 hover:text-zinc-200 transition-all cursor-pointer"
+          >
+            <SearchIcon className="h-3.5 w-3.5 text-zinc-500" />
+            <kbd className="hidden sm:inline-flex h-5 select-none items-center gap-0.5 rounded border border-zinc-800 bg-zinc-850 px-1.5 font-mono text-[9px] font-medium text-zinc-400">
+              ⌘K
+            </kbd>
+          </button>
 
           {showSearchResults && searchQuery.trim() && (
             <>
@@ -454,7 +537,7 @@ export function Header() {
             className="fixed inset-0 bg-zinc-950/80 backdrop-blur-sm"
           />
 
-          <div className="relative z-10 w-full max-w-md rounded-xl border border-zinc-800 bg-zinc-900 p-6 text-zinc-100 shadow-2xl backdrop-blur-md animate-in fade-in zoom-in-95 duration-200">
+          <div className="relative z-10 w-[95vw] max-w-lg sm:max-w-2xl max-h-[90vh] overflow-y-auto p-4 sm:p-6 rounded-xl border border-zinc-800 bg-zinc-950 text-zinc-100 shadow-2xl backdrop-blur-md animate-in fade-in zoom-in-95 duration-200">
             <button
               onClick={() => setIsProfileOpen(false)}
               className="absolute right-4 top-4 rounded-sm opacity-70 ring-offset-zinc-950 transition-opacity hover:opacity-100 focus:outline-none cursor-pointer"
@@ -554,6 +637,55 @@ export function Header() {
           </div>
         </div>
       )}
-    </>
+
+      {/* MOBILE SEARCH DIALOG */}
+      <Dialog open={isSearchDialogOpen} onOpenChange={setIsSearchDialogOpen}>
+        <DialogContent onClose={() => setIsSearchDialogOpen(false)} className="w-[95vw] max-w-lg bg-zinc-950 border border-zinc-800 p-4">
+          <div className="flex items-center gap-2 border-b border-zinc-800 pb-2">
+            <SearchIcon className="h-4 w-4 text-zinc-400" />
+            <input
+              ref={mobileSearchInputRef}
+              type="text"
+              placeholder="Search workflows, traces, audit logs..."
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              className="w-full bg-transparent text-zinc-200 outline-none text-sm placeholder-zinc-500 font-sans"
+            />
+          </div>
+          {/* Results display inside dialog */}
+          <div className="mt-4 max-h-72 overflow-y-auto space-y-1.5">
+            {isSearching ? (
+              <div className="p-4 text-center text-xs text-zinc-500 font-mono">
+                Searching database & mock indexes...
+              </div>
+            ) : searchQuery.trim() && searchResults.length === 0 ? (
+              <div className="p-4 text-center text-xs text-zinc-500 font-mono">
+                No matching records found.
+              </div>
+            ) : (
+              searchResults.map((item) => (
+                <button
+                  key={item.id}
+                  onClick={() => handleResultClick(item.url)}
+                  className="w-full flex flex-col items-start text-left p-2.5 rounded-lg hover:bg-zinc-900/80 border border-transparent hover:border-zinc-850 transition-all group"
+                >
+                  <div className="flex items-center justify-between w-full">
+                    <span className="text-xs font-semibold text-zinc-200 group-hover:text-emerald-450 transition-colors">
+                      {item.title}
+                    </span>
+                    <span className="text-[9px] font-mono font-bold text-zinc-500 bg-zinc-950 border border-zinc-850 px-1.5 py-0.5 rounded uppercase">
+                      {item.type}
+                    </span>
+                  </div>
+                  <span className="text-[10px] text-zinc-550 mt-0.5 truncate w-full">
+                    {item.subtitle}
+                  </span>
+                </button>
+              ))
+            )}
+          </div>
+        </DialogContent>
+      </Dialog>
+    </TooltipProvider>
   );
 }

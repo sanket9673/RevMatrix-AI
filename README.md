@@ -361,34 +361,49 @@ npm run benchmark
 
 ---
 
-## 6. Live Gemini AI Benchmark Results
+## 6. Multi-Provider Resilient AI Architecture
 
-Benchmark evaluated using live Gemini 2.5 multi-step function calling across 50 synthetic scenarios. The results are summarized below:
+To ensure high availability, low latency, and operational resilience, RevMatrix-AI utilizes a **Multi-Provider Agent Architecture** consisting of a primary high-performance provider and a secondary fallback provider:
+
+1. **Primary LLM: Groq llama-3.3-70b-versatile**
+   - **Characteristics:** Ultra-fast reasoning and orchestration (average step latency ~200-500ms), standard OpenAI-compatible tool/function calling.
+   - **Role:** Handles all transaction diagnosis and recovery routing requests initially.
+   - **Constraints:** Operates under strict rate limits (30 RPM, 14.4k RPD on standard tier). Equipped with an automated exponential backoff mechanism in `GroqAgentOrchestrator` to transparently handle transient HTTP 429 rate limit errors.
+
+2. **Secondary Fallback LLM: Google AI Studio gemini-2.5-flash**
+   - **Characteristics:** Comprehensive multi-hop function calling, complex thought/reasoning trace preservation.
+   - **Role:** Acts as a failover agent if the primary Groq connection encounters sustained API errors, permanent rate limits, or network timeouts.
+   - **Thought Preservation:** Implements full candidate content passing in the conversation history without stripping out functionCall metadata or inner thought signatures.
+
+---
+
+## 7. Live Groq AI Benchmark Results
+
+The following metrics represent actual live Groq execution metrics across all 50 synthetic failures, calculated with `IsFallback: FALSE` for all records:
 
 | Metric | Value | Description |
 | :--- | :--- | :--- |
 | **Total Scenarios Evaluated** | 50 | Total number of synthetic transaction/invoice failure cases. |
-| **Dual-Loop Conversion Rate ($CR_{dual}$)** | 94.44% | Rate of successful automated recovery over total recoverable cases. |
-| **Net Recovered Yield (NRY)** | 95.38% | Recovered GTV minus customer discounts divided by total recoverable value. |
+| **Dual-Loop Conversion Rate ($CR_{dual}$)** | 86.11% | Rate of successful automated recovery over total recoverable cases. |
+| **Net Recovered Yield (NRY)** | 73.25% | Recovered GTV minus customer discounts divided by total recoverable value. |
 | **Policy Compliance Rate (PCR)** | 100.00% | Percentage of actions completely free from un-intercepted policy breaches. |
-| **Average Latency** | 14622.54 ms | Average processing and decision latency of the Gemini agent. |
-| **Binary Recovery Precision** | 100.00% | Precision of predicting whether a transaction failure is recoverable. |
+| **Average Latency** | 7999.66 ms | Average processing and decision latency of the Groq agent (including multi-hop tool execution). |
+| **Binary Recovery Precision** | 81.82% | Precision of predicting whether a transaction failure is recoverable. |
 | **Binary Recovery Recall** | 100.00% | Recall of predicting whether a transaction failure is recoverable. |
-| **Binary Recovery F1 Score** | 100.00% | Harmonic mean of recovery precision and recall. |
-| **Action Prediction Accuracy** | 100.00% | Accuracy of the recommended action matching the ground truth optimal action. |
-| **Total Token Count** | 187,450 | Total tokens consumed during evaluation. |
+| **Binary Recovery F1 Score** | 90.00% | Harmonic mean of recovery precision and recall. |
+| **Action Prediction Accuracy** | 78.00% | Accuracy of the recommended action matching the ground truth optimal action. |
 
 ### Financial Recovery Totals (Normalized @ 83.0 USD/INR):
 - **Total Recoverable:** ₹77,17,113.04
-- **Total Recovered:** ₹76,92,156.03
-- **Total Discounts Offered:** ₹3,31,929.43
-- **Net Recovered Yield:** ₹73,60,226.60
+- **Total Recovered:** ₹58,21,083.31
+- **Total Discounts Offered:** ₹1,68,612.29
+- **Net Recovered Yield:** ₹56,52,471.02
 
-*Note: Benchmark evaluated using live Gemini 2.5 multi-step function calling across 50 synthetic scenarios.*
+*Note: Benchmark evaluated using live Groq (llama-3.3-70b-versatile via sandbox routing) multi-step function calling across 50 synthetic scenarios.*
 
 ---
 
-## 7. Environment Variable Reference
+## 8. Environment Variable Reference
 
 Ensure your `.env` file contains the following configurations:
 
@@ -404,13 +419,16 @@ RAZORPAY_WEBHOOK_SECRET="your_webhook_secret_here"
 # Google Gemini AI Credentials
 GEMINI_API_KEY="AIzaSy_your_gemini_api_key_here"
 
+# Groq API Credentials
+GROQ_API_KEY="gsk_your_groq_api_key_here"
+
 # Next.js Application URL
 NEXT_PUBLIC_APP_URL="http://localhost:3000"
 ```
 
 ---
 
-## 8. Author & Submission Contact
+## 9. Author & Submission Contact
 
 - **Author:** Sanket Kisan Chavhan
 - **Project:** RevMatrix-AI
@@ -419,7 +437,7 @@ NEXT_PUBLIC_APP_URL="http://localhost:3000"
 
 ---
 
-## 9. Production CI/CD Pipeline & Deployment
+## 10. Production CI/CD Pipeline & Deployment
 
 The application features a production-ready automated CI/CD pipeline configured at `.github/workflows/ci-cd.yml` with 4 key parallel/sequential jobs:
 
@@ -433,7 +451,7 @@ Relies on Netlify Scheduled Functions (or external cron triggers) executing `/ap
 
 ---
 
-## 10. Technical Disclosures & Honest Framing
+## 11. Technical Disclosures & Honest Framing
 
 To support the Hackathon Evaluation panel, we provide the following honest technical disclosures regarding simulation parameters and live demo pipelines:
 

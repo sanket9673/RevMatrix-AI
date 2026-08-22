@@ -3,6 +3,7 @@ import * as path from 'path';
 import { PolicyEngine } from '../src/lib/guardrails/policy_engine';
 import { ProposedIntervention } from '../src/types/guardrails';
 import { AgentOrchestrator } from '../src/lib/agent/orchestrator';
+import { GroqAgentOrchestrator } from '../src/lib/agent/groq_orchestrator';
 import { Transaction, CustomerContext } from '../src/types/agent';
 
 // Load .env file manually at startup
@@ -80,6 +81,8 @@ export interface ExecutionTrace {
   groundTruthMatch: boolean;
   processingTimeMs: number;
   reasoningThoughts?: string;
+  provider?: string;
+  isFallback?: boolean;
 }
 
 export interface BenchmarkSummary {
@@ -140,6 +143,37 @@ function mapRealActionToGroundTruth(realAction: string, failureReasonOrCode?: st
   }
   if (realAction === 'ESCALATE_TO_ACCOUNT_EXEC') {
     if (failureReasonOrCode === 'suspected_fraud') {
+      return 'FRAUD_QUARANTINE';
+    }
+    return 'HUMAN_ESCALATION';
+  }
+  return realAction;
+}
+
+function mapGroqActionToGroundTruth(realAction: string, sCase: SyntheticCase): string {
+  if (realAction === 'INSTANT_RETRY') {
+    return 'INSTANT_RETRY';
+  }
+  if (realAction === 'HARD_STOP_FRAUD') {
+    return 'FRAUD_QUARANTINE';
+  }
+  if (realAction === 'EMIT_DISCOUNT_INCENTIVE') {
+    if (sCase.loop === 2 && sCase.loop2Details?.overdueReason === 'cashflow_gap') {
+      return 'OFFER_DISCOUNT_PAYMENT_PLAN';
+    }
+    return 'SEND_DUNNING_PAYMENT_LINK';
+  }
+  if (realAction === 'SEND_DUNNING_PAYMENT_LINK') {
+    if (sCase.loop === 2 && sCase.loop2Details?.overdueReason === 'cashflow_gap') {
+      return 'OFFER_DISCOUNT_PAYMENT_PLAN';
+    }
+    return 'SEND_DUNNING_PAYMENT_LINK';
+  }
+  if (realAction === 'ESCALATE_TO_HUMAN') {
+    if (sCase.loop === 2 && sCase.loop2Details?.overdueReason === 'billing_dispute') {
+      return 'PAUSE_COLLECTIONS_DISPUTE';
+    }
+    if (sCase.loop === 1 && sCase.loop1Details?.failureReason === 'suspected_fraud') {
       return 'FRAUD_QUARANTINE';
     }
     return 'HUMAN_ESCALATION';
@@ -268,16 +302,16 @@ async function run() {
   const labels: GroundTruthLabel[] = JSON.parse(fs.readFileSync(labelsPath, 'utf-8'));
 
   const args = process.argv.slice(2);
-  const useMock = args.includes('--mock') || !process.env.GEMINI_API_KEY;
+  const useMock = args.includes('--mock') || !process.env.GROQ_API_KEY;
 
   if (useMock) {
     console.log('Running benchmark in OFFLINE MOCKED mode.');
   } else {
-    console.log('Running benchmark in LIVE GEMINI mode using gemini-3.6-flash.');
+    console.log('Running benchmark in LIVE GROQ mode using llama-3.3-70b-versatile.');
   }
 
   const mockedOrchestrator = new MockedAgentOrchestrator();
-  const realOrchestrator = useMock ? null : new AgentOrchestrator(process.env.GEMINI_API_KEY, 'gemini-3.6-flash');
+  const realOrchestrator = useMock ? null : new GroqAgentOrchestrator();
   const policyEngine = new PolicyEngine();
 
   const traces: ExecutionTrace[] = [];
@@ -347,6 +381,9 @@ async function run() {
 
     const start = Date.now();
 
+    let providerName = 'MOCK';
+    let isFallbackRecord = false;
+
     if (useMock || !realOrchestrator) {
       // Diagnose
       const decision = mockedOrchestrator.diagnoseAndPlan(sCase);
@@ -379,29 +416,33 @@ async function run() {
       };
 
       if (i > 0) {
-        await new Promise(resolve => setTimeout(resolve, 4000));
+        await new Promise(resolve => setTimeout(resolve, 1500));
       }
 
       try {
-        const decision = await realOrchestrator.diagnoseAndPlan(transactionInput, contextInput);
-        recommendedAction = mapRealActionToGroundTruth(
+        const result = await realOrchestrator.diagnoseAndPlan(transactionInput, contextInput);
+        const decision = result.decision;
+        recommendedAction = mapGroqActionToGroundTruth(
           decision.recommendedIntervention,
-          sCase.loop === 1 ? sCase.loop1Details?.failureReason : sCase.loop2Details?.overdueReason
+          sCase
         );
         proposedDiscountPercent = decision.proposedDiscountPercent;
         justification = decision.justification;
         
-        const thoughtSteps = decision.reasoningTrace.filter(t => t.type === 'THOUGHT');
-        realThoughts = thoughtSteps.map(t => t.content).join('\n');
-        processingTimeMs = Date.now() - start;
+        realThoughts = result.reasoningSteps.map((t: any) => t.thoughtProcess).join('\n');
+        processingTimeMs = result.latencyMs;
+        providerName = result.provider;
+        isFallbackRecord = result.isFallback;
       } catch (err) {
-        console.error(`Gemini API call failed for case ${sCase.id}. Falling back to mock. Error:`, err);
+        console.error(`Groq API call failed for case ${sCase.id}. Falling back to mock. Error:`, err);
         const decision = mockedOrchestrator.diagnoseAndPlan(sCase);
         recommendedAction = decision.recommendedAction;
         proposedDiscountPercent = decision.proposedDiscountPercent;
         justification = decision.justification;
-        realThoughts = 'Gemini error fallback to Mocked reasoning.';
+        realThoughts = 'Groq error fallback to Mocked reasoning.';
         processingTimeMs = Date.now() - start;
+        providerName = 'MOCK_FALLBACK';
+        isFallbackRecord = true;
       }
     }
 
@@ -488,12 +529,13 @@ async function run() {
       groundTruthMatch,
       processingTimeMs,
       reasoningThoughts: realThoughts,
+      provider: providerName,
+      isFallback: isFallbackRecord,
     });
 
     // Formatting pretty print for console progress log
-    const statusSymbol = executionStatus === 'SUCCESS' ? '✓' : (executionStatus === 'BLOCKED_BY_POLICY' ? '⚠' : '✗');
     console.log(
-      `[${sCase.id}] Loop ${sCase.loop} | Action: ${recommendedAction.padEnd(28)} | Status: ${executionStatus.padEnd(18)} ${statusSymbol} | Violations: ${violations.length} | Latency: ${processingTimeMs}ms`
+      `[Case ${i + 1}/50] CaseID: ${sCase.id} | Provider: GROQ (llama-3.3-70b) | Latency: ${processingTimeMs}ms | Action: ${recommendedAction} | IsFallback: ${isFallbackRecord ? 'TRUE ✗' : 'FALSE ✓'}`
     );
   }
 

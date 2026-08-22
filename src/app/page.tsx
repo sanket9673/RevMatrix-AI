@@ -286,14 +286,9 @@ export default function Dashboard() {
   const [refreshing, setRefreshing] = React.useState<boolean>(false);
   const [selectedWorkflow, setSelectedWorkflow] = React.useState<RecoveryInstance | null>(null);
   const [isModalOpen, setIsModalOpen] = React.useState<boolean>(false);
-  const [data, setData] = React.useState<RecoveryInstance[]>([]);
-  const [isLoading, setIsLoading] = React.useState<boolean>(true);
+  const [data, setData] = React.useState<RecoveryInstance[]>(mockRecoveryData);
+  const [isLoading, setIsLoading] = React.useState<boolean>(false);
 
-  // Initialize dashboard state immediately on first mount to prevent client hydration mismatch/race
-  React.useEffect(() => {
-    setData(mockRecoveryData);
-    setIsLoading(false);
-  }, []);
 
   // Watch URL params to auto-open specific workflow modal from search clicks
   React.useEffect(() => {
@@ -399,16 +394,12 @@ export default function Dashboard() {
       </div>
 
       {/* SECTION 1: HERO DYNAMIC METRIC STRIP */}
-      <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
         {/* Metric Card 1 */}
-        <motion.div
-          initial={{ opacity: 0, y: 15 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.3, delay: 0.05 }}
-        >
+        <div className="transition-all duration-200">
           <Card className="relative overflow-hidden">
             <div className="absolute right-0 top-0 h-24 w-24 bg-amber-500/5 blur-2xl" />
-            <CardHeader className="flex flex-row items-center justify-between pb-2">
+            <CardHeader className="flex flex-row items-center justify-between p-4 sm:p-5 pb-2 sm:pb-2">
               <CardDescription className="text-xs font-semibold uppercase tracking-wider text-zinc-500">
                 Total At-Risk Revenue
               </CardDescription>
@@ -416,8 +407,8 @@ export default function Dashboard() {
                 <AlertTriangle className="mr-1 h-3 w-3" /> Warning
               </Badge>
             </CardHeader>
-            <CardContent>
-              <div className="text-2xl font-bold font-mono tracking-tight text-zinc-50">
+            <CardContent className="p-4 sm:p-5 pt-0 sm:pt-0">
+              <div className="text-xl sm:text-2xl font-bold font-mono tracking-tight text-zinc-50 truncate" title="$1,248,500.00">
                 $1,248,500.00
               </div>
               <div className="mt-1 flex items-center space-x-1 text-xs text-amber-500">
@@ -426,17 +417,13 @@ export default function Dashboard() {
               </div>
             </CardContent>
           </Card>
-        </motion.div>
+        </div>
 
         {/* Metric Card 2 */}
-        <motion.div
-          initial={{ opacity: 0, y: 15 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.3, delay: 0.1 }}
-        >
+        <div className="transition-all duration-200">
           <Card className="relative overflow-hidden">
             <div className="absolute right-0 top-0 h-24 w-24 bg-emerald-500/5 blur-2xl" />
-            <CardHeader className="flex flex-row items-center justify-between pb-2">
+            <CardHeader className="flex flex-row items-center justify-between p-4 sm:p-5 pb-2 sm:pb-2">
               <CardDescription className="text-xs font-semibold uppercase tracking-wider text-zinc-500">
                 Net Recovered Yield
               </CardDescription>
@@ -444,8 +431,8 @@ export default function Dashboard() {
                 Active Rec.
               </Badge>
             </CardHeader>
-            <CardContent>
-              <div className="text-2xl font-bold font-mono tracking-tight text-emerald-400">
+            <CardContent className="p-4 sm:p-5 pt-0 sm:pt-0">
+              <div className="text-xl sm:text-2xl font-bold font-mono tracking-tight text-emerald-400 truncate" title="$892,100.00">
                 $892,100.00
               </div>
               <div className="mt-1 flex items-center justify-between text-xs text-emerald-500">
@@ -454,24 +441,20 @@ export default function Dashboard() {
               </div>
             </CardContent>
           </Card>
-        </motion.div>
+        </div>
 
         {/* Metric Card 3 */}
-        <motion.div
-          initial={{ opacity: 0, y: 15 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.3, delay: 0.15 }}
-        >
+        <div className="transition-all duration-200">
           <Card className="relative overflow-hidden">
             <div className="absolute right-0 top-0 h-24 w-24 bg-indigo-500/5 blur-2xl" />
-            <CardHeader className="flex flex-row items-center justify-between pb-2">
+            <CardHeader className="flex flex-row items-center justify-between p-4 sm:p-5 pb-2 sm:pb-2">
               <CardDescription className="text-xs font-semibold uppercase tracking-wider text-zinc-500">
                 Dual-Loop Conversion %
               </CardDescription>
               <Zap className="h-4 w-4 text-emerald-500" />
             </CardHeader>
-            <CardContent>
-              <div className="text-2xl font-bold font-mono tracking-tight text-zinc-50">
+            <CardContent className="p-4 sm:p-5 pt-0 sm:pt-0">
+              <div className="text-xl sm:text-2xl font-bold font-mono tracking-tight text-zinc-50 truncate" title="84.2%">
                 84.2%
               </div>
               <div className="mt-1 flex items-center gap-1.5 text-xs text-zinc-400">
@@ -481,24 +464,20 @@ export default function Dashboard() {
               </div>
             </CardContent>
           </Card>
-        </motion.div>
+        </div>
 
         {/* Metric Card 4 */}
-        <motion.div
-          initial={{ opacity: 0, y: 15 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.3, delay: 0.2 }}
-        >
+        <div className="transition-all duration-200">
           <Card className="relative overflow-hidden">
             <div className="absolute right-0 top-0 h-24 w-24 bg-emerald-500/5 blur-2xl" />
-            <CardHeader className="flex flex-row items-center justify-between pb-2">
+            <CardHeader className="flex flex-row items-center justify-between p-4 sm:p-5 pb-2 sm:pb-2">
               <CardDescription className="text-xs font-semibold uppercase tracking-wider text-zinc-500">
                 Policy Compliance Rate
               </CardDescription>
               <ShieldCheck className="h-4 w-4 text-emerald-500" />
             </CardHeader>
-            <CardContent>
-              <div className="text-2xl font-bold font-mono tracking-tight text-zinc-50">
+            <CardContent className="p-4 sm:p-5 pt-0 sm:pt-0">
+              <div className="text-xl sm:text-2xl font-bold font-mono tracking-tight text-zinc-50 truncate" title="99.8%">
                 99.8%
               </div>
               <div className="mt-1 flex items-center space-x-1 text-xs text-zinc-500">
@@ -507,12 +486,12 @@ export default function Dashboard() {
               </div>
             </CardContent>
           </Card>
-        </motion.div>
+        </div>
       </div>
 
       {/* SECTION 2: INTERACTIVE CONTROLS & LOOP SWITCHER */}
-      <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between bg-zinc-950/40 p-4 rounded-xl border border-zinc-900 shadow-lg">
-        <Tabs defaultValue="all" value={activeTab} onValueChange={setActiveTab} className="w-full md:w-auto">
+      <div className="flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between bg-zinc-950/40 p-4 rounded-xl border border-zinc-900 shadow-lg">
+        <Tabs defaultValue="all" value={activeTab} onValueChange={setActiveTab} className="w-full lg:w-auto overflow-x-auto">
           <TabsList className="bg-zinc-950 border-zinc-850 p-1">
             <TabsTrigger value="all" className="text-xs px-3">All Active Workflows</TabsTrigger>
             <TabsTrigger value="loop1" className="text-xs px-3">Loop 1 (Transact - Card/UPI)</TabsTrigger>
@@ -520,7 +499,7 @@ export default function Dashboard() {
           </TabsList>
         </Tabs>
 
-        <div className="flex flex-col sm:flex-row items-center gap-3 w-full md:w-auto">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 w-full lg:w-auto">
           {/* Status Dropdown Filter */}
           <div className="relative w-full sm:w-48">
             <select
@@ -553,161 +532,200 @@ export default function Dashboard() {
       {/* SECTION 3: ACTIVE RECOVERY FEED (REAL-TIME INTERACTIVE DATA TABLE) */}
       <Card className="border border-zinc-900 bg-zinc-900/20 backdrop-blur-md">
         <CardContent className="p-0">
-          <AnimatePresence mode="wait">
-            {isLoading || refreshing ? (
-              // Loading Skeleton State
-              <motion.div
-                key="skeleton"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                exit={{ opacity: 0 }}
-                className="p-6 space-y-4"
-              >
-                <div className="flex items-center justify-between border-b border-zinc-800 pb-3">
-                  <div className="h-4 w-24 animate-pulse rounded bg-zinc-800" />
-                  <div className="h-4 w-32 animate-pulse rounded bg-zinc-800" />
-                  <div className="h-4 w-16 animate-pulse rounded bg-zinc-800" />
-                  <div className="h-4 w-20 animate-pulse rounded bg-zinc-800" />
-                </div>
-                {[...Array(4)].map((_, i) => (
-                  <div key={i} className="flex justify-between items-center py-4 border-b border-zinc-800/40">
-                    <div className="space-y-2">
-                      <div className="h-4 w-20 animate-pulse rounded bg-zinc-800" />
-                      <div className="h-3 w-16 animate-pulse rounded bg-zinc-900" />
-                    </div>
-                    <div className="h-4 w-40 animate-pulse rounded bg-zinc-800" />
-                    <div className="h-4 w-16 animate-pulse rounded bg-zinc-800" />
-                    <div className="h-4 w-24 animate-pulse rounded bg-zinc-800" />
-                    <div className="h-8 w-24 animate-pulse rounded bg-zinc-800" />
+          {isLoading || refreshing ? (
+            // Loading Skeleton State
+            <div className="p-6 space-y-4">
+              <div className="flex items-center justify-between border-b border-zinc-800 pb-3">
+                <div className="h-4 w-24 animate-pulse rounded bg-zinc-800" />
+                <div className="h-4 w-32 animate-pulse rounded bg-zinc-800" />
+                <div className="h-4 w-16 animate-pulse rounded bg-zinc-800" />
+                <div className="h-4 w-20 animate-pulse rounded bg-zinc-800" />
+              </div>
+              {[...Array(4)].map((_, i) => (
+                <div key={i} className="flex justify-between items-center py-4 border-b border-zinc-800/40">
+                  <div className="space-y-2">
+                    <div className="h-4 w-20 animate-pulse rounded bg-zinc-800" />
+                    <div className="h-3 w-16 animate-pulse rounded bg-zinc-900" />
                   </div>
-                ))}
-              </motion.div>
-            ) : filteredData.length === 0 ? (
-              // Empty State
-              <motion.div
-                key="empty"
-                initial={{ opacity: 0, scale: 0.95 }}
-                animate={{ opacity: 1, scale: 1 }}
-                exit={{ opacity: 0, scale: 0.95 }}
-                className="flex flex-col items-center justify-center py-16 px-4"
-              >
-                <div className="rounded-full bg-zinc-900/60 p-4 border border-zinc-800/50 mb-3 shadow-inner">
-                  <AlertCircle className="h-8 w-8 text-zinc-500" />
+                  <div className="h-4 w-40 animate-pulse rounded bg-zinc-800" />
+                  <div className="h-4 w-16 animate-pulse rounded bg-zinc-800" />
+                  <div className="h-4 w-24 animate-pulse rounded bg-zinc-800" />
+                  <div className="h-8 w-24 animate-pulse rounded bg-zinc-800" />
                 </div>
-                <h3 className="text-zinc-300 font-semibold text-sm">No Recovery Workflows Found</h3>
-                <p className="text-zinc-500 text-xs mt-1 text-center max-w-xs">
-                  Your search filters did not return any records. Try clearing the search query or changing active tabs.
-                </p>
-              </motion.div>
-            ) : (
-              // High density records table
-              <motion.div
-                key="table"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                exit={{ opacity: 0 }}
-              >
-                <Table>
-                  <TableHeader>
-                    <TableRow>
-                      <TableHead className="w-[120px] text-xs font-semibold uppercase tracking-wider">Workflow ID</TableHead>
-                      <TableHead className="text-xs font-semibold uppercase tracking-wider">Entity / Account</TableHead>
-                      <TableHead className="text-xs font-semibold uppercase tracking-wider">Loop Context</TableHead>
-                      <TableHead className="text-xs font-semibold uppercase tracking-wider text-right">Recovery Value</TableHead>
-                      <TableHead className="text-xs font-semibold uppercase tracking-wider">Agentic Strategy</TableHead>
-                      <TableHead className="text-xs font-semibold uppercase tracking-wider">SLA Status</TableHead>
-                      <TableHead className="text-xs font-semibold uppercase tracking-wider">Status</TableHead>
-                      <TableHead className="w-[140px] text-right text-xs font-semibold uppercase tracking-wider"></TableHead>
-                    </TableRow>
-                  </TableHeader>
-                  <TableBody>
-                    {filteredData.map((row) => (
-                      <TableRow key={row.id}>
-                        {/* ID & Timestamp */}
-                        <TableCell className="align-middle">
-                          <div className="font-mono text-zinc-200 font-medium">{row.id}</div>
-                          <div className="text-[10px] text-zinc-500 mt-0.5">{row.timestamp}</div>
-                        </TableCell>
+              ))}
+            </div>
+          ) : filteredData.length === 0 ? (
+            // Empty State
+            <div className="flex flex-col items-center justify-center py-16 px-4">
+              <div className="rounded-full bg-zinc-900/60 p-4 border border-zinc-800/50 mb-3 shadow-inner">
+                <AlertCircle className="h-8 w-8 text-zinc-500" />
+              </div>
+              <h3 className="text-zinc-300 font-semibold text-sm">No Recovery Workflows Found</h3>
+              <p className="text-zinc-500 text-xs mt-1 text-center max-w-xs">
+                Your search filters did not return any records. Try clearing the search query or changing active tabs.
+              </p>
+            </div>
+          ) : (
+            // High density records table
+            <div>
+                {/* Mobile/Tablet Card View (< md) */}
+                <div className="block md:hidden space-y-4 p-4">
+                  {filteredData.map((row) => (
+                    <div key={row.id} className="rounded-xl border border-zinc-800 bg-zinc-900/60 p-4 space-y-3">
+                      <div className="flex items-center justify-between">
+                        <div className="font-mono text-sm font-semibold text-zinc-200">{row.id}</div>
+                        <Badge
+                          variant={
+                            row.status === "Recovered"
+                              ? "success"
+                              : row.status === "Escalated"
+                              ? "danger"
+                              : "warning"
+                          }
+                          className="text-[10px]"
+                        >
+                          {row.status}
+                        </Badge>
+                      </div>
+                      <div className="grid grid-cols-2 gap-2 text-xs">
+                        <div>
+                          <span className="text-zinc-500 block">Entity</span>
+                          <span className="text-zinc-200 font-medium">{row.entity}</span>
+                        </div>
+                        <div>
+                          <span className="text-zinc-500 block">Recovery Value</span>
+                          <span className="text-zinc-100 font-mono font-bold">{row.value}</span>
+                        </div>
+                        <div>
+                          <span className="text-zinc-500 block">Loop Context</span>
+                          <span className="text-zinc-350">{row.loopName}</span>
+                        </div>
+                        <div>
+                          <span className="text-zinc-500 block">SLA</span>
+                          <span className="text-zinc-400 font-mono">{row.sla}</span>
+                        </div>
+                      </div>
+                      <div className="border-t border-zinc-850 pt-2.5 flex items-center justify-between">
+                        <span className="text-[11px] text-zinc-500 font-mono">{row.timestamp}</span>
+                        <Button
+                          variant="secondary"
+                          size="sm"
+                          className="text-[11px] h-7 bg-zinc-950 border-zinc-800 hover:bg-zinc-800 text-zinc-350 hover:text-zinc-100"
+                          onClick={() => {
+                            setSelectedWorkflow(row);
+                            setIsModalOpen(true);
+                          }}
+                        >
+                          View Trace <ExternalLink className="ml-1 h-3 w-3" />
+                        </Button>
+                      </div>
+                    </div>
+                  ))}
+                </div>
 
-                        {/* Entity */}
-                        <TableCell className="align-middle font-medium text-zinc-250">
-                          {row.entity}
-                        </TableCell>
-
-                        {/* Loop Context */}
-                        <TableCell className="align-middle">
-                          <Badge
-                            variant={row.loop === "Loop 1" ? "info" : "purple"}
-                            className="text-[10px]"
-                          >
-                            {row.loopName}
-                          </Badge>
-                        </TableCell>
-
-                        {/* Risk/Recovery Value */}
-                        <TableCell className="align-middle text-right font-mono font-bold text-zinc-100">
-                          {row.value}
-                        </TableCell>
-
-                        {/* Agentic Strategy */}
-                        <TableCell className="align-middle text-zinc-400 text-xs">
-                          {row.strategy}
-                        </TableCell>
-
-                        {/* SLA */}
-                        <TableCell className="align-middle">
-                          <div className="flex items-center space-x-1.5 text-xs text-zinc-400 font-mono">
-                            <Clock className={cn("h-3.5 w-3.5", row.sla.includes("Breached") ? "text-rose-500" : "text-zinc-500")} />
-                            <span className={cn(row.sla.includes("Breached") ? "text-rose-450 font-semibold" : "")}>
-                              {row.sla}
-                            </span>
-                          </div>
-                        </TableCell>
-
-                        {/* Status */}
-                        <TableCell className="align-middle">
-                          <Badge
-                            variant={
-                              row.status === "Recovered"
-                                ? "success"
-                                : row.status === "Escalated"
-                                ? "danger"
-                                : "warning"
-                            }
-                            className="text-[10px]"
-                          >
-                            {row.status}
-                          </Badge>
-                        </TableCell>
-
-                        {/* Action */}
-                        <TableCell className="align-middle text-right">
-                          <Button
-                            variant="secondary"
-                            size="sm"
-                            className="text-[11px] h-8 bg-zinc-900 border-zinc-800 hover:bg-zinc-800 text-zinc-350 hover:text-zinc-100"
-                            onClick={() => {
-                              setSelectedWorkflow(row);
-                              setIsModalOpen(true);
-                            }}
-                          >
-                            View Trace <ExternalLink className="ml-1.5 h-3 w-3" />
-                          </Button>
-                        </TableCell>
+                {/* Desktop Table View (>= md) */}
+                <div className="hidden md:block w-full overflow-x-auto rounded-lg border border-zinc-800">
+                  <Table className="min-w-[800px]">
+                    <TableHeader>
+                      <TableRow>
+                        <TableHead className="w-[120px] text-xs font-semibold uppercase tracking-wider">Workflow ID</TableHead>
+                        <TableHead className="text-xs font-semibold uppercase tracking-wider">Entity / Account</TableHead>
+                        <TableHead className="text-xs font-semibold uppercase tracking-wider">Loop Context</TableHead>
+                        <TableHead className="text-xs font-semibold uppercase tracking-wider text-right">Recovery Value</TableHead>
+                        <TableHead className="text-xs font-semibold uppercase tracking-wider">Agentic Strategy</TableHead>
+                        <TableHead className="text-xs font-semibold uppercase tracking-wider">SLA Status</TableHead>
+                        <TableHead className="text-xs font-semibold uppercase tracking-wider">Status</TableHead>
+                        <TableHead className="w-[140px] text-right text-xs font-semibold uppercase tracking-wider"></TableHead>
                       </TableRow>
-                    ))}
-                  </TableBody>
-                </Table>
-              </motion.div>
+                    </TableHeader>
+                    <TableBody>
+                      {filteredData.map((row) => (
+                        <TableRow key={row.id}>
+                          {/* ID & Timestamp */}
+                          <TableCell className="align-middle">
+                            <div className="font-mono text-zinc-200 font-medium">{row.id}</div>
+                            <div className="text-[10px] text-zinc-500 mt-0.5">{row.timestamp}</div>
+                          </TableCell>
+
+                          {/* Entity */}
+                          <TableCell className="align-middle font-medium text-zinc-250">
+                            {row.entity}
+                          </TableCell>
+
+                          {/* Loop Context */}
+                          <TableCell className="align-middle">
+                            <Badge
+                              variant={row.loop === "Loop 1" ? "info" : "purple"}
+                              className="text-[10px]"
+                            >
+                              {row.loopName}
+                            </Badge>
+                          </TableCell>
+
+                          {/* Risk/Recovery Value */}
+                          <TableCell className="align-middle text-right font-mono font-bold text-zinc-100">
+                            {row.value}
+                          </TableCell>
+
+                          {/* Agentic Strategy */}
+                          <TableCell className="align-middle text-zinc-400 text-xs">
+                            {row.strategy}
+                          </TableCell>
+
+                          {/* SLA */}
+                          <TableCell className="align-middle">
+                            <div className="flex items-center space-x-1.5 text-xs text-zinc-400 font-mono">
+                              <Clock className={cn("h-3.5 w-3.5", row.sla.includes("Breached") ? "text-rose-500" : "text-zinc-500")} />
+                              <span className={cn(row.sla.includes("Breached") ? "text-rose-450 font-semibold" : "")}>
+                                {row.sla}
+                              </span>
+                            </div>
+                          </TableCell>
+
+                          {/* Status */}
+                          <TableCell className="align-middle">
+                            <Badge
+                              variant={
+                                row.status === "Recovered"
+                                  ? "success"
+                                  : row.status === "Escalated"
+                                  ? "danger"
+                                  : "warning"
+                              }
+                              className="text-[10px]"
+                            >
+                              {row.status}
+                            </Badge>
+                          </TableCell>
+
+                          {/* Action */}
+                          <TableCell className="align-middle text-right">
+                            <Button
+                              variant="secondary"
+                              size="sm"
+                              className="text-[11px] h-8 bg-zinc-900 border-zinc-800 hover:bg-zinc-800 text-zinc-350 hover:text-zinc-100"
+                              onClick={() => {
+                                setSelectedWorkflow(row);
+                                setIsModalOpen(true);
+                              }}
+                            >
+                              View Trace <ExternalLink className="ml-1.5 h-3 w-3" />
+                            </Button>
+                          </TableCell>
+                        </TableRow>
+                      ))}
+                    </TableBody>
+                  </Table>
+                </div>
+              </div>
             )}
-          </AnimatePresence>
         </CardContent>
       </Card>
 
       {/* WORKFLOW REASONING TRACE DIALOG MODAL */}
       <Dialog open={isModalOpen} onOpenChange={setIsModalOpen}>
         {selectedWorkflow && (
-          <DialogContent onClose={() => setIsModalOpen(false)} className="max-w-2xl border-zinc-800/80 bg-zinc-900/95 shadow-2xl backdrop-blur-md">
+          <DialogContent onClose={() => setIsModalOpen(false)} className="w-[95vw] max-w-lg sm:max-w-2xl max-h-[90vh] overflow-y-auto p-4 sm:p-6 rounded-xl border border-zinc-800 bg-zinc-950 shadow-2xl">
             <DialogHeader>
               <div className="flex items-center justify-between pr-6">
                 <div>

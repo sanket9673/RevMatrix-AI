@@ -77,7 +77,7 @@ export const DialogContent = React.forwardRef<HTMLDivElement, DialogContentProps
         exit={{ opacity: 0, scale: 0.95, y: 10 }}
         transition={{ type: "spring", duration: 0.4 }}
         className={cn(
-          "relative z-10 w-full max-w-lg rounded-xl border border-zinc-800/80 bg-zinc-900/90 p-6 text-zinc-100 shadow-2xl backdrop-blur-md focus:outline-none",
+          "relative z-10 w-[95vw] max-w-lg sm:max-w-2xl max-h-[90vh] overflow-y-auto p-4 sm:p-6 rounded-xl border border-zinc-800 bg-zinc-950 text-zinc-100 shadow-2xl focus:outline-none",
           className
         )}
         {...props}

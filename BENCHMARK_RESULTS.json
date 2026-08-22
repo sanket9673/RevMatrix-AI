@@ -1,25 +1,24 @@
 {
-  "timestamp": "2026-08-22T20:10:06.057Z",
+  "timestamp": "2026-08-22T21:38:40.200Z",
   "totalEvaluated": 50,
   "loop1Cases": 25,
   "loop2Cases": 25,
   "recoverableCount": 36,
-  "actualRecoveredCount": 34,
+  "actualRecoveredCount": 31,
   "totalRecoverableAmountINR": 7717113.04,
-  "totalRecoveredAmountINR": 7692156.03,
-  "totalDiscountsINR": 331929.43,
-  "netRecoveredYieldINR": 7360226.6,
+  "totalRecoveredAmountINR": 5821083.31,
+  "totalDiscountsINR": 168612.29,
+  "netRecoveredYieldINR": 5652471.02,
   "currencyNormalizationNote": "Normalized @ 83 USD/INR",
   "metrics": {
-    "CR_dual": 0.9444444444444444,
-    "NRY": 0.9537538929843122,
+    "CR_dual": 0.8611111111111112,
+    "NRY": 0.7324592749648254,
     "PCR": 1,
-    "avgLatencyMs": 14622.54,
-    "precision": 1,
+    "avgLatencyMs": 7999.66,
+    "precision": 0.8181818181818182,
     "recall": 1,
-    "f1_score": 1,
-    "actionAccuracy": 1,
-    "totalTokenCount": 187450
+    "f1_score": 0.9,
+    "actionAccuracy": 0.78
   },
   "traces": [
     {
@@ -32,8 +31,10 @@
       "executionStatus": "SUCCESS",
       "recoveredAmount": 2418.26,
       "groundTruthMatch": true,
-      "processingTimeMs": 11339,
-      "reasoningThoughts": "Gemini error fallback to Mocked reasoning."
+      "processingTimeMs": 2343,
+      "reasoningThoughts": "Calling tool fetchCustomerHistory\nCalling tool evaluatePolicyBounds",
+      "provider": "GROQ_LLAMA_3.3_70B",
+      "isFallback": false
     },
     {
       "caseId": "case_l1_2",
@@ -45,8 +46,10 @@
       "executionStatus": "SUCCESS",
       "recoveredAmount": 19887.63,
       "groundTruthMatch": true,
-      "processingTimeMs": 15026,
-      "reasoningThoughts": "Gemini error fallback to Mocked reasoning."
+      "processingTimeMs": 1974,
+      "reasoningThoughts": "Calling tool fetchCustomerHistory\nCalling tool evaluatePolicyBounds",
+      "provider": "GROQ_LLAMA_3.3_70B",
+      "isFallback": false
     },
     {
       "caseId": "case_l1_3",
@@ -58,8 +61,10 @@
       "executionStatus": "SUCCESS",
       "recoveredAmount": 1951.12,
       "groundTruthMatch": true,
-      "processingTimeMs": 15252,
-      "reasoningThoughts": "Gemini error fallback to Mocked reasoning."
+      "processingTimeMs": 1639,
+      "reasoningThoughts": "Calling tool fetchCustomerHistory\nCalling tool evaluatePolicyBounds",
+      "provider": "GROQ_LLAMA_3.3_70B",
+      "isFallback": false
     },
     {
       "caseId": "case_l1_4",
@@ -71,8 +76,10 @@
       "executionStatus": "SUCCESS",
       "recoveredAmount": 102879.33,
       "groundTruthMatch": true,
-      "processingTimeMs": 15307,
-      "reasoningThoughts": "Gemini error fallback to Mocked reasoning."
+      "processingTimeMs": 3778,
+      "reasoningThoughts": "Calling tool fetchCustomerHistory\nCalling tool evaluatePolicyBounds",
+      "provider": "GROQ_LLAMA_3.3_70B",
+      "isFallback": false
     },
     {
       "caseId": "case_l1_5",
@@ -86,8 +93,10 @@
       "executionStatus": "BLOCKED_BY_POLICY",
       "recoveredAmount": 0,
       "groundTruthMatch": true,
-      "processingTimeMs": 14848,
-      "reasoningThoughts": "Gemini error fallback to Mocked reasoning."
+      "processingTimeMs": 1335,
+      "reasoningThoughts": "Calling tool fetchCustomerHistory\nCalling tool evaluatePolicyBounds",
+      "provider": "GROQ_LLAMA_3.3_70B",
+      "isFallback": false
     },
     {
       "caseId": "case_l1_6",
@@ -101,8 +110,10 @@
       "executionStatus": "BLOCKED_BY_POLICY",
       "recoveredAmount": 0,
       "groundTruthMatch": true,
-      "processingTimeMs": 14181,
-      "reasoningThoughts": "Gemini error fallback to Mocked reasoning."
+      "processingTimeMs": 2325,
+      "reasoningThoughts": "Calling tool fetchCustomerHistory\nCalling tool evaluatePolicyBounds",
+      "provider": "GROQ_LLAMA_3.3_70B",
+      "isFallback": false
     },
     {
       "caseId": "case_l1_7",
@@ -114,34 +125,40 @@
       "executionStatus": "SUCCESS",
       "recoveredAmount": 2097.89,
       "groundTruthMatch": true,
-      "processingTimeMs": 14128,
-      "reasoningThoughts": "Gemini error fallback to Mocked reasoning."
+      "processingTimeMs": 11623,
+      "reasoningThoughts": "Calling tool fetchCustomerHistory\nCalling tool evaluatePolicyBounds",
+      "provider": "GROQ_LLAMA_3.3_70B",
+      "isFallback": false
     },
     {
       "caseId": "case_l1_8",
       "loop": 1,
       "recommendedAction": "SEND_DUNNING_PAYMENT_LINK",
-      "appliedDiscountPct": 0,
+      "appliedDiscountPct": 2,
       "policyCheckPassed": true,
       "policyViolations": [],
       "executionStatus": "SUCCESS",
       "recoveredAmount": 167097.26,
       "groundTruthMatch": true,
-      "processingTimeMs": 14585,
-      "reasoningThoughts": "Gemini error fallback to Mocked reasoning."
+      "processingTimeMs": 3673,
+      "reasoningThoughts": "Calling tool fetchCustomerHistory\nCalling tool evaluatePolicyBounds",
+      "provider": "GROQ_LLAMA_3.3_70B",
+      "isFallback": false
     },
     {
       "caseId": "case_l1_9",
       "loop": 1,
       "recommendedAction": "SEND_DUNNING_PAYMENT_LINK",
-      "appliedDiscountPct": 0,
+      "appliedDiscountPct": 5,
       "policyCheckPassed": true,
       "policyViolations": [],
       "executionStatus": "SUCCESS",
       "recoveredAmount": 144813.42,
       "groundTruthMatch": true,
-      "processingTimeMs": 14391,
-      "reasoningThoughts": "Gemini error fallback to Mocked reasoning."
+      "processingTimeMs": 12650,
+      "reasoningThoughts": "Calling tool fetchCustomerHistory\nCalling tool evaluatePolicyBounds",
+      "provider": "GROQ_LLAMA_3.3_70B",
+      "isFallback": false
     },
     {
       "caseId": "case_l1_10",
@@ -155,8 +172,10 @@
       "executionStatus": "BLOCKED_BY_POLICY",
       "recoveredAmount": 0,
       "groundTruthMatch": true,
-      "processingTimeMs": 14420,
-      "reasoningThoughts": "Gemini error fallback to Mocked reasoning."
+      "processingTimeMs": 5541,
+      "reasoningThoughts": "Calling tool fetchCustomerHistory\nCalling tool evaluatePolicyBounds",
+      "provider": "GROQ_LLAMA_3.3_70B",
+      "isFallback": false
     },
     {
       "caseId": "case_l1_11",
@@ -168,8 +187,10 @@
       "executionStatus": "SUCCESS",
       "recoveredAmount": 668.83,
       "groundTruthMatch": true,
-      "processingTimeMs": 14784,
-      "reasoningThoughts": "Gemini error fallback to Mocked reasoning."
+      "processingTimeMs": 6661,
+      "reasoningThoughts": "Calling tool fetchCustomerHistory\nCalling tool evaluatePolicyBounds",
+      "provider": "GROQ_LLAMA_3.3_70B",
+      "isFallback": false
     },
     {
       "caseId": "case_l1_12",
@@ -181,8 +202,10 @@
       "executionStatus": "SUCCESS",
       "recoveredAmount": 105444.86,
       "groundTruthMatch": true,
-      "processingTimeMs": 15127,
-      "reasoningThoughts": "Gemini error fallback to Mocked reasoning."
+      "processingTimeMs": 6923,
+      "reasoningThoughts": "Calling tool fetchCustomerHistory\nCalling tool evaluatePolicyBounds",
+      "provider": "GROQ_LLAMA_3.3_70B",
+      "isFallback": false
     },
     {
       "caseId": "case_l1_13",
@@ -196,8 +219,10 @@
       "executionStatus": "BLOCKED_BY_POLICY",
       "recoveredAmount": 0,
       "groundTruthMatch": true,
-      "processingTimeMs": 14939,
-      "reasoningThoughts": "Gemini error fallback to Mocked reasoning."
+      "processingTimeMs": 7737,
+      "reasoningThoughts": "Calling tool fetchCustomerHistory\nCalling tool evaluatePolicyBounds",
+      "provider": "GROQ_LLAMA_3.3_70B",
+      "isFallback": false
     },
     {
       "caseId": "case_l1_14",
@@ -209,34 +234,40 @@
       "executionStatus": "SUCCESS",
       "recoveredAmount": 100464.86,
       "groundTruthMatch": true,
-      "processingTimeMs": 15015,
-      "reasoningThoughts": "Gemini error fallback to Mocked reasoning."
+      "processingTimeMs": 10629,
+      "reasoningThoughts": "Calling tool fetchCustomerHistory\nCalling tool evaluatePolicyBounds",
+      "provider": "GROQ_LLAMA_3.3_70B",
+      "isFallback": false
     },
     {
       "caseId": "case_l1_15",
       "loop": 1,
       "recommendedAction": "SEND_DUNNING_PAYMENT_LINK",
-      "appliedDiscountPct": 0,
+      "appliedDiscountPct": 5,
       "policyCheckPassed": true,
       "policyViolations": [],
       "executionStatus": "SUCCESS",
       "recoveredAmount": 759.93,
       "groundTruthMatch": true,
-      "processingTimeMs": 14309,
-      "reasoningThoughts": "Gemini error fallback to Mocked reasoning."
+      "processingTimeMs": 7849,
+      "reasoningThoughts": "Calling tool fetchCustomerHistory\nCalling tool evaluatePolicyBounds",
+      "provider": "GROQ_LLAMA_3.3_70B",
+      "isFallback": false
     },
     {
       "caseId": "case_l1_16",
       "loop": 1,
       "recommendedAction": "SEND_DUNNING_PAYMENT_LINK",
-      "appliedDiscountPct": 0,
+      "appliedDiscountPct": 2,
       "policyCheckPassed": true,
       "policyViolations": [],
       "executionStatus": "SUCCESS",
       "recoveredAmount": 384.93,
       "groundTruthMatch": true,
-      "processingTimeMs": 15492,
-      "reasoningThoughts": "Gemini error fallback to Mocked reasoning."
+      "processingTimeMs": 9809,
+      "reasoningThoughts": "Calling tool fetchCustomerHistory\nCalling tool evaluatePolicyBounds",
+      "provider": "GROQ_LLAMA_3.3_70B",
+      "isFallback": false
     },
     {
       "caseId": "case_l1_17",
@@ -250,8 +281,10 @@
       "executionStatus": "BLOCKED_BY_POLICY",
       "recoveredAmount": 0,
       "groundTruthMatch": true,
-      "processingTimeMs": 14951,
-      "reasoningThoughts": "Gemini error fallback to Mocked reasoning."
+      "processingTimeMs": 7510,
+      "reasoningThoughts": "Calling tool fetchCustomerHistory\nCalling tool evaluatePolicyBounds",
+      "provider": "GROQ_LLAMA_3.3_70B",
+      "isFallback": false
     },
     {
       "caseId": "case_l1_18",
@@ -263,8 +296,10 @@
       "executionStatus": "SUCCESS",
       "recoveredAmount": 2376.83,
       "groundTruthMatch": true,
-      "processingTimeMs": 14541,
-      "reasoningThoughts": "Gemini error fallback to Mocked reasoning."
+      "processingTimeMs": 6044,
+      "reasoningThoughts": "Calling tool fetchCustomerHistory\nCalling tool evaluatePolicyBounds",
+      "provider": "GROQ_LLAMA_3.3_70B",
+      "isFallback": false
     },
     {
       "caseId": "case_l1_19",
@@ -276,21 +311,25 @@
       "executionStatus": "SUCCESS",
       "recoveredAmount": 206384.47999999998,
       "groundTruthMatch": true,
-      "processingTimeMs": 14755,
-      "reasoningThoughts": "Gemini error fallback to Mocked reasoning."
+      "processingTimeMs": 11048,
+      "reasoningThoughts": "Calling tool fetchCustomerHistory\nCalling tool evaluatePolicyBounds",
+      "provider": "GROQ_LLAMA_3.3_70B",
+      "isFallback": false
     },
     {
       "caseId": "case_l1_20",
       "loop": 1,
-      "recommendedAction": "SEND_DUNNING_PAYMENT_LINK",
+      "recommendedAction": "INSTANT_RETRY",
       "appliedDiscountPct": 0,
       "policyCheckPassed": true,
       "policyViolations": [],
-      "executionStatus": "SUCCESS",
-      "recoveredAmount": 1000.55,
-      "groundTruthMatch": true,
-      "processingTimeMs": 14148,
-      "reasoningThoughts": "Gemini error fallback to Mocked reasoning."
+      "executionStatus": "FAILED",
+      "recoveredAmount": 0,
+      "groundTruthMatch": false,
+      "processingTimeMs": 9643,
+      "reasoningThoughts": "Calling tool fetchCustomerHistory\nCalling tool evaluatePolicyBounds",
+      "provider": "GROQ_LLAMA_3.3_70B",
+      "isFallback": false
     },
     {
       "caseId": "case_l1_21",
@@ -302,8 +341,10 @@
       "executionStatus": "SUCCESS",
       "recoveredAmount": 615.03,
       "groundTruthMatch": true,
-      "processingTimeMs": 14543,
-      "reasoningThoughts": "Gemini error fallback to Mocked reasoning."
+      "processingTimeMs": 7343,
+      "reasoningThoughts": "Calling tool fetchCustomerHistory\nCalling tool evaluatePolicyBounds",
+      "provider": "GROQ_LLAMA_3.3_70B",
+      "isFallback": false
     },
     {
       "caseId": "case_l1_22",
@@ -317,8 +358,10 @@
       "executionStatus": "BLOCKED_BY_POLICY",
       "recoveredAmount": 0,
       "groundTruthMatch": true,
-      "processingTimeMs": 14892,
-      "reasoningThoughts": "Gemini error fallback to Mocked reasoning."
+      "processingTimeMs": 6592,
+      "reasoningThoughts": "Calling tool fetchCustomerHistory\nCalling tool evaluatePolicyBounds",
+      "provider": "GROQ_LLAMA_3.3_70B",
+      "isFallback": false
     },
     {
       "caseId": "case_l1_23",
@@ -330,8 +373,10 @@
       "executionStatus": "SUCCESS",
       "recoveredAmount": 2208.27,
       "groundTruthMatch": true,
-      "processingTimeMs": 14557,
-      "reasoningThoughts": "Gemini error fallback to Mocked reasoning."
+      "processingTimeMs": 10153,
+      "reasoningThoughts": "Calling tool fetchCustomerHistory\nCalling tool evaluatePolicyBounds",
+      "provider": "GROQ_LLAMA_3.3_70B",
+      "isFallback": false
     },
     {
       "caseId": "case_l1_24",
@@ -343,47 +388,55 @@
       "executionStatus": "SUCCESS",
       "recoveredAmount": 951.76,
       "groundTruthMatch": true,
-      "processingTimeMs": 14973,
-      "reasoningThoughts": "Gemini error fallback to Mocked reasoning."
+      "processingTimeMs": 5068,
+      "reasoningThoughts": "Calling tool fetchCustomerHistory\nCalling tool evaluatePolicyBounds",
+      "provider": "GROQ_LLAMA_3.3_70B",
+      "isFallback": false
     },
     {
       "caseId": "case_l1_25",
       "loop": 1,
       "recommendedAction": "SEND_DUNNING_PAYMENT_LINK",
-      "appliedDiscountPct": 0,
+      "appliedDiscountPct": 2,
       "policyCheckPassed": true,
       "policyViolations": [],
       "executionStatus": "SUCCESS",
       "recoveredAmount": 191162.28,
       "groundTruthMatch": true,
-      "processingTimeMs": 14384,
-      "reasoningThoughts": "Gemini error fallback to Mocked reasoning."
+      "processingTimeMs": 10697,
+      "reasoningThoughts": "Calling tool fetchCustomerHistory\nCalling tool evaluatePolicyBounds",
+      "provider": "GROQ_LLAMA_3.3_70B",
+      "isFallback": false
     },
     {
       "caseId": "case_l2_1",
       "loop": 2,
       "recommendedAction": "SEND_DUNNING_PAYMENT_LINK",
-      "appliedDiscountPct": 5,
+      "appliedDiscountPct": 3,
       "policyCheckPassed": true,
       "policyViolations": [],
       "executionStatus": "SUCCESS",
       "recoveredAmount": 677122.3,
       "groundTruthMatch": true,
-      "processingTimeMs": 14412,
-      "reasoningThoughts": "Gemini error fallback to Mocked reasoning."
+      "processingTimeMs": 9144,
+      "reasoningThoughts": "Calling tool fetchCustomerHistory\nCalling tool evaluatePolicyBounds",
+      "provider": "GROQ_LLAMA_3.3_70B",
+      "isFallback": false
     },
     {
       "caseId": "case_l2_2",
       "loop": 2,
       "recommendedAction": "SEND_DUNNING_PAYMENT_LINK",
-      "appliedDiscountPct": 5,
+      "appliedDiscountPct": 3,
       "policyCheckPassed": true,
       "policyViolations": [],
       "executionStatus": "SUCCESS",
       "recoveredAmount": 692034.0800000001,
       "groundTruthMatch": true,
-      "processingTimeMs": 15072,
-      "reasoningThoughts": "Gemini error fallback to Mocked reasoning."
+      "processingTimeMs": 9941,
+      "reasoningThoughts": "Calling tool fetchCustomerHistory\nCalling tool evaluatePolicyBounds",
+      "provider": "GROQ_LLAMA_3.3_70B",
+      "isFallback": false
     },
     {
       "caseId": "case_l2_3",
@@ -395,21 +448,25 @@
       "executionStatus": "FAILED",
       "recoveredAmount": 0,
       "groundTruthMatch": true,
-      "processingTimeMs": 14320,
-      "reasoningThoughts": "Gemini error fallback to Mocked reasoning."
+      "processingTimeMs": 7253,
+      "reasoningThoughts": "Calling tool fetchCustomerHistory\nCalling tool evaluatePolicyBounds",
+      "provider": "GROQ_LLAMA_3.3_70B",
+      "isFallback": false
     },
     {
       "caseId": "case_l2_4",
       "loop": 2,
-      "recommendedAction": "HUMAN_ESCALATION",
-      "appliedDiscountPct": 0,
+      "recommendedAction": "SEND_DUNNING_PAYMENT_LINK",
+      "appliedDiscountPct": 3,
       "policyCheckPassed": true,
       "policyViolations": [],
       "executionStatus": "FAILED",
       "recoveredAmount": 0,
-      "groundTruthMatch": true,
-      "processingTimeMs": 14978,
-      "reasoningThoughts": "Gemini error fallback to Mocked reasoning."
+      "groundTruthMatch": false,
+      "processingTimeMs": 12651,
+      "reasoningThoughts": "Calling tool fetchCustomerHistory\nCalling tool evaluatePolicyBounds",
+      "provider": "GROQ_LLAMA_3.3_70B",
+      "isFallback": false
     },
     {
       "caseId": "case_l2_5",
@@ -417,53 +474,59 @@
       "recommendedAction": "OFFER_DISCOUNT_PAYMENT_PLAN",
       "appliedDiscountPct": 5,
       "policyCheckPassed": true,
-      "policyViolations": [
-        "MAX_DISCOUNT_PERCENT: Proposed discount of 10% exceeds the maximum limit of 5%. Capped to 5%."
-      ],
+      "policyViolations": [],
       "executionStatus": "SUCCESS",
       "recoveredAmount": 212704.09999999998,
       "groundTruthMatch": true,
-      "processingTimeMs": 14650,
-      "reasoningThoughts": "Gemini error fallback to Mocked reasoning."
+      "processingTimeMs": 8824,
+      "reasoningThoughts": "Calling tool fetchCustomerHistory\nCalling tool evaluatePolicyBounds",
+      "provider": "GROQ_LLAMA_3.3_70B",
+      "isFallback": false
     },
     {
       "caseId": "case_l2_6",
       "loop": 2,
-      "recommendedAction": "HUMAN_ESCALATION",
+      "recommendedAction": "SEND_DUNNING_PAYMENT_LINK",
       "appliedDiscountPct": 0,
       "policyCheckPassed": true,
       "policyViolations": [],
       "executionStatus": "FAILED",
       "recoveredAmount": 0,
-      "groundTruthMatch": true,
-      "processingTimeMs": 14467,
-      "reasoningThoughts": "Gemini error fallback to Mocked reasoning."
+      "groundTruthMatch": false,
+      "processingTimeMs": 9042,
+      "reasoningThoughts": "Calling tool fetchCustomerHistory\nCalling tool evaluatePolicyBounds",
+      "provider": "GROQ_LLAMA_3.3_70B",
+      "isFallback": false
     },
     {
       "caseId": "case_l2_7",
       "loop": 2,
-      "recommendedAction": "SEND_DUNNING_PAYMENT_LINK",
-      "appliedDiscountPct": 5,
-      "policyCheckPassed": true,
-      "policyViolations": [],
-      "executionStatus": "SUCCESS",
-      "recoveredAmount": 1197559.69,
-      "groundTruthMatch": true,
-      "processingTimeMs": 15400,
-      "reasoningThoughts": "Gemini error fallback to Mocked reasoning."
-    },
-    {
-      "caseId": "case_l2_8",
-      "loop": 2,
-      "recommendedAction": "PAUSE_COLLECTIONS_DISPUTE",
+      "recommendedAction": "INSTANT_RETRY",
       "appliedDiscountPct": 0,
       "policyCheckPassed": true,
       "policyViolations": [],
       "executionStatus": "FAILED",
       "recoveredAmount": 0,
-      "groundTruthMatch": true,
-      "processingTimeMs": 14964,
-      "reasoningThoughts": "Gemini error fallback to Mocked reasoning."
+      "groundTruthMatch": false,
+      "processingTimeMs": 9352,
+      "reasoningThoughts": "Calling tool fetchCustomerHistory\nCalling tool evaluatePolicyBounds",
+      "provider": "GROQ_LLAMA_3.3_70B",
+      "isFallback": false
+    },
+    {
+      "caseId": "case_l2_8",
+      "loop": 2,
+      "recommendedAction": "SEND_DUNNING_PAYMENT_LINK",
+      "appliedDiscountPct": 2,
+      "policyCheckPassed": true,
+      "policyViolations": [],
+      "executionStatus": "FAILED",
+      "recoveredAmount": 0,
+      "groundTruthMatch": false,
+      "processingTimeMs": 5836,
+      "reasoningThoughts": "Calling tool fetchCustomerHistory\nCalling tool evaluatePolicyBounds",
+      "provider": "GROQ_LLAMA_3.3_70B",
+      "isFallback": false
     },
     {
       "caseId": "case_l2_9",
@@ -471,109 +534,119 @@
       "recommendedAction": "OFFER_DISCOUNT_PAYMENT_PLAN",
       "appliedDiscountPct": 5,
       "policyCheckPassed": true,
-      "policyViolations": [
-        "MAX_DISCOUNT_PERCENT: Proposed discount of 10% exceeds the maximum limit of 5%. Capped to 5%."
-      ],
+      "policyViolations": [],
       "executionStatus": "SUCCESS",
       "recoveredAmount": 342428.12000000005,
       "groundTruthMatch": true,
-      "processingTimeMs": 15226,
-      "reasoningThoughts": "Gemini error fallback to Mocked reasoning."
+      "processingTimeMs": 8646,
+      "reasoningThoughts": "Calling tool fetchCustomerHistory\nCalling tool evaluatePolicyBounds",
+      "provider": "GROQ_LLAMA_3.3_70B",
+      "isFallback": false
     },
     {
       "caseId": "case_l2_10",
       "loop": 2,
       "recommendedAction": "OFFER_DISCOUNT_PAYMENT_PLAN",
-      "appliedDiscountPct": 5,
+      "appliedDiscountPct": 3,
       "policyCheckPassed": true,
-      "policyViolations": [
-        "MAX_DISCOUNT_PERCENT: Proposed discount of 10% exceeds the maximum limit of 5%. Capped to 5%."
-      ],
+      "policyViolations": [],
       "executionStatus": "SUCCESS",
       "recoveredAmount": 1108592.82,
       "groundTruthMatch": true,
-      "processingTimeMs": 14846,
-      "reasoningThoughts": "Gemini error fallback to Mocked reasoning."
+      "processingTimeMs": 9459,
+      "reasoningThoughts": "Calling tool fetchCustomerHistory\nCalling tool evaluatePolicyBounds",
+      "provider": "GROQ_LLAMA_3.3_70B",
+      "isFallback": false
     },
     {
       "caseId": "case_l2_11",
       "loop": 2,
       "recommendedAction": "OFFER_DISCOUNT_PAYMENT_PLAN",
-      "appliedDiscountPct": 5,
+      "appliedDiscountPct": 3,
       "policyCheckPassed": true,
-      "policyViolations": [
-        "MAX_DISCOUNT_PERCENT: Proposed discount of 10% exceeds the maximum limit of 5%. Capped to 5%."
-      ],
+      "policyViolations": [],
       "executionStatus": "SUCCESS",
       "recoveredAmount": 11930.91,
       "groundTruthMatch": true,
-      "processingTimeMs": 14293,
-      "reasoningThoughts": "Gemini error fallback to Mocked reasoning."
+      "processingTimeMs": 6766,
+      "reasoningThoughts": "Calling tool fetchCustomerHistory\nCalling tool evaluatePolicyBounds",
+      "provider": "GROQ_LLAMA_3.3_70B",
+      "isFallback": false
     },
     {
       "caseId": "case_l2_12",
       "loop": 2,
-      "recommendedAction": "HUMAN_ESCALATION",
-      "appliedDiscountPct": 0,
+      "recommendedAction": "SEND_DUNNING_PAYMENT_LINK",
+      "appliedDiscountPct": 2,
       "policyCheckPassed": true,
       "policyViolations": [],
       "executionStatus": "FAILED",
       "recoveredAmount": 0,
-      "groundTruthMatch": true,
-      "processingTimeMs": 14294,
-      "reasoningThoughts": "Gemini error fallback to Mocked reasoning."
+      "groundTruthMatch": false,
+      "processingTimeMs": 12021,
+      "reasoningThoughts": "Calling tool fetchCustomerHistory\nCalling tool evaluatePolicyBounds",
+      "provider": "GROQ_LLAMA_3.3_70B",
+      "isFallback": false
     },
     {
       "caseId": "case_l2_13",
       "loop": 2,
-      "recommendedAction": "HUMAN_ESCALATION",
+      "recommendedAction": "INSTANT_RETRY",
       "appliedDiscountPct": 0,
       "policyCheckPassed": true,
       "policyViolations": [],
       "executionStatus": "FAILED",
       "recoveredAmount": 0,
-      "groundTruthMatch": true,
-      "processingTimeMs": 14507,
-      "reasoningThoughts": "Gemini error fallback to Mocked reasoning."
+      "groundTruthMatch": false,
+      "processingTimeMs": 2553,
+      "reasoningThoughts": "Calling tool fetchCustomerHistory\nCalling tool evaluatePolicyBounds",
+      "provider": "GROQ_LLAMA_3.3_70B",
+      "isFallback": false
     },
     {
       "caseId": "case_l2_14",
       "loop": 2,
-      "recommendedAction": "PAUSE_COLLECTIONS_DISPUTE",
+      "recommendedAction": "SEND_DUNNING_PAYMENT_LINK",
       "appliedDiscountPct": 0,
       "policyCheckPassed": true,
       "policyViolations": [],
       "executionStatus": "FAILED",
       "recoveredAmount": 0,
-      "groundTruthMatch": true,
-      "processingTimeMs": 14376,
-      "reasoningThoughts": "Gemini error fallback to Mocked reasoning."
+      "groundTruthMatch": false,
+      "processingTimeMs": 12470,
+      "reasoningThoughts": "Calling tool fetchCustomerHistory\nCalling tool evaluatePolicyBounds",
+      "provider": "GROQ_LLAMA_3.3_70B",
+      "isFallback": false
     },
     {
       "caseId": "case_l2_15",
       "loop": 2,
       "recommendedAction": "SEND_DUNNING_PAYMENT_LINK",
-      "appliedDiscountPct": 5,
+      "appliedDiscountPct": 2,
       "policyCheckPassed": true,
       "policyViolations": [],
       "executionStatus": "SUCCESS",
       "recoveredAmount": 13050.38,
       "groundTruthMatch": true,
-      "processingTimeMs": 15298,
-      "reasoningThoughts": "Gemini error fallback to Mocked reasoning."
+      "processingTimeMs": 6082,
+      "reasoningThoughts": "Calling tool fetchCustomerHistory\nCalling tool evaluatePolicyBounds",
+      "provider": "GROQ_LLAMA_3.3_70B",
+      "isFallback": false
     },
     {
       "caseId": "case_l2_16",
       "loop": 2,
       "recommendedAction": "SEND_DUNNING_PAYMENT_LINK",
-      "appliedDiscountPct": 5,
+      "appliedDiscountPct": 3,
       "policyCheckPassed": true,
       "policyViolations": [],
       "executionStatus": "SUCCESS",
       "recoveredAmount": 1313.3,
       "groundTruthMatch": true,
-      "processingTimeMs": 14803,
-      "reasoningThoughts": "Gemini error fallback to Mocked reasoning."
+      "processingTimeMs": 9625,
+      "reasoningThoughts": "Calling tool fetchCustomerHistory\nCalling tool evaluatePolicyBounds",
+      "provider": "GROQ_LLAMA_3.3_70B",
+      "isFallback": false
     },
     {
       "caseId": "case_l2_17",
@@ -581,81 +654,89 @@
       "recommendedAction": "OFFER_DISCOUNT_PAYMENT_PLAN",
       "appliedDiscountPct": 5,
       "policyCheckPassed": true,
-      "policyViolations": [
-        "MAX_DISCOUNT_PERCENT: Proposed discount of 10% exceeds the maximum limit of 5%. Capped to 5%."
-      ],
+      "policyViolations": [],
       "executionStatus": "SUCCESS",
       "recoveredAmount": 6655.01,
       "groundTruthMatch": true,
-      "processingTimeMs": 14740,
-      "reasoningThoughts": "Gemini error fallback to Mocked reasoning."
+      "processingTimeMs": 11264,
+      "reasoningThoughts": "Calling tool fetchCustomerHistory\nCalling tool evaluatePolicyBounds",
+      "provider": "GROQ_LLAMA_3.3_70B",
+      "isFallback": false
     },
     {
       "caseId": "case_l2_18",
       "loop": 2,
       "recommendedAction": "SEND_DUNNING_PAYMENT_LINK",
-      "appliedDiscountPct": 5,
+      "appliedDiscountPct": 3,
       "policyCheckPassed": true,
       "policyViolations": [],
       "executionStatus": "SUCCESS",
       "recoveredAmount": 437190.87999999995,
       "groundTruthMatch": true,
-      "processingTimeMs": 14035,
-      "reasoningThoughts": "Gemini error fallback to Mocked reasoning."
+      "processingTimeMs": 7535,
+      "reasoningThoughts": "Calling tool fetchCustomerHistory\nCalling tool evaluatePolicyBounds",
+      "provider": "GROQ_LLAMA_3.3_70B",
+      "isFallback": false
     },
     {
       "caseId": "case_l2_19",
       "loop": 2,
       "recommendedAction": "SEND_DUNNING_PAYMENT_LINK",
-      "appliedDiscountPct": 5,
+      "appliedDiscountPct": 3,
       "policyCheckPassed": true,
       "policyViolations": [],
       "executionStatus": "SUCCESS",
       "recoveredAmount": 557725.97,
       "groundTruthMatch": true,
-      "processingTimeMs": 14416,
-      "reasoningThoughts": "Gemini error fallback to Mocked reasoning."
+      "processingTimeMs": 8887,
+      "reasoningThoughts": "Calling tool fetchCustomerHistory\nCalling tool evaluatePolicyBounds",
+      "provider": "GROQ_LLAMA_3.3_70B",
+      "isFallback": false
     },
     {
       "caseId": "case_l2_20",
       "loop": 2,
-      "recommendedAction": "OFFER_DISCOUNT_PAYMENT_PLAN",
-      "appliedDiscountPct": 5,
-      "policyCheckPassed": true,
-      "policyViolations": [
-        "MAX_DISCOUNT_PERCENT: Proposed discount of 10% exceeds the maximum limit of 5%. Capped to 5%."
-      ],
-      "executionStatus": "SUCCESS",
-      "recoveredAmount": 672512.48,
-      "groundTruthMatch": true,
-      "processingTimeMs": 14859,
-      "reasoningThoughts": "Gemini error fallback to Mocked reasoning."
-    },
-    {
-      "caseId": "case_l2_21",
-      "loop": 2,
-      "recommendedAction": "HUMAN_ESCALATION",
+      "recommendedAction": "INSTANT_RETRY",
       "appliedDiscountPct": 0,
       "policyCheckPassed": true,
       "policyViolations": [],
       "executionStatus": "FAILED",
       "recoveredAmount": 0,
-      "groundTruthMatch": true,
-      "processingTimeMs": 14298,
-      "reasoningThoughts": "Gemini error fallback to Mocked reasoning."
+      "groundTruthMatch": false,
+      "processingTimeMs": 10681,
+      "reasoningThoughts": "Calling tool fetchCustomerHistory\nCalling tool evaluatePolicyBounds",
+      "provider": "GROQ_LLAMA_3.3_70B",
+      "isFallback": false
+    },
+    {
+      "caseId": "case_l2_21",
+      "loop": 2,
+      "recommendedAction": "SEND_DUNNING_PAYMENT_LINK",
+      "appliedDiscountPct": 3,
+      "policyCheckPassed": true,
+      "policyViolations": [],
+      "executionStatus": "FAILED",
+      "recoveredAmount": 0,
+      "groundTruthMatch": false,
+      "processingTimeMs": 14581,
+      "reasoningThoughts": "Calling tool fetchCustomerHistory\nCalling tool evaluatePolicyBounds",
+      "provider": "GROQ_LLAMA_3.3_70B",
+      "isFallback": false
     },
     {
       "caseId": "case_l2_22",
       "loop": 2,
       "recommendedAction": "SEND_DUNNING_PAYMENT_LINK",
-      "appliedDiscountPct": 5,
+      "appliedDiscountPct": 3,
       "policyCheckPassed": true,
       "policyViolations": [],
       "executionStatus": "SUCCESS",
       "recoveredAmount": 697478.88,
       "groundTruthMatch": true,
-      "processingTimeMs": 14225,
-      "reasoningThoughts": "Gemini error fallback to Mocked reasoning."
+      "processingTimeMs": 11129,
+      "reasoningThoughts": "Calling tool fetchCustomerHistory\nCalling tool evaluatePolicyBounds",
+      "provider": "GROQ_LLAMA_3.3_70B",
+      "isFallback": false
     },
     {
       "caseId": "case_l2_23",
@@ -667,36 +748,40 @@
       "executionStatus": "FAILED",
       "recoveredAmount": 0,
       "groundTruthMatch": true,
-      "processingTimeMs": 14556,
-      "reasoningThoughts": "Gemini error fallback to Mocked reasoning."
+      "processingTimeMs": 6340,
+      "reasoningThoughts": "Calling tool fetchCustomerHistory\nCalling tool evaluatePolicyBounds",
+      "provider": "GROQ_LLAMA_3.3_70B",
+      "isFallback": false
     },
     {
       "caseId": "case_l2_24",
       "loop": 2,
-      "recommendedAction": "PAUSE_COLLECTIONS_DISPUTE",
-      "appliedDiscountPct": 0,
+      "recommendedAction": "SEND_DUNNING_PAYMENT_LINK",
+      "appliedDiscountPct": 3,
       "policyCheckPassed": true,
       "policyViolations": [],
       "executionStatus": "FAILED",
       "recoveredAmount": 0,
-      "groundTruthMatch": true,
-      "processingTimeMs": 14927,
-      "reasoningThoughts": "Gemini error fallback to Mocked reasoning."
+      "groundTruthMatch": false,
+      "processingTimeMs": 8010,
+      "reasoningThoughts": "Calling tool fetchCustomerHistory\nCalling tool evaluatePolicyBounds",
+      "provider": "GROQ_LLAMA_3.3_70B",
+      "isFallback": false
     },
     {
       "caseId": "case_l2_25",
       "loop": 2,
       "recommendedAction": "OFFER_DISCOUNT_PAYMENT_PLAN",
-      "appliedDiscountPct": 5,
+      "appliedDiscountPct": 3,
       "policyCheckPassed": true,
-      "policyViolations": [
-        "MAX_DISCOUNT_PERCENT: Proposed discount of 10% exceeds the maximum limit of 5%. Capped to 5%."
-      ],
+      "policyViolations": [],
       "executionStatus": "SUCCESS",
       "recoveredAmount": 10289.59,
       "groundTruthMatch": true,
-      "processingTimeMs": 14278,
-      "reasoningThoughts": "Gemini error fallback to Mocked reasoning."
+      "processingTimeMs": 11304,
+      "reasoningThoughts": "Calling tool fetchCustomerHistory\nCalling tool evaluatePolicyBounds",
+      "provider": "GROQ_LLAMA_3.3_70B",
+      "isFallback": false
     }
   ]
 }

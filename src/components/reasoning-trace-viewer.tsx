@@ -154,7 +154,7 @@ export function ReasoningTraceViewer() {
               </div>
               <div className="flex justify-between items-center text-xs">
                 <span className="text-zinc-500">Started At</span>
-                <span className="font-mono text-zinc-400">
+                <span className="font-mono text-zinc-400" suppressHydrationWarning>
                   {new Date(currentWorkflow.startedAt).toLocaleTimeString()}
                 </span>
               </div>
@@ -235,7 +235,7 @@ export function ReasoningTraceViewer() {
                         )}>
                           {step.toolCalled}
                         </span>
-                        <span className="text-[10px] text-zinc-500 font-mono">
+                        <span className="text-[10px] text-zinc-500 font-mono" suppressHydrationWarning>
                           {new Date(step.timestamp).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: '2-digit' })}
                         </span>
                       </div>
@@ -266,7 +266,7 @@ export function ReasoningTraceViewer() {
             <Card className="border-zinc-800/80 bg-zinc-900/30 backdrop-blur-md relative overflow-hidden">
               <div className="absolute right-0 top-0 w-32 h-32 bg-emerald-500/5 rounded-full blur-2xl pointer-events-none" />
               <CardContent className="p-6">
-                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
                   <div className="space-y-1">
                     <div className="flex items-center gap-2">
                       <span className="text-xs font-bold font-mono text-emerald-400 tracking-wider uppercase bg-emerald-500/10 border border-emerald-500/20 px-2 py-0.5 rounded">
@@ -357,7 +357,7 @@ export function ReasoningTraceViewer() {
                             <Copy className="h-3.5 w-3.5" />
                           )}
                         </button>
-                        <pre className="font-mono text-xs text-zinc-300 overflow-x-auto max-h-60 p-2 rounded selection:bg-emerald-500/20 selection:text-emerald-400">
+                        <pre className="max-w-full overflow-x-auto font-mono text-xs p-3 rounded bg-zinc-900 border border-zinc-800 whitespace-pre-wrap break-all max-h-60 selection:bg-emerald-500/20 selection:text-emerald-400">
                           <code>{JSON.stringify(activeStep.toolInput, null, 2)}</code>
                         </pre>
                       </div>
@@ -405,7 +405,7 @@ export function ReasoningTraceViewer() {
                             <Copy className="h-3.5 w-3.5" />
                           )}
                         </button>
-                        <pre className="font-mono text-xs text-zinc-300 overflow-x-auto max-h-60 p-2 rounded selection:bg-emerald-500/20 selection:text-emerald-400">
+                        <pre className="max-w-full overflow-x-auto font-mono text-xs p-3 rounded bg-zinc-900 border border-zinc-800 whitespace-pre-wrap break-all max-h-60 selection:bg-emerald-500/20 selection:text-emerald-400">
                           <code>{JSON.stringify(activeStep.toolOutput, null, 2)}</code>
                         </pre>
                       </div>
@@ -503,7 +503,7 @@ export function ReasoningTraceViewer() {
 
       {/* STEP DETAILS MODAL */}
       <Dialog open={isDetailsModalOpen} onOpenChange={setIsDetailsModalOpen}>
-        <DialogContent onClose={() => setIsDetailsModalOpen(false)} className="max-w-2xl border-zinc-800 bg-zinc-900/95 shadow-2xl backdrop-blur-md">
+        <DialogContent onClose={() => setIsDetailsModalOpen(false)} className="w-[95vw] max-w-lg sm:max-w-2xl max-h-[90vh] overflow-y-auto p-4 sm:p-6 rounded-xl border border-zinc-800 bg-zinc-950 shadow-2xl">
           <DialogHeader>
             <DialogTitle className="text-zinc-50 flex items-center gap-2">
               <span>Step {activeStep.stepNumber} Execution Inspector</span>
@@ -538,7 +538,7 @@ export function ReasoningTraceViewer() {
             {/* Tool Input Payload */}
             <div className="space-y-1">
               <span className="text-zinc-500 block text-[10px] uppercase font-bold">Tool Input Payload</span>
-              <pre className="p-3 bg-zinc-950/90 rounded border border-zinc-850 overflow-x-auto text-zinc-300 max-h-36">
+              <pre className="max-w-full overflow-x-auto font-mono text-xs p-3 rounded bg-zinc-900 border border-zinc-800 whitespace-pre-wrap break-all max-h-36">
                 <code>{JSON.stringify(activeStep.toolInput, null, 2)}</code>
               </pre>
             </div>
@@ -546,7 +546,7 @@ export function ReasoningTraceViewer() {
             {/* Tool Output Payload */}
             <div className="space-y-1">
               <span className="text-zinc-500 block text-[10px] uppercase font-bold">Tool Output Result</span>
-              <pre className="p-3 bg-zinc-950/90 rounded border border-zinc-850 overflow-x-auto text-zinc-300 max-h-36">
+              <pre className="max-w-full overflow-x-auto font-mono text-xs p-3 rounded bg-zinc-900 border border-zinc-800 whitespace-pre-wrap break-all max-h-36">
                 <code>{JSON.stringify(activeStep.toolOutput, null, 2)}</code>
               </pre>
             </div>

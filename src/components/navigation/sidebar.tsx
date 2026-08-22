@@ -54,7 +54,7 @@ export function Sidebar({ collapsed, setCollapsed }: SidebarProps) {
   return (
     <aside
       className={cn(
-        "fixed bottom-0 left-0 top-0 z-40 flex flex-col border-r border-zinc-800/80 bg-zinc-950 transition-all duration-300 ease-in-out",
+        "fixed bottom-0 left-0 top-0 z-40 hidden md:flex flex-col border-r border-zinc-800/80 bg-zinc-950 transition-all duration-300 ease-in-out",
         collapsed ? "w-16" : "w-64"
       )}
     >
