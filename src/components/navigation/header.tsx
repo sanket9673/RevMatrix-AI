@@ -188,7 +188,8 @@ export function Header() {
   };
 
   return (
-    <header className="sticky top-0 z-30 flex h-16 w-full items-center justify-between border-b border-zinc-800/80 bg-zinc-950/80 px-6 backdrop-blur-md">
+    <>
+      <header className="sticky top-0 z-30 flex h-16 w-full items-center justify-between border-b border-zinc-800/80 bg-zinc-950/80 px-6 backdrop-blur-md">
       {/* Left: Breadcrumbs */}
       <div className="flex items-center space-x-1.5 text-sm font-medium">
         <span className="text-zinc-500">Workspace</span>
@@ -442,8 +443,9 @@ export function Header() {
           </div>
         </button>
       </div>
+    </header>
 
-      {/* SYSTEM ENVIRONMENT PROFILE DETAILS MODAL */}
+    {/* SYSTEM ENVIRONMENT PROFILE DETAILS MODAL */}
       {isProfileOpen && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
           {/* Backdrop */}
@@ -552,6 +554,6 @@ export function Header() {
           </div>
         </div>
       )}
-    </header>
+    </>
   );
 }
