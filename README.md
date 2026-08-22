@@ -9,11 +9,11 @@
 [![Tailwind CSS](https://img.shields.io/badge/Tailwind%20CSS-3.4-38B2AC?logo=tailwindcss&logoColor=white)](https://tailwindcss.com/)
 [![License](https://img.shields.io/badge/License-MIT-green.svg)](https://opensource.org/licenses/MIT)
 
-An enterprise-grade autonomous payment recovery platform and real-time streaming telemetry dashboard built with Next.js 14 App Router, Server-Sent Events (SSE), PostgreSQL (Prisma ORM), Razorpay Webhook Ingestion, and Google Gemini AI.
+An enterprise-grade autonomous payment recovery platform and real-time streaming telemetry dashboard built with Next.js 14 App Router, Server-Sent Events (SSE), PostgreSQL (Prisma ORM), Razorpay Webhook Ingestion.
 
 RevMatrix-AI intercepts failed e-commerce/FinTech transactions, applies policy-safe retry routing, and streams execution metrics live to an interactive pitch presentation interface.
 
-**Live Demo URL:** In the process
+**Live Demo URL:** https://revmatrix-ai.netlify.app/
 
 ---
 
