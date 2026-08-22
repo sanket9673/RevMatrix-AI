@@ -62,6 +62,11 @@ export interface BenchmarkSummary {
   loop2Cases: number;
   recoverableCount: number;
   actualRecoveredCount: number;
+  totalRecoverableAmountINR: number;
+  totalRecoveredAmountINR: number;
+  totalDiscountsINR: number;
+  netRecoveredYieldINR: number;
+  currencyNormalizationNote: string;
   metrics: {
     CR_dual: number;
     NRY: number;
@@ -211,6 +216,21 @@ function run() {
 
   const traces: ExecutionTrace[] = [];
 
+  const USD_TO_INR = 83.0;
+
+  // Formatting currency in Indian style (e.g., ₹1,44,507.21)
+  const formatINR = (amount: number): string => {
+    try {
+      const formatted = new Intl.NumberFormat('en-IN', {
+        style: 'currency',
+        currency: 'INR',
+      }).format(amount);
+      return formatted.replace('Rs.', '₹').replace('INR', '₹').trim();
+    } catch (e) {
+      return `₹${amount.toLocaleString('en-IN', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
+    }
+  };
+
   let totalEvaluated = 0;
   let loop1Cases = 0;
   let loop2Cases = 0;
@@ -235,12 +255,15 @@ function run() {
       continue;
     }
 
+    // Normalize amount to INR
+    const amountInr = sCase.currency === "USD" ? sCase.amount * USD_TO_INR : sCase.amount;
+
     totalEvaluated++;
     if (sCase.loop === 1) loop1Cases++;
     if (sCase.loop === 2) loop2Cases++;
     if (label.isRecoverable) {
       recoverableCount++;
-      recoverableOriginalAmountSum += sCase.amount;
+      recoverableOriginalAmountSum += amountInr;
     }
 
     const start = Date.now();
@@ -291,10 +314,10 @@ function run() {
       executionStatus = 'BLOCKED_BY_POLICY';
     } else if (label.isRecoverable && groundTruthMatch) {
       executionStatus = 'SUCCESS';
-      recoveredAmount = sCase.amount;
+      recoveredAmount = amountInr;
       actualRecoveredCount++;
-      recoveredOriginalAmountSum += sCase.amount;
-      discountsSum += sCase.amount * (appliedDiscountPct / 100);
+      recoveredOriginalAmountSum += amountInr;
+      discountsSum += amountInr * (appliedDiscountPct / 100);
     } else {
       executionStatus = 'FAILED';
     }
@@ -325,6 +348,8 @@ function run() {
   const PCR = calculatePCR(zeroViolationCount, totalEvaluated);
   const avgLatencyMs = totalLatencyMs / totalEvaluated;
 
+  const netRecoveredYieldAmount = recoveredOriginalAmountSum - discountsSum;
+
   const summary: BenchmarkSummary = {
     timestamp: new Date().toISOString(),
     totalEvaluated,
@@ -332,6 +357,11 @@ function run() {
     loop2Cases,
     recoverableCount,
     actualRecoveredCount,
+    totalRecoverableAmountINR: parseFloat(recoverableOriginalAmountSum.toFixed(2)),
+    totalRecoveredAmountINR: parseFloat(recoveredOriginalAmountSum.toFixed(2)),
+    totalDiscountsINR: parseFloat(discountsSum.toFixed(2)),
+    netRecoveredYieldINR: parseFloat(netRecoveredYieldAmount.toFixed(2)),
+    currencyNormalizationNote: `Normalized @ ${USD_TO_INR} USD/INR`,
     metrics: {
       CR_dual,
       NRY,
@@ -362,6 +392,12 @@ function run() {
     'Policy Compliance Rate (PCR)': `${(PCR * 100).toFixed(2)}%`,
     'Average Latency': `${avgLatencyMs.toFixed(2)} ms`,
   });
+  console.log('='.repeat(80));
+  console.log(`Financial Totals (Normalized @ 83.0 USD/INR):`);
+  console.log(`  Total Recoverable:    ${formatINR(recoverableOriginalAmountSum)}`);
+  console.log(`  Total Recovered:      ${formatINR(recoveredOriginalAmountSum)}`);
+  console.log(`  Total Discounts:      ${formatINR(discountsSum)}`);
+  console.log(`  Net Recovered Yield:  ${formatINR(netRecoveredYieldAmount)} (Normalized @ 83.0 USD/INR)`);
   console.log('='.repeat(80));
   console.log(`Traces exported to BENCHMARK_RESULTS.json`);
 }

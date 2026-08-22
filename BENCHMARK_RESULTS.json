@@ -1,15 +1,20 @@
 {
-  "timestamp": "2026-08-21T23:01:56.959Z",
+  "timestamp": "2026-08-22T11:17:36.233Z",
   "totalEvaluated": 50,
   "loop1Cases": 25,
   "loop2Cases": 25,
   "recoverableCount": 36,
   "actualRecoveredCount": 34,
+  "totalRecoverableAmountINR": 7717113.04,
+  "totalRecoveredAmountINR": 7692156.03,
+  "totalDiscountsINR": 331929.43,
+  "netRecoveredYieldINR": 7360226.6,
+  "currencyNormalizationNote": "Normalized @ 83 USD/INR",
   "metrics": {
     "CR_dual": 0.9444444444444444,
-    "NRY": 0.9512512872519724,
+    "NRY": 0.9537538929843122,
     "PCR": 1,
-    "avgLatencyMs": 1.68
+    "avgLatencyMs": 1.98
   },
   "traces": [
     {
@@ -22,7 +27,7 @@
       "executionStatus": "SUCCESS",
       "recoveredAmount": 2418.26,
       "groundTruthMatch": true,
-      "processingTimeMs": 3
+      "processingTimeMs": 0
     },
     {
       "caseId": "case_l1_2",
@@ -32,9 +37,9 @@
       "policyCheckPassed": true,
       "policyViolations": [],
       "executionStatus": "SUCCESS",
-      "recoveredAmount": 239.61,
+      "recoveredAmount": 19887.63,
       "groundTruthMatch": true,
-      "processingTimeMs": 4
+      "processingTimeMs": 0
     },
     {
       "caseId": "case_l1_3",
@@ -56,9 +61,9 @@
       "policyCheckPassed": true,
       "policyViolations": [],
       "executionStatus": "SUCCESS",
-      "recoveredAmount": 1239.51,
+      "recoveredAmount": 102879.33,
       "groundTruthMatch": true,
-      "processingTimeMs": 0
+      "processingTimeMs": 4
     },
     {
       "caseId": "case_l1_5",
@@ -72,7 +77,7 @@
       "executionStatus": "BLOCKED_BY_POLICY",
       "recoveredAmount": 0,
       "groundTruthMatch": true,
-      "processingTimeMs": 1
+      "processingTimeMs": 4
     },
     {
       "caseId": "case_l1_6",
@@ -86,7 +91,7 @@
       "executionStatus": "BLOCKED_BY_POLICY",
       "recoveredAmount": 0,
       "groundTruthMatch": true,
-      "processingTimeMs": 1
+      "processingTimeMs": 4
     },
     {
       "caseId": "case_l1_7",
@@ -108,9 +113,9 @@
       "policyCheckPassed": true,
       "policyViolations": [],
       "executionStatus": "SUCCESS",
-      "recoveredAmount": 2013.22,
+      "recoveredAmount": 167097.26,
       "groundTruthMatch": true,
-      "processingTimeMs": 0
+      "processingTimeMs": 2
     },
     {
       "caseId": "case_l1_9",
@@ -120,9 +125,9 @@
       "policyCheckPassed": true,
       "policyViolations": [],
       "executionStatus": "SUCCESS",
-      "recoveredAmount": 1744.74,
+      "recoveredAmount": 144813.42,
       "groundTruthMatch": true,
-      "processingTimeMs": 4
+      "processingTimeMs": 1
     },
     {
       "caseId": "case_l1_10",
@@ -136,7 +141,7 @@
       "executionStatus": "BLOCKED_BY_POLICY",
       "recoveredAmount": 0,
       "groundTruthMatch": true,
-      "processingTimeMs": 4
+      "processingTimeMs": 1
     },
     {
       "caseId": "case_l1_11",
@@ -148,7 +153,7 @@
       "executionStatus": "SUCCESS",
       "recoveredAmount": 668.83,
       "groundTruthMatch": true,
-      "processingTimeMs": 0
+      "processingTimeMs": 2
     },
     {
       "caseId": "case_l1_12",
@@ -158,9 +163,9 @@
       "policyCheckPassed": true,
       "policyViolations": [],
       "executionStatus": "SUCCESS",
-      "recoveredAmount": 1270.42,
+      "recoveredAmount": 105444.86,
       "groundTruthMatch": true,
-      "processingTimeMs": 2
+      "processingTimeMs": 4
     },
     {
       "caseId": "case_l1_13",
@@ -184,9 +189,9 @@
       "policyCheckPassed": true,
       "policyViolations": [],
       "executionStatus": "SUCCESS",
-      "recoveredAmount": 1210.42,
+      "recoveredAmount": 100464.86,
       "groundTruthMatch": true,
-      "processingTimeMs": 3
+      "processingTimeMs": 2
     },
     {
       "caseId": "case_l1_15",
@@ -198,7 +203,7 @@
       "executionStatus": "SUCCESS",
       "recoveredAmount": 759.93,
       "groundTruthMatch": true,
-      "processingTimeMs": 4
+      "processingTimeMs": 0
     },
     {
       "caseId": "case_l1_16",
@@ -210,7 +215,7 @@
       "executionStatus": "SUCCESS",
       "recoveredAmount": 384.93,
       "groundTruthMatch": true,
-      "processingTimeMs": 0
+      "processingTimeMs": 2
     },
     {
       "caseId": "case_l1_17",
@@ -236,7 +241,7 @@
       "executionStatus": "SUCCESS",
       "recoveredAmount": 2376.83,
       "groundTruthMatch": true,
-      "processingTimeMs": 1
+      "processingTimeMs": 3
     },
     {
       "caseId": "case_l1_19",
@@ -246,9 +251,9 @@
       "policyCheckPassed": true,
       "policyViolations": [],
       "executionStatus": "SUCCESS",
-      "recoveredAmount": 2486.56,
+      "recoveredAmount": 206384.47999999998,
       "groundTruthMatch": true,
-      "processingTimeMs": 3
+      "processingTimeMs": 2
     },
     {
       "caseId": "case_l1_20",
@@ -272,7 +277,7 @@
       "executionStatus": "SUCCESS",
       "recoveredAmount": 615.03,
       "groundTruthMatch": true,
-      "processingTimeMs": 3
+      "processingTimeMs": 1
     },
     {
       "caseId": "case_l1_22",
@@ -286,7 +291,7 @@
       "executionStatus": "BLOCKED_BY_POLICY",
       "recoveredAmount": 0,
       "groundTruthMatch": true,
-      "processingTimeMs": 2
+      "processingTimeMs": 1
     },
     {
       "caseId": "case_l1_23",
@@ -298,7 +303,7 @@
       "executionStatus": "SUCCESS",
       "recoveredAmount": 2208.27,
       "groundTruthMatch": true,
-      "processingTimeMs": 1
+      "processingTimeMs": 0
     },
     {
       "caseId": "case_l1_24",
@@ -310,7 +315,7 @@
       "executionStatus": "SUCCESS",
       "recoveredAmount": 951.76,
       "groundTruthMatch": true,
-      "processingTimeMs": 1
+      "processingTimeMs": 4
     },
     {
       "caseId": "case_l1_25",
@@ -320,7 +325,7 @@
       "policyCheckPassed": true,
       "policyViolations": [],
       "executionStatus": "SUCCESS",
-      "recoveredAmount": 2303.16,
+      "recoveredAmount": 191162.28,
       "groundTruthMatch": true,
       "processingTimeMs": 2
     },
@@ -332,9 +337,9 @@
       "policyCheckPassed": true,
       "policyViolations": [],
       "executionStatus": "SUCCESS",
-      "recoveredAmount": 8158.1,
+      "recoveredAmount": 677122.3,
       "groundTruthMatch": true,
-      "processingTimeMs": 1
+      "processingTimeMs": 0
     },
     {
       "caseId": "case_l2_2",
@@ -344,9 +349,9 @@
       "policyCheckPassed": true,
       "policyViolations": [],
       "executionStatus": "SUCCESS",
-      "recoveredAmount": 8337.76,
+      "recoveredAmount": 692034.0800000001,
       "groundTruthMatch": true,
-      "processingTimeMs": 1
+      "processingTimeMs": 0
     },
     {
       "caseId": "case_l2_3",
@@ -358,7 +363,7 @@
       "executionStatus": "FAILED",
       "recoveredAmount": 0,
       "groundTruthMatch": true,
-      "processingTimeMs": 1
+      "processingTimeMs": 0
     },
     {
       "caseId": "case_l2_4",
@@ -370,7 +375,7 @@
       "executionStatus": "FAILED",
       "recoveredAmount": 0,
       "groundTruthMatch": true,
-      "processingTimeMs": 2
+      "processingTimeMs": 4
     },
     {
       "caseId": "case_l2_5",
@@ -382,7 +387,7 @@
         "MAX_DISCOUNT_PERCENT: Proposed discount of 10% exceeds the maximum limit of 5%. Capped to 5%."
       ],
       "executionStatus": "SUCCESS",
-      "recoveredAmount": 2562.7,
+      "recoveredAmount": 212704.09999999998,
       "groundTruthMatch": true,
       "processingTimeMs": 3
     },
@@ -396,7 +401,7 @@
       "executionStatus": "FAILED",
       "recoveredAmount": 0,
       "groundTruthMatch": true,
-      "processingTimeMs": 0
+      "processingTimeMs": 4
     },
     {
       "caseId": "case_l2_7",
@@ -406,9 +411,9 @@
       "policyCheckPassed": true,
       "policyViolations": [],
       "executionStatus": "SUCCESS",
-      "recoveredAmount": 14428.43,
+      "recoveredAmount": 1197559.69,
       "groundTruthMatch": true,
-      "processingTimeMs": 1
+      "processingTimeMs": 4
     },
     {
       "caseId": "case_l2_8",
@@ -420,7 +425,7 @@
       "executionStatus": "FAILED",
       "recoveredAmount": 0,
       "groundTruthMatch": true,
-      "processingTimeMs": 0
+      "processingTimeMs": 1
     },
     {
       "caseId": "case_l2_9",
@@ -432,9 +437,9 @@
         "MAX_DISCOUNT_PERCENT: Proposed discount of 10% exceeds the maximum limit of 5%. Capped to 5%."
       ],
       "executionStatus": "SUCCESS",
-      "recoveredAmount": 4125.64,
+      "recoveredAmount": 342428.12000000005,
       "groundTruthMatch": true,
-      "processingTimeMs": 0
+      "processingTimeMs": 4
     },
     {
       "caseId": "case_l2_10",
@@ -446,7 +451,7 @@
         "MAX_DISCOUNT_PERCENT: Proposed discount of 10% exceeds the maximum limit of 5%. Capped to 5%."
       ],
       "executionStatus": "SUCCESS",
-      "recoveredAmount": 13356.54,
+      "recoveredAmount": 1108592.82,
       "groundTruthMatch": true,
       "processingTimeMs": 0
     },
@@ -462,7 +467,7 @@
       "executionStatus": "SUCCESS",
       "recoveredAmount": 11930.91,
       "groundTruthMatch": true,
-      "processingTimeMs": 2
+      "processingTimeMs": 4
     },
     {
       "caseId": "case_l2_12",
@@ -474,7 +479,7 @@
       "executionStatus": "FAILED",
       "recoveredAmount": 0,
       "groundTruthMatch": true,
-      "processingTimeMs": 4
+      "processingTimeMs": 1
     },
     {
       "caseId": "case_l2_13",
@@ -498,7 +503,7 @@
       "executionStatus": "FAILED",
       "recoveredAmount": 0,
       "groundTruthMatch": true,
-      "processingTimeMs": 2
+      "processingTimeMs": 1
     },
     {
       "caseId": "case_l2_15",
@@ -510,7 +515,7 @@
       "executionStatus": "SUCCESS",
       "recoveredAmount": 13050.38,
       "groundTruthMatch": true,
-      "processingTimeMs": 4
+      "processingTimeMs": 2
     },
     {
       "caseId": "case_l2_16",
@@ -522,7 +527,7 @@
       "executionStatus": "SUCCESS",
       "recoveredAmount": 1313.3,
       "groundTruthMatch": true,
-      "processingTimeMs": 0
+      "processingTimeMs": 3
     },
     {
       "caseId": "case_l2_17",
@@ -536,7 +541,7 @@
       "executionStatus": "SUCCESS",
       "recoveredAmount": 6655.01,
       "groundTruthMatch": true,
-      "processingTimeMs": 0
+      "processingTimeMs": 1
     },
     {
       "caseId": "case_l2_18",
@@ -546,7 +551,7 @@
       "policyCheckPassed": true,
       "policyViolations": [],
       "executionStatus": "SUCCESS",
-      "recoveredAmount": 5267.36,
+      "recoveredAmount": 437190.87999999995,
       "groundTruthMatch": true,
       "processingTimeMs": 1
     },
@@ -558,9 +563,9 @@
       "policyCheckPassed": true,
       "policyViolations": [],
       "executionStatus": "SUCCESS",
-      "recoveredAmount": 6719.59,
+      "recoveredAmount": 557725.97,
       "groundTruthMatch": true,
-      "processingTimeMs": 0
+      "processingTimeMs": 4
     },
     {
       "caseId": "case_l2_20",
@@ -572,9 +577,9 @@
         "MAX_DISCOUNT_PERCENT: Proposed discount of 10% exceeds the maximum limit of 5%. Capped to 5%."
       ],
       "executionStatus": "SUCCESS",
-      "recoveredAmount": 8102.56,
+      "recoveredAmount": 672512.48,
       "groundTruthMatch": true,
-      "processingTimeMs": 0
+      "processingTimeMs": 3
     },
     {
       "caseId": "case_l2_21",
@@ -586,7 +591,7 @@
       "executionStatus": "FAILED",
       "recoveredAmount": 0,
       "groundTruthMatch": true,
-      "processingTimeMs": 4
+      "processingTimeMs": 2
     },
     {
       "caseId": "case_l2_22",
@@ -596,9 +601,9 @@
       "policyCheckPassed": true,
       "policyViolations": [],
       "executionStatus": "SUCCESS",
-      "recoveredAmount": 8403.36,
+      "recoveredAmount": 697478.88,
       "groundTruthMatch": true,
-      "processingTimeMs": 2
+      "processingTimeMs": 4
     },
     {
       "caseId": "case_l2_23",
@@ -622,7 +627,7 @@
       "executionStatus": "FAILED",
       "recoveredAmount": 0,
       "groundTruthMatch": true,
-      "processingTimeMs": 1
+      "processingTimeMs": 0
     },
     {
       "caseId": "case_l2_25",
@@ -636,7 +641,7 @@
       "executionStatus": "SUCCESS",
       "recoveredAmount": 10289.59,
       "groundTruthMatch": true,
-      "processingTimeMs": 3
+      "processingTimeMs": 1
     }
   ]
 }

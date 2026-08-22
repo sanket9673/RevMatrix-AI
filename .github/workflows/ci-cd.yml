@@ -1,0 +1,118 @@
+name: Production CI/CD Pipeline
+
+on:
+  push:
+    branches: [ main, master, develop ]
+  pull_request:
+    branches: [ main, master, develop ]
+
+jobs:
+  security-scan:
+    name: Security Scan (Gitleaks & npm audit)
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Run Gitleaks Secret Detection
+        uses: gitleaks/gitleaks-action@v2
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        continue-on-error: true # Keep pipeline robust but warn on potential leak failures
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install Dependencies
+        run: npm ci
+
+      - name: Run npm audit
+        run: npm audit --audit-level=high
+
+  typecheck-and-lint:
+    name: Typecheck and Lint
+    runs-on: ubuntu-latest
+    needs: security-scan
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install Dependencies
+        run: npm ci
+
+      - name: Run Prisma Generate
+        run: npx prisma generate
+
+      - name: Typecheck TypeScript
+        run: npx tsc --noEmit
+
+      - name: Run ESLint
+        run: npm run lint
+
+  run-tests-and-benchmark:
+    name: Run Tests & Benchmark
+    runs-on: ubuntu-latest
+    needs: typecheck-and-lint
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install Dependencies
+        run: npm ci
+
+      - name: Run Prisma Generate
+        run: npx prisma generate
+
+      - name: Run Jest Unit Tests
+        run: npm run test
+        env:
+          DATABASE_URL: "postgresql://postgres:postgres@localhost:5432/revmatrix_test?schema=public"
+
+      - name: Run Vitest Benchmark Tests
+        run: npm run test:benchmark
+
+      - name: Execute Benchmark Performance Script
+        run: npm run run:benchmark
+
+  build-verification:
+    name: Build Verification
+    runs-on: ubuntu-latest
+    needs: run-tests-and-benchmark
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install Dependencies
+        run: npm ci
+
+      - name: Run Build Verification
+        run: npm run build
+        env:
+          DATABASE_URL: "postgresql://postgres:postgres@localhost:5432/revmatrix_prod?schema=public"
+          GEMINI_API_KEY: "dummy-key-for-compilation-verification"
+          RAZORPAY_KEY_ID: "rzp_test_dummy"
+          RAZORPAY_KEY_SECRET: "dummy_secret"
+          NEXT_PUBLIC_APP_URL: "http://localhost:3000"

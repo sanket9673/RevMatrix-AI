@@ -286,6 +286,14 @@ export default function Dashboard() {
   const [refreshing, setRefreshing] = React.useState<boolean>(false);
   const [selectedWorkflow, setSelectedWorkflow] = React.useState<RecoveryInstance | null>(null);
   const [isModalOpen, setIsModalOpen] = React.useState<boolean>(false);
+  const [data, setData] = React.useState<RecoveryInstance[]>([]);
+  const [isLoading, setIsLoading] = React.useState<boolean>(true);
+
+  // Initialize dashboard state immediately on first mount to prevent client hydration mismatch/race
+  React.useEffect(() => {
+    setData(mockRecoveryData);
+    setIsLoading(false);
+  }, []);
 
   // Watch URL params to auto-open specific workflow modal from search clicks
   React.useEffect(() => {
@@ -341,7 +349,7 @@ export default function Dashboard() {
 
   // Filter items based on selected tab, status, and search query
   const filteredData = React.useMemo(() => {
-    return mockRecoveryData.filter((item) => {
+    return data.filter((item) => {
       // Filter by tab
       if (activeTab === "loop1" && item.loop !== "Loop 1") return false;
       if (activeTab === "loop2" && item.loop !== "Loop 2") return false;
@@ -364,7 +372,7 @@ export default function Dashboard() {
 
       return true;
     });
-  }, [activeTab, statusFilter, searchQuery]);
+  }, [data, activeTab, statusFilter, searchQuery]);
 
   return (
     <div className="space-y-8">
@@ -546,7 +554,7 @@ export default function Dashboard() {
       <Card className="border border-zinc-900 bg-zinc-900/20 backdrop-blur-md">
         <CardContent className="p-0">
           <AnimatePresence mode="wait">
-            {refreshing ? (
+            {isLoading || refreshing ? (
               // Loading Skeleton State
               <motion.div
                 key="skeleton"

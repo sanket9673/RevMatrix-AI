@@ -389,3 +389,27 @@ NEXT_PUBLIC_APP_URL="http://localhost:3000"
 - **Project:** RevMatrix-AI
 - **GitHub Repository:** [https://github.com/sanket9673/revmatrix-ai](https://github.com/sanket9673/revmatrix-ai)
 - **Email Contact:** [sanketch9673@gmail.com](mailto:sanketch9673@gmail.com)
+
+---
+
+## 9. Production CI/CD Pipeline & Deployment
+
+The application features a production-ready automated CI/CD pipeline configured at `.github/workflows/ci-cd.yml` with 4 key parallel/sequential jobs:
+
+1. **`security-scan`**: Scans the codebase for hardcoded credentials/secrets using Gitleaks and audits package vulnerabilities using `npm audit --audit-level=high`.
+2. **`typecheck-and-lint`**: Verifies type safety and code quality by running `npx tsc --noEmit` and `npm run lint`.
+3. **`run-tests-and-benchmark`**: Executes Jest unit tests (`npm run test`), Vitest benchmark tests (`npm run test:benchmark`), and validates benchmark engine calculation performance by running `npm run run:benchmark`.
+4. **`build-verification`**: Verifies successful Next.js compilation via `npm run build` using mock environment variables.
+
+### Scheduled Cron Tasks (Vercel)
+Relies on a Vercel-native cron definition (`vercel.json`) executing `/api/cron/process-due-recoveries` every **1 minute** (`* * * * *`) to process overdue accounts and failed transactions in the recovery queue.
+
+---
+
+## 10. Technical Disclosures & Honest Framing
+
+To support the Hackathon Evaluation panel, we provide the following honest technical disclosures regarding simulation parameters and live demo pipelines:
+
+- **Benchmark Execution & Deterministic Fixtures:** Executing `npm run run:benchmark` triggers live scoring calculations over a randomized synthetic transaction failure dataset (located in `data/`). However, to guarantee reproducible automated testing and avoid rate limits, the core agent tools (`tools.ts`) fallback to deterministic fixtures and mock responses during test suite runs.
+- **Telemetry Replay Mode on Live Pitches:** To prevent exposing live API keys or triggering excessive live provider endpoints during pitches, the `/benchmark` UI tab operates in replay stream mode. It replays real-world execution logs and run traces with artificial pacing (60ms–120ms delays) to simulate live webhook traffic safely.
+- **Monetary Aggregation & Currency Normalization:** The synthetic dataset contains mixed transactions in both USD ($) and INR (₹). Summing raw values across different currencies produces inaccurate metrics. The benchmark pipeline normalizes all monetary aggregates to Indian Rupees (₹) using a fixed exchange rate constant of **1 USD = ₹83.0**. All financial totals displayed in `BENCHMARK_RESULTS.json` and CLI run summaries are represented in normalized INR (`₹`).
