@@ -3,7 +3,7 @@ import { prisma } from '@/lib/prisma';
 import { NextRequest } from 'next/server';
 import { LoopType, WorkflowStatus } from '@prisma/client';
 
-describe('Vercel Cron API Route', () => {
+describe('Netlify Cron API Route', () => {
   beforeEach(async () => {
     // Clean up
     await prisma.reasoningTrace.deleteMany();

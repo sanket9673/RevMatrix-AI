@@ -427,8 +427,8 @@ The application features a production-ready automated CI/CD pipeline configured 
 3. **`run-tests-and-benchmark`**: Executes Jest unit tests (`npm run test`), Vitest benchmark tests (`npm run test:benchmark`), and validates benchmark engine calculation performance by running `npm run run:benchmark`.
 4. **`build-verification`**: Verifies successful Next.js compilation via `npm run build` using mock environment variables.
 
-### Scheduled Cron Tasks (Vercel)
-Relies on a Vercel-native cron definition (`vercel.json`) executing `/api/cron/process-due-recoveries` every **1 minute** (`* * * * *`) to process overdue accounts and failed transactions in the recovery queue.
+### Scheduled Cron Tasks (Netlify)
+Relies on Netlify Scheduled Functions (or external cron triggers) executing `/api/cron/process-due-recoveries` to process overdue accounts and failed transactions in the recovery queue.
 
 ---
 

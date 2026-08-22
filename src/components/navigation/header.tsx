@@ -73,7 +73,7 @@ export function Header() {
     },
     {
       id: "nt-3",
-      title: "Vercel Cron Batch Completed",
+      title: "Netlify Cron Batch Completed",
       description: "process-due-recoveries queue process successfully executed 3 workflows.",
       time: "1 hour ago",
       unread: false,
@@ -207,7 +207,7 @@ export function Header() {
           </span>
           <span className="font-medium text-zinc-400">System Operational</span>
           <span className="text-zinc-700">|</span>
-          <span className="text-[10px] font-mono text-zinc-500">Vercel Cron Active</span>
+          <span className="text-[10px] font-mono text-zinc-500">Netlify Cron Active</span>
         </div>
 
         {/* Razorpay Mode Switcher */}
@@ -490,12 +490,12 @@ export function Header() {
                 </Badge>
               </div>
 
-              {/* Vercel Cron Active */}
+              {/* Netlify Cron Active */}
               <div className="flex items-center justify-between p-3 rounded-lg bg-zinc-950/60 border border-zinc-850">
                 <div className="flex items-center gap-2.5">
                   <Activity className="h-4.5 w-4.5 text-sky-400 animate-pulse" />
                   <div>
-                    <span className="text-xs font-semibold text-zinc-300 block">Vercel Cron Engine</span>
+                    <span className="text-xs font-semibold text-zinc-300 block">Netlify Cron Engine</span>
                     <span className="text-[10px] font-mono text-zinc-500">
                       Interval: 10 mins schedule
                     </span>
