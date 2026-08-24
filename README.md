@@ -392,20 +392,20 @@ The following metrics represent actual live Groq execution metrics across all 50
 | Metric | Value | Description |
 | :--- | :--- | :--- |
 | **Total Scenarios Evaluated** | 50 | Total number of synthetic transaction/invoice failure cases. |
-| **Dual-Loop Conversion Rate ($\text{CR}_{\text{dual}}$)** | 80.56% | Rate of successful automated recovery over total recoverable cases. |
-| **Net Recovered Yield ($\text{NRY}$)** | 71.60% | ₹55,25,192.71 / ₹77,17,113.04 @ 83.0 USD/INR. |
+| **Dual-Loop Conversion Rate ($\text{CR}_{\text{dual}}$)** | 77.78% | Rate of successful automated recovery over total recoverable cases. |
+| **Net Recovered Yield ($\text{NRY}$)** | 79.09% | ₹61,03,466.70 / ₹77,17,113.04 @ 83.0 USD/INR. |
 | **Policy Compliance Rate ($\text{PCR}$)** | 100.00% | Percentage of actions completely free from un-intercepted policy breaches (0 breaches). |
-| **Average Execution Latency** | 5087.70 ms | Average processing and decision latency of the Groq agent (including pre-context fetching). |
-| **Binary Recovery Precision** | 77.78% | Precision of predicting whether a transaction failure is recoverable. |
-| **Binary Recovery Recall** | 97.22% | Recall of predicting whether a transaction failure is recoverable. |
-| **Binary Recovery F1 Score** | 86.42% | Harmonic mean of recovery precision and recall. |
+| **Average Execution Latency** | 3656.58 ms | Average processing and decision latency of the Groq agent (including pre-context fetching). |
+| **Binary Recovery Precision** | 78.57% | Precision of predicting whether a transaction failure is recoverable. |
+| **Binary Recovery Recall** | 91.67% | Recall of predicting whether a transaction failure is recoverable. |
+| **Binary Recovery F1 Score** | 84.62% | Harmonic mean of recovery precision and recall. |
 | **Action Prediction Accuracy** | 70.00% | Accuracy of the recommended action matching the ground truth optimal action. |
 
 ### Financial Recovery Totals (Normalized @ 83.0 USD/INR):
 - **Total Recoverable:** ₹77,17,113.04
-- **Total Recovered:** ₹57,60,377.44
-- **Total Discounts Offered:** ₹2,35,184.73
-- **Net Recovered Yield:** ₹55,25,192.71
+- **Total Recovered:** ₹63,60,779.71
+- **Total Discounts Offered:** ₹2,57,313.01
+- **Net Recovered Yield:** ₹61,03,466.70
 
 *Note: Benchmark evaluated using live Groq (openai/gpt-oss-safeguard-20b via sandbox routing fallback) single-turn reasoning over pre-bundled context across 50 synthetic scenarios.*
 
