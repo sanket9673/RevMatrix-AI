@@ -571,9 +571,10 @@ async function run() {
     traces,
   };
 
-  // Save to BENCHMARK_RESULTS.json
+  const outputFilename = useMock ? 'BENCHMARK_RESULTS_MOCK.json' : 'BENCHMARK_RESULTS.json';
+  // Save to output file
   fs.writeFileSync(
-    path.join(process.cwd(), 'BENCHMARK_RESULTS.json'),
+    path.join(process.cwd(), outputFilename),
     JSON.stringify(summary, null, 2),
     'utf-8'
   );
@@ -603,7 +604,7 @@ async function run() {
   console.log(`  Total Discounts:      ${formatINR(discountsSum)}`);
   console.log(`  Net Recovered Yield:  ${formatINR(netRecoveredYieldAmount)} (Normalized @ 83.0 USD/INR)`);
   console.log('='.repeat(80));
-  console.log(`Traces exported to BENCHMARK_RESULTS.json`);
+  console.log(`Traces exported to ${outputFilename}`);
 }
 
 // Only execute when run directly as script
