@@ -298,11 +298,23 @@ async function run() {
     process.exit(1);
   }
 
-  const cases: SyntheticCase[] = JSON.parse(fs.readFileSync(casesPath, 'utf-8'));
-  const labels: GroundTruthLabel[] = JSON.parse(fs.readFileSync(labelsPath, 'utf-8'));
+  let cases: SyntheticCase[] = JSON.parse(fs.readFileSync(casesPath, 'utf-8'));
+  let labels: GroundTruthLabel[] = JSON.parse(fs.readFileSync(labelsPath, 'utf-8'));
 
   const args = process.argv.slice(2);
   const useMock = args.includes('--mock') || !process.env.GROQ_API_KEY;
+
+  let limit: number | null = null;
+  const limitIdx = args.indexOf('--limit');
+  if (limitIdx !== -1 && limitIdx + 1 < args.length) {
+    limit = parseInt(args[limitIdx + 1], 10);
+  }
+
+  if (limit !== null && !isNaN(limit)) {
+    cases = cases.slice(0, limit);
+    labels = labels.slice(0, limit);
+    console.log(`Limiting benchmark execution to first ${limit} scenarios.`);
+  }
 
   if (useMock) {
     console.log('Running benchmark in OFFLINE MOCKED mode.');
