@@ -356,8 +356,14 @@ Available routes:
 To execute the 50-record benchmark runner directly from your command line:
 
 ```bash
-npm run benchmark
+# Runs in LIVE mode (requires GROQ_API_KEY in your .env file)
+npm run run:benchmark
+
+# Runs in OFFLINE MOCKED mode (safe for verifying pipeline mechanics without API keys or quota consumption)
+npm run run:benchmark -- --mock
 ```
+
+*Note: If no `GROQ_API_KEY` is present in the environment variables, the script will automatically fallback to the offline mocked mode, ensuring zero setup friction.*
 
 ---
 
@@ -366,40 +372,42 @@ npm run benchmark
 To ensure high availability, low latency, and operational resilience, RevMatrix-AI utilizes a **Multi-Provider Agent Architecture** consisting of a primary high-performance provider and a secondary fallback provider:
 
 1. **Primary LLM: Groq llama-3.3-70b-versatile**
-   - **Characteristics:** Ultra-fast reasoning and orchestration (average step latency ~200-500ms), standard OpenAI-compatible tool/function calling.
+   - **Characteristics:** Ultra-fast single-turn reasoning (average latency ~100-300ms).
+   - **Pre-Context Bundling:** To bypass latency and rate limits of round-trip tool execution, transaction context, CRM history, and policy bounds are programmatically pre-fetched and bundled into the prompt context.
    - **Role:** Handles all transaction diagnosis and recovery routing requests initially.
-   - **Constraints:** Operates under strict rate limits (30 RPM, 14.4k RPD on standard tier). Equipped with an automated exponential backoff mechanism in `GroqAgentOrchestrator` to transparently handle transient HTTP 429 rate limit errors.
+   - **Sandbox Routing & Fallbacks:** If the primary `llama-3.3-70b-versatile` model is not present in the hosting environment (e.g. sandbox routers), `GroqAgentOrchestrator` automatically queries list models and routes to an available sandbox-compatible model (such as `openai/gpt-oss-safeguard-20b`), ensuring seamless local evaluation.
+   - **Constraints:** Equipped with an automated exponential backoff mechanism in `GroqAgentOrchestrator` to transparently handle transient HTTP 429 rate limit errors.
 
-2. **Secondary Fallback LLM: Google AI Studio gemini-2.5-flash**
+2. **Secondary Fallback LLM: Google AI Studio gemini-2.5-flash** (used in production API routes)
    - **Characteristics:** Comprehensive multi-hop function calling, complex thought/reasoning trace preservation.
-   - **Role:** Acts as a failover agent if the primary Groq connection encounters sustained API errors, permanent rate limits, or network timeouts.
+   - **Role:** Acts as the default engine for webhook integrations and cron-based background recovery workflows.
    - **Thought Preservation:** Implements full candidate content passing in the conversation history without stripping out functionCall metadata or inner thought signatures.
 
 ---
 
 ## 7. Live Groq AI Benchmark Results
 
-The following metrics represent actual live Groq execution metrics across all 50 synthetic failures, calculated with `IsFallback: FALSE` for all records:
+The following metrics represent actual live Groq execution metrics across all 50 synthetic failures, calculated with `IsFallback: FALSE` for all records using the verified live results:
 
 | Metric | Value | Description |
 | :--- | :--- | :--- |
 | **Total Scenarios Evaluated** | 50 | Total number of synthetic transaction/invoice failure cases. |
-| **Dual-Loop Conversion Rate ($CR_{dual}$)** | 86.11% | Rate of successful automated recovery over total recoverable cases. |
-| **Net Recovered Yield (NRY)** | 73.25% | Recovered GTV minus customer discounts divided by total recoverable value. |
+| **Dual-Loop Conversion Rate ($CR_{dual}$)** | 80.56% | Rate of successful automated recovery over total recoverable cases. |
+| **Net Recovered Yield (NRY)** | 71.60% | Recovered GTV minus customer discounts divided by total recoverable value. |
 | **Policy Compliance Rate (PCR)** | 100.00% | Percentage of actions completely free from un-intercepted policy breaches. |
-| **Average Latency** | 7999.66 ms | Average processing and decision latency of the Groq agent (including multi-hop tool execution). |
-| **Binary Recovery Precision** | 81.82% | Precision of predicting whether a transaction failure is recoverable. |
-| **Binary Recovery Recall** | 100.00% | Recall of predicting whether a transaction failure is recoverable. |
-| **Binary Recovery F1 Score** | 90.00% | Harmonic mean of recovery precision and recall. |
-| **Action Prediction Accuracy** | 78.00% | Accuracy of the recommended action matching the ground truth optimal action. |
+| **Average Latency** | 5087.70 ms | Average processing and decision latency of the Groq agent (including pre-context fetching). |
+| **Binary Recovery Precision** | 77.78% | Precision of predicting whether a transaction failure is recoverable. |
+| **Binary Recovery Recall** | 97.22% | Recall of predicting whether a transaction failure is recoverable. |
+| **Binary Recovery F1 Score** | 86.42% | Harmonic mean of recovery precision and recall. |
+| **Action Prediction Accuracy** | 70.00% | Accuracy of the recommended action matching the ground truth optimal action. |
 
 ### Financial Recovery Totals (Normalized @ 83.0 USD/INR):
 - **Total Recoverable:** ₹77,17,113.04
-- **Total Recovered:** ₹58,21,083.31
-- **Total Discounts Offered:** ₹1,68,612.29
-- **Net Recovered Yield:** ₹56,52,471.02
+- **Total Recovered:** ₹57,60,377.44
+- **Total Discounts Offered:** ₹2,35,184.73
+- **Net Recovered Yield:** ₹55,25,192.71
 
-*Note: Benchmark evaluated using live Groq (llama-3.3-70b-versatile via sandbox routing) multi-step function calling across 50 synthetic scenarios.*
+*Note: Benchmark evaluated using live Groq (openai/gpt-oss-safeguard-20b via sandbox routing fallback) single-turn reasoning over pre-bundled context across 50 synthetic scenarios.*
 
 ---
 

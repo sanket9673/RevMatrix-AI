@@ -416,7 +416,7 @@ async function run() {
       };
 
       if (i > 0) {
-        await new Promise(resolve => setTimeout(resolve, 1500));
+        await new Promise(resolve => setTimeout(resolve, 1800));
       }
 
       try {
@@ -434,15 +434,8 @@ async function run() {
         providerName = result.provider;
         isFallbackRecord = result.isFallback;
       } catch (err) {
-        console.error(`Groq API call failed for case ${sCase.id}. Falling back to mock. Error:`, err);
-        const decision = mockedOrchestrator.diagnoseAndPlan(sCase);
-        recommendedAction = decision.recommendedAction;
-        proposedDiscountPercent = decision.proposedDiscountPercent;
-        justification = decision.justification;
-        realThoughts = 'Groq error fallback to Mocked reasoning.';
-        processingTimeMs = Date.now() - start;
-        providerName = 'MOCK_FALLBACK';
-        isFallbackRecord = true;
+        console.error(`Groq API call failed for case ${sCase.id}. Failing benchmark run. Error:`, err);
+        throw err;
       }
     }
 
@@ -534,8 +527,9 @@ async function run() {
     });
 
     // Formatting pretty print for console progress log
+    const modelFriendlyName = providerName.toLowerCase().replace('groq_', '').replace(/_/g, '-');
     console.log(
-      `[Case ${i + 1}/50] CaseID: ${sCase.id} | Provider: GROQ (llama-3.3-70b) | Latency: ${processingTimeMs}ms | Action: ${recommendedAction} | IsFallback: ${isFallbackRecord ? 'TRUE ✗' : 'FALSE ✓'}`
+      `[Case ${i + 1}/50] CaseID: ${sCase.id} | Provider: GROQ (${modelFriendlyName}) | Latency: ${processingTimeMs}ms | Action: ${recommendedAction} | IsFallback: ${isFallbackRecord ? 'TRUE ✗' : 'FALSE ✓'}`
     );
   }
 

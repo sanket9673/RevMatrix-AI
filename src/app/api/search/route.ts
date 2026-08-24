@@ -139,7 +139,11 @@ export async function GET(req: NextRequest) {
       transactions: dbTransactions,
       workflows: combinedWorkflows,
       auditLogs: combinedAuditLogs,
-      traces: staticTraces
+      traces: staticTraces,
+      _metadata: {
+        disclaimer: 'Includes static fallback demo results for high-fidelity presentation safety.',
+        isSimulated: true
+      }
     });
 
   } catch (error) {
