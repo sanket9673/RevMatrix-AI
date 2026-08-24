@@ -27,6 +27,8 @@ export class GroqAgentOrchestrator {
 
   constructor(apiKey?: string) {
     this.groq = new Groq({ apiKey: apiKey || process.env.GROQ_API_KEY });
+    // Model Note - Primary LLM Target: llama-3.3-70b-versatile (with automatic sandbox routing to openai/gpt-oss-safeguard-20b depending on Groq API quota allocation).
+    console.log("Primary LLM Target: llama-3.3-70b-versatile (with automatic sandbox routing to openai/gpt-oss-safeguard-20b depending on Groq API quota allocation).");
   }
 
   private async getModels(): Promise<{ selected: string; fallback: string }> {
@@ -130,18 +132,14 @@ Output your recommendation strictly as JSON matching this schema:
         response_format: { type: 'json_object' },
       }));
     } catch (err: any) {
-      if (err?.status === 429 || err?.message?.includes('429')) {
-        console.warn(`[Groq] ${selectedModel} Rate Limited. Falling back to ${fallback}...`);
-        selectedModel = fallback;
-        response = await callGroqWithBackoff(() => this.groq.chat.completions.create({
-          model: selectedModel,
-          messages,
-          temperature: 0.1,
-          response_format: { type: 'json_object' },
-        }));
-      } else {
-        throw err;
-      }
+      console.warn(`[Groq] Model call issue with ${selectedModel} (${err?.status || err?.message}). Falling back to ${fallback}...`);
+      selectedModel = fallback;
+      response = await callGroqWithBackoff(() => this.groq.chat.completions.create({
+        model: selectedModel,
+        messages,
+        temperature: 0.1,
+        response_format: { type: 'json_object' },
+      }));
     }
 
     const content = response.choices[0]?.message?.content || '{}';

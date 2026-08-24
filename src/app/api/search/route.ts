@@ -74,6 +74,7 @@ export async function GET(req: NextRequest) {
       nextCheckAt: new Date().toISOString(),
       appliedDiscount: w.strategy.includes('5%') ? 5 : 0,
       netRecoveredGtv: parseFloat(w.value.replace(/[^0-9.]/g, '')),
+      isSimulated: true,
       transaction: {
         razorpayId: `pay_${w.id}`,
         customerEmail: `${w.entity.toLowerCase().replace(/\s+/g, '')}@example.com`,
@@ -92,7 +93,8 @@ export async function GET(req: NextRequest) {
       title: t.title,
       customer: t.customer,
       status: t.status,
-      startedAt: t.startedAt
+      startedAt: t.startedAt,
+      isSimulated: true
     }));
 
     const staticAuditLogs = MOCK_AUDIT_BLOCKS.filter(b =>
@@ -106,7 +108,8 @@ export async function GET(req: NextRequest) {
       action: b.actionExecuted,
       actor: b.actor,
       currentHash: b.currentHash,
-      createdAt: b.timestamp
+      createdAt: b.timestamp,
+      isSimulated: true
     }));
 
     // Merge DB results and static fallback results

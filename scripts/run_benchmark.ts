@@ -307,7 +307,7 @@ async function run() {
   if (useMock) {
     console.log('Running benchmark in OFFLINE MOCKED mode.');
   } else {
-    console.log('Running benchmark in LIVE GROQ mode using llama-3.3-70b-versatile.');
+    console.log('Running benchmark in LIVE GROQ mode. Primary LLM Target: llama-3.3-70b-versatile (with automatic sandbox routing to openai/gpt-oss-safeguard-20b depending on Groq API quota allocation).');
   }
 
   const mockedOrchestrator = new MockedAgentOrchestrator();

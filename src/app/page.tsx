@@ -533,6 +533,10 @@ export default function Dashboard() {
       </div>
 
       {/* SECTION 3: ACTIVE RECOVERY FEED (REAL-TIME INTERACTIVE DATA TABLE) */}
+      <span className="text-xs font-semibold text-amber-500 bg-amber-500/10 border border-amber-500/20 px-2.5 py-1 rounded-full flex items-center gap-1.5 w-fit mb-3">
+        <ShieldCheck className="h-3.5 w-3.5" />
+        DEMO DATA | SIMULATED FEED
+      </span>
       <Card className="border border-zinc-900 bg-zinc-900/20 backdrop-blur-md">
         <CardContent className="p-0">
           {isLoading || refreshing ? (

@@ -606,6 +606,27 @@ export function Header({ onMenuClick }: HeaderProps) {
                 </Badge>
               </div>
 
+              {/* Groq Engine status */}
+              <div className="flex flex-col gap-1.5 p-3 rounded-lg bg-zinc-950/60 border border-zinc-850">
+                <div className="flex items-center justify-between">
+                  <div className="flex items-center gap-2.5">
+                    <Cpu className="h-4.5 w-4.5 text-amber-500" />
+                    <div>
+                      <span className="text-xs font-semibold text-zinc-300 block">Groq Engine Model</span>
+                      <span className="text-[10px] font-mono text-zinc-500">
+                        Primary LLM Target
+                      </span>
+                    </div>
+                  </div>
+                  <Badge variant="warning" className="font-mono text-[9px]">
+                    llama-3.3-70b-versatile
+                  </Badge>
+                </div>
+                <div className="text-[10px] text-zinc-400 mt-1 leading-normal font-sans">
+                  Groq benchmark path utilizes Pre-Context Bundling (single-turn execution with pre-fetched customer & policy context) for rate-limit efficiency, while multi-hop tool calling is implemented in the Gemini engine.
+                </div>
+              </div>
+
               {/* Database connection details */}
               <div className="flex items-center justify-between p-3 rounded-lg bg-zinc-950/60 border border-zinc-850">
                 <div className="flex items-center gap-2.5">
