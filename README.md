@@ -403,8 +403,8 @@ The following metrics represent actual live Groq execution metrics across all 50
 
 ### Financial Recovery Totals (Normalized @ 83.0 USD/INR):
 - **Total Recoverable:** ₹77,17,113.04
-- **Total Recovered:** ₹57,82,505.72
-- **Total Discounts Offered:** ₹2,57,313.01
+- **Total Recovered:** ₹57,60,377.44
+- **Total Discounts Offered:** ₹2,35,184.73
 - **Net Recovered Yield:** ₹55,25,192.71
 
 *Note: Benchmark evaluated using live Groq (openai/gpt-oss-safeguard-20b via sandbox routing fallback) single-turn reasoning over pre-bundled context across 50 synthetic scenarios.*

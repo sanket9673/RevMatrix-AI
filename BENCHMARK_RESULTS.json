@@ -6,8 +6,8 @@
   "recoverableCount": 36,
   "actualRecoveredCount": 29,
   "totalRecoverableAmountINR": 7717113.04,
-  "totalRecoveredAmountINR": 5782505.72,
-  "totalDiscountsINR": 257313.01,
+  "totalRecoveredAmountINR": 5760377.44,
+  "totalDiscountsINR": 235184.73,
   "netRecoveredYieldINR": 5525192.71,
   "currencyNormalizationNote": "Normalized @ 83 USD/INR",
   "metrics": {
