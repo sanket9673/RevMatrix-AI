@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-08-29T20:01:56.524Z",
+  "timestamp": "2026-08-29T20:24:23.165Z",
   "totalEvaluated": 50,
   "loop1Cases": 25,
   "loop2Cases": 25,
@@ -14,7 +14,7 @@
     "CR_dual": 0.9444444444444444,
     "NRY": 0.9537538929843122,
     "PCR": 1,
-    "avgLatencyMs": 2.08,
+    "avgLatencyMs": 1.88,
     "precision": 1,
     "recall": 1,
     "f1_score": 1,
@@ -31,10 +31,10 @@
       "executionStatus": "SUCCESS",
       "recoveredAmount": 2418.26,
       "groundTruthMatch": true,
-      "processingTimeMs": 1,
+      "processingTimeMs": 3,
       "reasoningThoughts": "Mocked offline reasoning process.",
-      "provider": "MOCK",
-      "isFallback": false
+      "provider": "OFFLINE_DETERMINISTIC_MOCK",
+      "isFallback": true
     },
     {
       "caseId": "case_l1_2",
@@ -48,8 +48,8 @@
       "groundTruthMatch": true,
       "processingTimeMs": 3,
       "reasoningThoughts": "Mocked offline reasoning process.",
-      "provider": "MOCK",
-      "isFallback": false
+      "provider": "OFFLINE_DETERMINISTIC_MOCK",
+      "isFallback": true
     },
     {
       "caseId": "case_l1_3",
@@ -61,10 +61,10 @@
       "executionStatus": "SUCCESS",
       "recoveredAmount": 1951.12,
       "groundTruthMatch": true,
-      "processingTimeMs": 0,
+      "processingTimeMs": 3,
       "reasoningThoughts": "Mocked offline reasoning process.",
-      "provider": "MOCK",
-      "isFallback": false
+      "provider": "OFFLINE_DETERMINISTIC_MOCK",
+      "isFallback": true
     },
     {
       "caseId": "case_l1_4",
@@ -78,8 +78,8 @@
       "groundTruthMatch": true,
       "processingTimeMs": 1,
       "reasoningThoughts": "Mocked offline reasoning process.",
-      "provider": "MOCK",
-      "isFallback": false
+      "provider": "OFFLINE_DETERMINISTIC_MOCK",
+      "isFallback": true
     },
     {
       "caseId": "case_l1_5",
@@ -93,10 +93,10 @@
       "executionStatus": "BLOCKED_BY_POLICY",
       "recoveredAmount": 0,
       "groundTruthMatch": true,
-      "processingTimeMs": 3,
+      "processingTimeMs": 2,
       "reasoningThoughts": "Mocked offline reasoning process.",
-      "provider": "MOCK",
-      "isFallback": false
+      "provider": "OFFLINE_DETERMINISTIC_MOCK",
+      "isFallback": true
     },
     {
       "caseId": "case_l1_6",
@@ -110,10 +110,10 @@
       "executionStatus": "BLOCKED_BY_POLICY",
       "recoveredAmount": 0,
       "groundTruthMatch": true,
-      "processingTimeMs": 1,
+      "processingTimeMs": 2,
       "reasoningThoughts": "Mocked offline reasoning process.",
-      "provider": "MOCK",
-      "isFallback": false
+      "provider": "OFFLINE_DETERMINISTIC_MOCK",
+      "isFallback": true
     },
     {
       "caseId": "case_l1_7",
@@ -125,10 +125,10 @@
       "executionStatus": "SUCCESS",
       "recoveredAmount": 2097.89,
       "groundTruthMatch": true,
-      "processingTimeMs": 3,
+      "processingTimeMs": 2,
       "reasoningThoughts": "Mocked offline reasoning process.",
-      "provider": "MOCK",
-      "isFallback": false
+      "provider": "OFFLINE_DETERMINISTIC_MOCK",
+      "isFallback": true
     },
     {
       "caseId": "case_l1_8",
@@ -140,10 +140,10 @@
       "executionStatus": "SUCCESS",
       "recoveredAmount": 167097.26,
       "groundTruthMatch": true,
-      "processingTimeMs": 3,
+      "processingTimeMs": 2,
       "reasoningThoughts": "Mocked offline reasoning process.",
-      "provider": "MOCK",
-      "isFallback": false
+      "provider": "OFFLINE_DETERMINISTIC_MOCK",
+      "isFallback": true
     },
     {
       "caseId": "case_l1_9",
@@ -157,8 +157,8 @@
       "groundTruthMatch": true,
       "processingTimeMs": 0,
       "reasoningThoughts": "Mocked offline reasoning process.",
-      "provider": "MOCK",
-      "isFallback": false
+      "provider": "OFFLINE_DETERMINISTIC_MOCK",
+      "isFallback": true
     },
     {
       "caseId": "case_l1_10",
@@ -172,10 +172,10 @@
       "executionStatus": "BLOCKED_BY_POLICY",
       "recoveredAmount": 0,
       "groundTruthMatch": true,
-      "processingTimeMs": 1,
+      "processingTimeMs": 4,
       "reasoningThoughts": "Mocked offline reasoning process.",
-      "provider": "MOCK",
-      "isFallback": false
+      "provider": "OFFLINE_DETERMINISTIC_MOCK",
+      "isFallback": true
     },
     {
       "caseId": "case_l1_11",
@@ -187,10 +187,10 @@
       "executionStatus": "SUCCESS",
       "recoveredAmount": 668.83,
       "groundTruthMatch": true,
-      "processingTimeMs": 2,
+      "processingTimeMs": 4,
       "reasoningThoughts": "Mocked offline reasoning process.",
-      "provider": "MOCK",
-      "isFallback": false
+      "provider": "OFFLINE_DETERMINISTIC_MOCK",
+      "isFallback": true
     },
     {
       "caseId": "case_l1_12",
@@ -202,10 +202,10 @@
       "executionStatus": "SUCCESS",
       "recoveredAmount": 105444.86,
       "groundTruthMatch": true,
-      "processingTimeMs": 4,
+      "processingTimeMs": 2,
       "reasoningThoughts": "Mocked offline reasoning process.",
-      "provider": "MOCK",
-      "isFallback": false
+      "provider": "OFFLINE_DETERMINISTIC_MOCK",
+      "isFallback": true
     },
     {
       "caseId": "case_l1_13",
@@ -221,8 +221,8 @@
       "groundTruthMatch": true,
       "processingTimeMs": 2,
       "reasoningThoughts": "Mocked offline reasoning process.",
-      "provider": "MOCK",
-      "isFallback": false
+      "provider": "OFFLINE_DETERMINISTIC_MOCK",
+      "isFallback": true
     },
     {
       "caseId": "case_l1_14",
@@ -234,10 +234,10 @@
       "executionStatus": "SUCCESS",
       "recoveredAmount": 100464.86,
       "groundTruthMatch": true,
-      "processingTimeMs": 1,
+      "processingTimeMs": 2,
       "reasoningThoughts": "Mocked offline reasoning process.",
-      "provider": "MOCK",
-      "isFallback": false
+      "provider": "OFFLINE_DETERMINISTIC_MOCK",
+      "isFallback": true
     },
     {
       "caseId": "case_l1_15",
@@ -251,8 +251,8 @@
       "groundTruthMatch": true,
       "processingTimeMs": 0,
       "reasoningThoughts": "Mocked offline reasoning process.",
-      "provider": "MOCK",
-      "isFallback": false
+      "provider": "OFFLINE_DETERMINISTIC_MOCK",
+      "isFallback": true
     },
     {
       "caseId": "case_l1_16",
@@ -264,10 +264,10 @@
       "executionStatus": "SUCCESS",
       "recoveredAmount": 384.93,
       "groundTruthMatch": true,
-      "processingTimeMs": 1,
+      "processingTimeMs": 4,
       "reasoningThoughts": "Mocked offline reasoning process.",
-      "provider": "MOCK",
-      "isFallback": false
+      "provider": "OFFLINE_DETERMINISTIC_MOCK",
+      "isFallback": true
     },
     {
       "caseId": "case_l1_17",
@@ -281,10 +281,10 @@
       "executionStatus": "BLOCKED_BY_POLICY",
       "recoveredAmount": 0,
       "groundTruthMatch": true,
-      "processingTimeMs": 4,
+      "processingTimeMs": 1,
       "reasoningThoughts": "Mocked offline reasoning process.",
-      "provider": "MOCK",
-      "isFallback": false
+      "provider": "OFFLINE_DETERMINISTIC_MOCK",
+      "isFallback": true
     },
     {
       "caseId": "case_l1_18",
@@ -298,8 +298,8 @@
       "groundTruthMatch": true,
       "processingTimeMs": 4,
       "reasoningThoughts": "Mocked offline reasoning process.",
-      "provider": "MOCK",
-      "isFallback": false
+      "provider": "OFFLINE_DETERMINISTIC_MOCK",
+      "isFallback": true
     },
     {
       "caseId": "case_l1_19",
@@ -311,10 +311,10 @@
       "executionStatus": "SUCCESS",
       "recoveredAmount": 206384.47999999998,
       "groundTruthMatch": true,
-      "processingTimeMs": 3,
+      "processingTimeMs": 0,
       "reasoningThoughts": "Mocked offline reasoning process.",
-      "provider": "MOCK",
-      "isFallback": false
+      "provider": "OFFLINE_DETERMINISTIC_MOCK",
+      "isFallback": true
     },
     {
       "caseId": "case_l1_20",
@@ -326,10 +326,10 @@
       "executionStatus": "SUCCESS",
       "recoveredAmount": 1000.55,
       "groundTruthMatch": true,
-      "processingTimeMs": 3,
+      "processingTimeMs": 2,
       "reasoningThoughts": "Mocked offline reasoning process.",
-      "provider": "MOCK",
-      "isFallback": false
+      "provider": "OFFLINE_DETERMINISTIC_MOCK",
+      "isFallback": true
     },
     {
       "caseId": "case_l1_21",
@@ -341,10 +341,10 @@
       "executionStatus": "SUCCESS",
       "recoveredAmount": 615.03,
       "groundTruthMatch": true,
-      "processingTimeMs": 2,
+      "processingTimeMs": 3,
       "reasoningThoughts": "Mocked offline reasoning process.",
-      "provider": "MOCK",
-      "isFallback": false
+      "provider": "OFFLINE_DETERMINISTIC_MOCK",
+      "isFallback": true
     },
     {
       "caseId": "case_l1_22",
@@ -358,10 +358,10 @@
       "executionStatus": "BLOCKED_BY_POLICY",
       "recoveredAmount": 0,
       "groundTruthMatch": true,
-      "processingTimeMs": 3,
+      "processingTimeMs": 2,
       "reasoningThoughts": "Mocked offline reasoning process.",
-      "provider": "MOCK",
-      "isFallback": false
+      "provider": "OFFLINE_DETERMINISTIC_MOCK",
+      "isFallback": true
     },
     {
       "caseId": "case_l1_23",
@@ -373,10 +373,10 @@
       "executionStatus": "SUCCESS",
       "recoveredAmount": 2208.27,
       "groundTruthMatch": true,
-      "processingTimeMs": 2,
+      "processingTimeMs": 4,
       "reasoningThoughts": "Mocked offline reasoning process.",
-      "provider": "MOCK",
-      "isFallback": false
+      "provider": "OFFLINE_DETERMINISTIC_MOCK",
+      "isFallback": true
     },
     {
       "caseId": "case_l1_24",
@@ -388,10 +388,10 @@
       "executionStatus": "SUCCESS",
       "recoveredAmount": 951.76,
       "groundTruthMatch": true,
-      "processingTimeMs": 3,
+      "processingTimeMs": 2,
       "reasoningThoughts": "Mocked offline reasoning process.",
-      "provider": "MOCK",
-      "isFallback": false
+      "provider": "OFFLINE_DETERMINISTIC_MOCK",
+      "isFallback": true
     },
     {
       "caseId": "case_l1_25",
@@ -403,10 +403,10 @@
       "executionStatus": "SUCCESS",
       "recoveredAmount": 191162.28,
       "groundTruthMatch": true,
-      "processingTimeMs": 0,
+      "processingTimeMs": 2,
       "reasoningThoughts": "Mocked offline reasoning process.",
-      "provider": "MOCK",
-      "isFallback": false
+      "provider": "OFFLINE_DETERMINISTIC_MOCK",
+      "isFallback": true
     },
     {
       "caseId": "case_l2_1",
@@ -418,10 +418,10 @@
       "executionStatus": "SUCCESS",
       "recoveredAmount": 677122.3,
       "groundTruthMatch": true,
-      "processingTimeMs": 4,
+      "processingTimeMs": 1,
       "reasoningThoughts": "Mocked offline reasoning process.",
-      "provider": "MOCK",
-      "isFallback": false
+      "provider": "OFFLINE_DETERMINISTIC_MOCK",
+      "isFallback": true
     },
     {
       "caseId": "case_l2_2",
@@ -433,10 +433,10 @@
       "executionStatus": "SUCCESS",
       "recoveredAmount": 692034.0800000001,
       "groundTruthMatch": true,
-      "processingTimeMs": 2,
+      "processingTimeMs": 4,
       "reasoningThoughts": "Mocked offline reasoning process.",
-      "provider": "MOCK",
-      "isFallback": false
+      "provider": "OFFLINE_DETERMINISTIC_MOCK",
+      "isFallback": true
     },
     {
       "caseId": "case_l2_3",
@@ -448,10 +448,10 @@
       "executionStatus": "FAILED",
       "recoveredAmount": 0,
       "groundTruthMatch": true,
-      "processingTimeMs": 4,
+      "processingTimeMs": 3,
       "reasoningThoughts": "Mocked offline reasoning process.",
-      "provider": "MOCK",
-      "isFallback": false
+      "provider": "OFFLINE_DETERMINISTIC_MOCK",
+      "isFallback": true
     },
     {
       "caseId": "case_l2_4",
@@ -463,10 +463,10 @@
       "executionStatus": "FAILED",
       "recoveredAmount": 0,
       "groundTruthMatch": true,
-      "processingTimeMs": 4,
+      "processingTimeMs": 0,
       "reasoningThoughts": "Mocked offline reasoning process.",
-      "provider": "MOCK",
-      "isFallback": false
+      "provider": "OFFLINE_DETERMINISTIC_MOCK",
+      "isFallback": true
     },
     {
       "caseId": "case_l2_5",
@@ -482,8 +482,8 @@
       "groundTruthMatch": true,
       "processingTimeMs": 4,
       "reasoningThoughts": "Mocked offline reasoning process.",
-      "provider": "MOCK",
-      "isFallback": false
+      "provider": "OFFLINE_DETERMINISTIC_MOCK",
+      "isFallback": true
     },
     {
       "caseId": "case_l2_6",
@@ -495,10 +495,10 @@
       "executionStatus": "FAILED",
       "recoveredAmount": 0,
       "groundTruthMatch": true,
-      "processingTimeMs": 4,
+      "processingTimeMs": 2,
       "reasoningThoughts": "Mocked offline reasoning process.",
-      "provider": "MOCK",
-      "isFallback": false
+      "provider": "OFFLINE_DETERMINISTIC_MOCK",
+      "isFallback": true
     },
     {
       "caseId": "case_l2_7",
@@ -510,10 +510,10 @@
       "executionStatus": "SUCCESS",
       "recoveredAmount": 1197559.69,
       "groundTruthMatch": true,
-      "processingTimeMs": 0,
+      "processingTimeMs": 2,
       "reasoningThoughts": "Mocked offline reasoning process.",
-      "provider": "MOCK",
-      "isFallback": false
+      "provider": "OFFLINE_DETERMINISTIC_MOCK",
+      "isFallback": true
     },
     {
       "caseId": "case_l2_8",
@@ -525,10 +525,10 @@
       "executionStatus": "FAILED",
       "recoveredAmount": 0,
       "groundTruthMatch": true,
-      "processingTimeMs": 2,
+      "processingTimeMs": 1,
       "reasoningThoughts": "Mocked offline reasoning process.",
-      "provider": "MOCK",
-      "isFallback": false
+      "provider": "OFFLINE_DETERMINISTIC_MOCK",
+      "isFallback": true
     },
     {
       "caseId": "case_l2_9",
@@ -542,10 +542,10 @@
       "executionStatus": "SUCCESS",
       "recoveredAmount": 342428.12000000005,
       "groundTruthMatch": true,
-      "processingTimeMs": 3,
+      "processingTimeMs": 0,
       "reasoningThoughts": "Mocked offline reasoning process.",
-      "provider": "MOCK",
-      "isFallback": false
+      "provider": "OFFLINE_DETERMINISTIC_MOCK",
+      "isFallback": true
     },
     {
       "caseId": "case_l2_10",
@@ -559,10 +559,10 @@
       "executionStatus": "SUCCESS",
       "recoveredAmount": 1108592.82,
       "groundTruthMatch": true,
-      "processingTimeMs": 2,
+      "processingTimeMs": 1,
       "reasoningThoughts": "Mocked offline reasoning process.",
-      "provider": "MOCK",
-      "isFallback": false
+      "provider": "OFFLINE_DETERMINISTIC_MOCK",
+      "isFallback": true
     },
     {
       "caseId": "case_l2_11",
@@ -576,10 +576,10 @@
       "executionStatus": "SUCCESS",
       "recoveredAmount": 11930.91,
       "groundTruthMatch": true,
-      "processingTimeMs": 0,
+      "processingTimeMs": 3,
       "reasoningThoughts": "Mocked offline reasoning process.",
-      "provider": "MOCK",
-      "isFallback": false
+      "provider": "OFFLINE_DETERMINISTIC_MOCK",
+      "isFallback": true
     },
     {
       "caseId": "case_l2_12",
@@ -593,8 +593,8 @@
       "groundTruthMatch": true,
       "processingTimeMs": 4,
       "reasoningThoughts": "Mocked offline reasoning process.",
-      "provider": "MOCK",
-      "isFallback": false
+      "provider": "OFFLINE_DETERMINISTIC_MOCK",
+      "isFallback": true
     },
     {
       "caseId": "case_l2_13",
@@ -608,8 +608,8 @@
       "groundTruthMatch": true,
       "processingTimeMs": 0,
       "reasoningThoughts": "Mocked offline reasoning process.",
-      "provider": "MOCK",
-      "isFallback": false
+      "provider": "OFFLINE_DETERMINISTIC_MOCK",
+      "isFallback": true
     },
     {
       "caseId": "case_l2_14",
@@ -621,10 +621,10 @@
       "executionStatus": "FAILED",
       "recoveredAmount": 0,
       "groundTruthMatch": true,
-      "processingTimeMs": 0,
+      "processingTimeMs": 4,
       "reasoningThoughts": "Mocked offline reasoning process.",
-      "provider": "MOCK",
-      "isFallback": false
+      "provider": "OFFLINE_DETERMINISTIC_MOCK",
+      "isFallback": true
     },
     {
       "caseId": "case_l2_15",
@@ -638,8 +638,8 @@
       "groundTruthMatch": true,
       "processingTimeMs": 0,
       "reasoningThoughts": "Mocked offline reasoning process.",
-      "provider": "MOCK",
-      "isFallback": false
+      "provider": "OFFLINE_DETERMINISTIC_MOCK",
+      "isFallback": true
     },
     {
       "caseId": "case_l2_16",
@@ -651,10 +651,10 @@
       "executionStatus": "SUCCESS",
       "recoveredAmount": 1313.3,
       "groundTruthMatch": true,
-      "processingTimeMs": 4,
+      "processingTimeMs": 2,
       "reasoningThoughts": "Mocked offline reasoning process.",
-      "provider": "MOCK",
-      "isFallback": false
+      "provider": "OFFLINE_DETERMINISTIC_MOCK",
+      "isFallback": true
     },
     {
       "caseId": "case_l2_17",
@@ -668,10 +668,10 @@
       "executionStatus": "SUCCESS",
       "recoveredAmount": 6655.01,
       "groundTruthMatch": true,
-      "processingTimeMs": 2,
+      "processingTimeMs": 0,
       "reasoningThoughts": "Mocked offline reasoning process.",
-      "provider": "MOCK",
-      "isFallback": false
+      "provider": "OFFLINE_DETERMINISTIC_MOCK",
+      "isFallback": true
     },
     {
       "caseId": "case_l2_18",
@@ -685,8 +685,8 @@
       "groundTruthMatch": true,
       "processingTimeMs": 0,
       "reasoningThoughts": "Mocked offline reasoning process.",
-      "provider": "MOCK",
-      "isFallback": false
+      "provider": "OFFLINE_DETERMINISTIC_MOCK",
+      "isFallback": true
     },
     {
       "caseId": "case_l2_19",
@@ -698,10 +698,10 @@
       "executionStatus": "SUCCESS",
       "recoveredAmount": 557725.97,
       "groundTruthMatch": true,
-      "processingTimeMs": 0,
+      "processingTimeMs": 2,
       "reasoningThoughts": "Mocked offline reasoning process.",
-      "provider": "MOCK",
-      "isFallback": false
+      "provider": "OFFLINE_DETERMINISTIC_MOCK",
+      "isFallback": true
     },
     {
       "caseId": "case_l2_20",
@@ -715,10 +715,10 @@
       "executionStatus": "SUCCESS",
       "recoveredAmount": 672512.48,
       "groundTruthMatch": true,
-      "processingTimeMs": 4,
+      "processingTimeMs": 2,
       "reasoningThoughts": "Mocked offline reasoning process.",
-      "provider": "MOCK",
-      "isFallback": false
+      "provider": "OFFLINE_DETERMINISTIC_MOCK",
+      "isFallback": true
     },
     {
       "caseId": "case_l2_21",
@@ -730,10 +730,10 @@
       "executionStatus": "FAILED",
       "recoveredAmount": 0,
       "groundTruthMatch": true,
-      "processingTimeMs": 1,
+      "processingTimeMs": 0,
       "reasoningThoughts": "Mocked offline reasoning process.",
-      "provider": "MOCK",
-      "isFallback": false
+      "provider": "OFFLINE_DETERMINISTIC_MOCK",
+      "isFallback": true
     },
     {
       "caseId": "case_l2_22",
@@ -747,8 +747,8 @@
       "groundTruthMatch": true,
       "processingTimeMs": 0,
       "reasoningThoughts": "Mocked offline reasoning process.",
-      "provider": "MOCK",
-      "isFallback": false
+      "provider": "OFFLINE_DETERMINISTIC_MOCK",
+      "isFallback": true
     },
     {
       "caseId": "case_l2_23",
@@ -762,8 +762,8 @@
       "groundTruthMatch": true,
       "processingTimeMs": 3,
       "reasoningThoughts": "Mocked offline reasoning process.",
-      "provider": "MOCK",
-      "isFallback": false
+      "provider": "OFFLINE_DETERMINISTIC_MOCK",
+      "isFallback": true
     },
     {
       "caseId": "case_l2_24",
@@ -775,10 +775,10 @@
       "executionStatus": "FAILED",
       "recoveredAmount": 0,
       "groundTruthMatch": true,
-      "processingTimeMs": 4,
+      "processingTimeMs": 0,
       "reasoningThoughts": "Mocked offline reasoning process.",
-      "provider": "MOCK",
-      "isFallback": false
+      "provider": "OFFLINE_DETERMINISTIC_MOCK",
+      "isFallback": true
     },
     {
       "caseId": "case_l2_25",
@@ -792,10 +792,10 @@
       "executionStatus": "SUCCESS",
       "recoveredAmount": 10289.59,
       "groundTruthMatch": true,
-      "processingTimeMs": 3,
+      "processingTimeMs": 0,
       "reasoningThoughts": "Mocked offline reasoning process.",
-      "provider": "MOCK",
-      "isFallback": false
+      "provider": "OFFLINE_DETERMINISTIC_MOCK",
+      "isFallback": true
     }
   ]
 }

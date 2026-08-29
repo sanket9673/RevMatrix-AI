@@ -407,7 +407,11 @@ The following metrics represent actual live Groq execution metrics across all 50
 - **Total Discounts Offered:** ₹2,35,184.73
 - **Net Recovered Yield:** ₹55,25,192.71
 
-*Note: Benchmark evaluated using live Groq (openai/gpt-oss-safeguard-20b via sandbox routing fallback) single-turn reasoning over pre-bundled context across 50 synthetic scenarios.*
+*Strategy evaluation using live Groq LLM inference over deterministic context fixtures.*
+
+*Note on Offline Mock Mode: The `--mock` CLI flag runs a 100% offline, deterministic rule-based simulation of the pipeline for offline testing without API keys. For live AI judgment metrics evaluated against Groq LLM, refer to `BENCHMARK_RESULTS.json`.*
+
+*Note on Action Accuracy (70.00%): While the LLM achieves 97.22% recall in identifying recoverable cases, its specific strategy recommendation (e.g. dynamic payment link vs instant retry) varies slightly on borderline cashflow delays, demonstrating real non-deterministic strategy selection.*
 
 ---
 

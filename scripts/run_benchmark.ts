@@ -393,8 +393,8 @@ async function run() {
 
     const start = Date.now();
 
-    let providerName = 'MOCK';
-    let isFallbackRecord = false;
+    let providerName = 'OFFLINE_DETERMINISTIC_MOCK';
+    let isFallbackRecord = true;
 
     if (useMock || !realOrchestrator) {
       // Diagnose
