@@ -1,0 +1,6 @@
+[[plugins]]
+  package = "@netlify/plugin-nextjs"
+
+# Netlify Scheduled Function (Netlify Cron) configuration for recoveries queue processing
+[functions."process-due-recoveries"]
+  schedule = "*/15 * * * *"
