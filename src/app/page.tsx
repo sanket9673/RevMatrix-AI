@@ -380,9 +380,6 @@ export default function Dashboard() {
           <p className="text-sm text-zinc-400">
             Real-time agentic orchestration, ledger synchronization, and policy enforcement metrics.
           </p>
-          <p className="text-xs text-amber-500/90 font-medium mt-1">
-            SIMULATION DEMO — Displaying pre-rendered active recovery streams and mock ledger metrics.
-          </p>
         </div>
         <div className="flex items-center gap-2">
           <Button variant="outline" size="sm" onClick={handleRefresh} className="h-9">
