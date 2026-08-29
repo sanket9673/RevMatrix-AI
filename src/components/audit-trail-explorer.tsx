@@ -399,7 +399,7 @@ export function AuditTrailExplorer() {
       </Card>
 
       <Dialog open={!!selectedBlock} onOpenChange={(open) => !open && setSelectedBlock(null)}>
-        <DialogContent onClose={() => setSelectedBlock(null)} className="w-[95vw] max-w-lg sm:max-w-2xl max-h-[90vh] overflow-y-auto p-4 sm:p-6 rounded-xl border border-zinc-800 bg-zinc-950 shadow-2xl">
+        <DialogContent onClose={() => setSelectedBlock(null)} className="w-[92vw] sm:w-[95vw] max-w-lg sm:max-w-2xl max-h-[85vh] sm:max-h-[90vh] overflow-y-auto p-4 sm:p-6 rounded-xl border border-zinc-800 bg-zinc-950 text-zinc-100 z-50 shadow-2xl">
           {selectedBlock && (
             <>
               <DialogHeader>

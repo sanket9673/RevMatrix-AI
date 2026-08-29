@@ -537,7 +537,7 @@ export function Header({ onMenuClick }: HeaderProps) {
             className="fixed inset-0 bg-zinc-950/80 backdrop-blur-sm"
           />
 
-          <div className="relative z-10 w-[95vw] max-w-lg sm:max-w-2xl max-h-[90vh] overflow-y-auto p-4 sm:p-6 rounded-xl border border-zinc-800 bg-zinc-950 text-zinc-100 shadow-2xl backdrop-blur-md animate-in fade-in zoom-in-95 duration-200">
+          <div className="relative z-10 w-[92vw] sm:w-[95vw] max-w-lg sm:max-w-2xl max-h-[85vh] sm:max-h-[90vh] overflow-y-auto p-4 sm:p-6 rounded-xl border border-zinc-800 bg-zinc-950 text-zinc-100 shadow-2xl backdrop-blur-md animate-in fade-in zoom-in-95 duration-200">
             <button
               onClick={() => setIsProfileOpen(false)}
               className="absolute right-4 top-4 rounded-sm opacity-70 ring-offset-zinc-950 transition-opacity hover:opacity-100 focus:outline-none cursor-pointer"
@@ -661,7 +661,7 @@ export function Header({ onMenuClick }: HeaderProps) {
 
       {/* MOBILE SEARCH DIALOG */}
       <Dialog open={isSearchDialogOpen} onOpenChange={setIsSearchDialogOpen}>
-        <DialogContent onClose={() => setIsSearchDialogOpen(false)} className="w-[95vw] max-w-lg bg-zinc-950 border border-zinc-800 p-4">
+        <DialogContent onClose={() => setIsSearchDialogOpen(false)} className="w-[92vw] sm:w-[95vw] max-w-lg bg-zinc-950 border border-zinc-800 p-4 text-zinc-100 z-50">
           <div className="flex items-center gap-2 border-b border-zinc-800 pb-2">
             <SearchIcon className="h-4 w-4 text-zinc-400" />
             <input

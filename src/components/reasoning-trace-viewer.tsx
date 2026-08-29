@@ -357,7 +357,7 @@ export function ReasoningTraceViewer() {
                             <Copy className="h-3.5 w-3.5" />
                           )}
                         </button>
-                        <pre className="max-w-full overflow-x-auto font-mono text-xs p-3 rounded bg-zinc-900 border border-zinc-800 whitespace-pre-wrap break-all max-h-60 selection:bg-emerald-500/20 selection:text-emerald-400">
+                        <pre className="w-full max-w-full overflow-x-auto font-mono text-[11px] sm:text-xs p-3 rounded-lg bg-zinc-950 border border-zinc-800/80 text-zinc-300 whitespace-pre-wrap break-all max-h-60 selection:bg-emerald-500/20 selection:text-emerald-400">
                           <code>{JSON.stringify(activeStep.toolInput, null, 2)}</code>
                         </pre>
                       </div>
@@ -405,7 +405,7 @@ export function ReasoningTraceViewer() {
                             <Copy className="h-3.5 w-3.5" />
                           )}
                         </button>
-                        <pre className="max-w-full overflow-x-auto font-mono text-xs p-3 rounded bg-zinc-900 border border-zinc-800 whitespace-pre-wrap break-all max-h-60 selection:bg-emerald-500/20 selection:text-emerald-400">
+                        <pre className="w-full max-w-full overflow-x-auto font-mono text-[11px] sm:text-xs p-3 rounded-lg bg-zinc-950 border border-zinc-800/80 text-zinc-300 whitespace-pre-wrap break-all max-h-60 selection:bg-emerald-500/20 selection:text-emerald-400">
                           <code>{JSON.stringify(activeStep.toolOutput, null, 2)}</code>
                         </pre>
                       </div>
@@ -503,7 +503,7 @@ export function ReasoningTraceViewer() {
 
       {/* STEP DETAILS MODAL */}
       <Dialog open={isDetailsModalOpen} onOpenChange={setIsDetailsModalOpen}>
-        <DialogContent onClose={() => setIsDetailsModalOpen(false)} className="w-[95vw] max-w-lg sm:max-w-2xl max-h-[90vh] overflow-y-auto p-4 sm:p-6 rounded-xl border border-zinc-800 bg-zinc-950 shadow-2xl">
+        <DialogContent onClose={() => setIsDetailsModalOpen(false)} className="w-[92vw] sm:w-[95vw] max-w-lg sm:max-w-2xl max-h-[85vh] sm:max-h-[90vh] overflow-y-auto p-4 sm:p-6 rounded-xl border border-zinc-800 bg-zinc-950 text-zinc-100 z-50 shadow-2xl">
           <DialogHeader>
             <DialogTitle className="text-zinc-50 flex items-center gap-2">
               <span>Step {activeStep.stepNumber} Execution Inspector</span>
@@ -538,7 +538,7 @@ export function ReasoningTraceViewer() {
             {/* Tool Input Payload */}
             <div className="space-y-1">
               <span className="text-zinc-500 block text-[10px] uppercase font-bold">Tool Input Payload</span>
-              <pre className="max-w-full overflow-x-auto font-mono text-xs p-3 rounded bg-zinc-900 border border-zinc-800 whitespace-pre-wrap break-all max-h-36">
+              <pre className="w-full max-w-full overflow-x-auto font-mono text-[11px] sm:text-xs p-3 rounded-lg bg-zinc-950 border border-zinc-800/80 text-zinc-300 whitespace-pre-wrap break-all max-h-36">
                 <code>{JSON.stringify(activeStep.toolInput, null, 2)}</code>
               </pre>
             </div>
@@ -546,7 +546,7 @@ export function ReasoningTraceViewer() {
             {/* Tool Output Payload */}
             <div className="space-y-1">
               <span className="text-zinc-500 block text-[10px] uppercase font-bold">Tool Output Result</span>
-              <pre className="max-w-full overflow-x-auto font-mono text-xs p-3 rounded bg-zinc-900 border border-zinc-800 whitespace-pre-wrap break-all max-h-36">
+              <pre className="w-full max-w-full overflow-x-auto font-mono text-[11px] sm:text-xs p-3 rounded-lg bg-zinc-950 border border-zinc-800/80 text-zinc-300 whitespace-pre-wrap break-all max-h-36">
                 <code>{JSON.stringify(activeStep.toolOutput, null, 2)}</code>
               </pre>
             </div>

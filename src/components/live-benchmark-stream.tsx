@@ -539,7 +539,7 @@ export default function LiveBenchmarkStream() {
           </div>
 
           {/* Actual Log Stream Window */}
-          <div className="w-full max-h-[400px] sm:max-h-[500px] overflow-y-auto overflow-x-auto font-mono text-xs p-4 bg-black rounded-lg border border-zinc-800">
+          <div className="w-full max-h-[350px] sm:max-h-[480px] overflow-y-auto overflow-x-auto font-mono text-[11px] sm:text-xs p-3 sm:p-4 bg-black rounded-xl border border-zinc-800">
             {filteredLogs.length === 0 ? (
               <div className="h-full flex flex-col items-center justify-center text-slate-600 text-center">
                 <TerminalIcon className="w-8 h-8 mb-2 opacity-50" />
